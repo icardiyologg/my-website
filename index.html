@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Your Name – About Me</title>
+  <title>Yusuf Erdem Sakın – About</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Personal website of Your Name – about me, blog, and products." />
+  <meta name="description" content="Personal website of Yusuf Erdem Sakın – Product Manager at Autom Mate, working on AI Agents and workflow automation." />
 
   <style>
     :root {
-      --bg: #050816;
-      --bg-alt: #0b1020;
+      --bg: #020617;          /* main background */
+      --bg-elevated: #020817; /* cards / sections */
+      --border-subtle: #1f2937;
+      --text: #f9fafb;
+      --text-soft: #9ca3af;
       --accent: #38bdf8;
       --accent-soft: rgba(56, 189, 248, 0.12);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --card-bg: #020617;
-      --border: #1f2937;
-      --radius-lg: 18px;
-      --radius-full: 9999px;
-      --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.55);
+      --radius-lg: 14px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 14px 40px rgba(15, 23, 42, 0.7);
       --transition-fast: 0.18s ease-out;
     }
 
@@ -30,10 +29,10 @@
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      background: radial-gradient(circle at top, #0b1120 0, #020617 55%, #000 100%);
       color: var(--text);
-      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
     }
 
     a {
@@ -46,7 +45,6 @@
       display: block;
     }
 
-    /* Layout */
     .page {
       min-height: 100vh;
       display: flex;
@@ -54,19 +52,21 @@
     }
 
     .max-w {
-      width: 100%;
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 0 1.25rem;
+      width: 100%;
     }
+
+    /* Header / nav */
 
     header {
       position: sticky;
       top: 0;
       z-index: 10;
-      backdrop-filter: blur(12px);
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.65), transparent);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.75), transparent);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.85);
     }
 
     .nav {
@@ -78,93 +78,93 @@
 
     .logo {
       display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+      flex-direction: column;
+      gap: 0.1rem;
     }
 
-    .logo-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 0, #f97316, #22c55e 55%, #0ea5e9 100%);
-      box-shadow: 0 0 16px rgba(56, 189, 248, 0.6);
+    .logo-name {
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .logo-tagline {
+      font-size: 0.75rem;
+      color: var(--text-soft);
     }
 
     .nav-links {
       display: flex;
       gap: 0.75rem;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .nav-link {
-      padding: 0.35rem 0.75rem;
-      border-radius: var(--radius-full);
-      color: var(--muted);
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-pill);
+      color: var(--text-soft);
       border: 1px solid transparent;
       transition: background var(--transition-fast), color var(--transition-fast),
                   border-color var(--transition-fast), transform var(--transition-fast);
     }
 
     .nav-link:hover {
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.96);
       color: var(--text);
-      border-color: rgba(55, 65, 81, 0.9);
+      border-color: rgba(51, 65, 85, 0.9);
       transform: translateY(-1px);
     }
 
-    .nav-cta {
-      border-radius: var(--radius-full);
-      padding: 0.4rem 0.9rem;
-      border: 1px solid rgba(56, 189, 248, 0.6);
-      background: radial-gradient(circle at top left, rgba(56,189,248,0.14), transparent 55%);
+    .nav-link-primary {
+      border-color: rgba(56, 189, 248, 0.6);
       color: var(--accent);
-      font-size: 0.85rem;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 60%);
     }
 
     main {
       flex: 1;
-      padding: 1.5rem 0 3rem;
+      padding: 2.25rem 0 3rem;
     }
 
     section {
-      padding: 3rem 0 0;
+      padding: 2.5rem 0 0;
     }
 
     section:first-of-type {
-      padding-top: 2rem;
+      padding-top: 1.5rem;
     }
 
     h1, h2, h3 {
       font-weight: 600;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
     }
 
     h2 {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
+      color: var(--text-soft);
+      margin-bottom: 0.35rem;
     }
 
     .section-title {
       font-size: 1.7rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.85rem;
     }
 
     .section-subtitle {
       font-size: 0.95rem;
-      color: var(--muted);
-      margin-bottom: 1.4rem;
-      max-width: 540px;
+      color: var(--text-soft);
+      margin-bottom: 1.3rem;
+      max-width: 560px;
     }
 
-    /* Hero / About */
+    /* Hero */
+
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
-      gap: 2rem;
+      grid-template-columns: minmax(0, 2.5fr) minmax(0, 1.8fr);
+      gap: 1.7rem;
       align-items: center;
     }
 
@@ -174,30 +174,17 @@
       }
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.25rem 0.7rem;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-bottom: 0.75rem;
-    }
-
-    .hero-badge-pill {
-      padding: 0.15rem 0.5rem;
-      border-radius: var(--radius-full);
-      background: rgba(56, 189, 248, 0.08);
+    .hero-kicker {
+      font-size: 0.8rem;
       color: var(--accent);
-      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 0.5rem;
     }
 
     .hero-title {
-      font-size: clamp(2rem, 4vw, 2.5rem);
-      margin-bottom: 0.6rem;
+      font-size: clamp(2rem, 3.4vw, 2.4rem);
+      margin-bottom: 0.3rem;
     }
 
     .hero-title span {
@@ -206,179 +193,82 @@
       color: transparent;
     }
 
-    .hero-text {
-      color: var(--muted);
+    .hero-role {
       font-size: 0.96rem;
-      margin-bottom: 1.4rem;
-      max-width: 520px;
+      margin-bottom: 0.9rem;
+      color: var(--text-soft);
     }
 
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 1.5rem;
+    .hero-role a {
+      color: var(--accent);
+      text-decoration: none;
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      padding: 0.55rem 1.2rem;
-      border-radius: var(--radius-full);
-      border: 1px solid transparent;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: transform var(--transition-fast),
-                  box-shadow var(--transition-fast),
-                  background var(--transition-fast),
-                  border-color var(--transition-fast);
+    .hero-role a:hover {
+      text-decoration: underline;
     }
 
-    .btn-primary {
-      background: radial-gradient(circle at top left, #22d3ee, #6366f1);
-      color: white;
-      box-shadow: 0 18px 45px rgba(59, 130, 246, 0.55);
+    .hero-text {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      margin-bottom: 1.3rem;
+      max-width: 560px;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 24px 60px rgba(59, 130, 246, 0.75);
-    }
-
-    .btn-ghost {
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--muted);
-      border-color: rgba(55, 65, 81, 0.9);
-    }
-
-    .btn-ghost:hover {
-      background: rgba(15, 23, 42, 1);
-      border-color: rgba(75, 85, 99, 1);
-      color: var(--text);
-      transform: translateY(-1px);
-    }
-
-    .hero-tags {
+    .hero-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       font-size: 0.75rem;
-      color: var(--muted);
+      margin-bottom: 0.4rem;
     }
 
-    .hero-tag {
-      padding: 0.25rem 0.6rem;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(55, 65, 81, 0.8);
-      background: rgba(15, 23, 42, 0.85);
+    .chip {
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-soft);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--text-soft);
     }
 
     .hero-card {
-      position: relative;
-      border-radius: 26px;
-      background: radial-gradient(circle at top left, rgba(56,189,248,0.22), transparent 55%),
-                  radial-gradient(circle at bottom right, rgba(147,51,234,0.22), transparent 55%),
-                  var(--card-bg);
-      padding: 1.4rem;
-      border: 1px solid rgba(51, 65, 85, 0.9);
+      border-radius: 18px;
+      background: linear-gradient(to bottom right, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 1));
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      padding: 1.1rem 1.2rem;
       box-shadow: var(--shadow-soft);
-      overflow: hidden;
     }
 
-    .hero-avatar {
-      width: 72px;
-      height: 72px;
-      border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: radial-gradient(circle at 30% 0, #38bdf8, #1e293b 55%, #000 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.1rem;
+    .hero-card-title {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
     }
 
-    .hero-avatar span {
-      font-weight: 700;
-      color: white;
+    .hero-card-body {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 0.9rem;
     }
 
-    .hero-card-header {
-      display: flex;
-      align-items: center;
-      gap: 0.9rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-name {
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    .hero-role {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .hero-pill-row {
+    .hero-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-pill {
-      font-size: 0.7rem;
-      padding: 0.2rem 0.55rem;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--muted);
-    }
-
-    .hero-highlight {
+      gap: 0.45rem;
       font-size: 0.8rem;
-      background: rgba(15, 23, 42, 0.92);
-      border-radius: 14px;
-      padding: 0.6rem 0.75rem;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      color: var(--muted);
+      color: var(--text-soft);
     }
 
-    .hero-highlight strong {
-      color: var(--accent);
-      font-weight: 500;
-    }
+    /* Cards & layout */
 
-    .hero-orbit {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.7;
-    }
-
-    .hero-orbit::before,
-    .hero-orbit::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      border: 1px dashed rgba(148, 163, 184, 0.3);
-    }
-
-    .hero-orbit::before {
-      inset: 6%;
-    }
-
-    .hero-orbit::after {
-      inset: 14%;
-    }
-
-    /* Shared Card layout */
     .grid-2 {
       display: grid;
-      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
-      gap: 1.4rem;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1.2rem;
     }
 
     @media (max-width: 768px) {
@@ -389,160 +279,128 @@
 
     .card {
       border-radius: var(--radius-lg);
-      background: linear-gradient(to bottom right, rgba(15,23,42,0.95), rgba(15,23,42,1));
-      border: 1px solid rgba(31, 41, 55, 0.95);
-      padding: 1.1rem 1.1rem 1rem;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
-                  border-color var(--transition-fast), background var(--transition-fast);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      padding: 1rem 1rem 0.9rem;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
+      transition: background var(--transition-fast), border-color var(--transition-fast),
+                  transform var(--transition-fast), box-shadow var(--transition-fast);
     }
 
     .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 55px rgba(15, 23, 42, 0.95);
+      background: #02091a;
       border-color: rgba(55, 65, 81, 0.95);
-      background: linear-gradient(to bottom right, rgba(15,23,42,0.98), rgba(15,23,42,1));
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
     }
 
-    .card-title-row {
+    .card-header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: baseline;
       margin-bottom: 0.4rem;
     }
 
     .card-title {
-      font-size: 0.95rem;
-      font-weight: 500;
+      font-size: 0.98rem;
     }
 
-    .card-tag {
-      font-size: 0.7rem;
-      padding: 0.2rem 0.5rem;
-      border-radius: var(--radius-full);
-      background: rgba(56, 189, 248, 0.1);
+    .card-label {
+      font-size: 0.72rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: var(--radius-pill);
+      background: var(--accent-soft);
       color: var(--accent);
       border: 1px solid rgba(56, 189, 248, 0.6);
     }
 
     .card-body {
       font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
+      color: var(--text-soft);
+      margin-bottom: 0.7rem;
     }
 
     .card-meta {
+      font-size: 0.78rem;
+      color: #6b7280;
       display: flex;
       justify-content: space-between;
-      font-size: 0.75rem;
-      color: #6b7280;
+      gap: 0.6rem;
+      padding-top: 0.4rem;
+      border-top: 1px dashed rgba(51, 65, 85, 0.8);
     }
 
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .badge {
-      font-size: 0.7rem;
-      padding: 0.18rem 0.45rem;
-      border-radius: var(--radius-full);
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px dashed rgba(55, 65, 81, 0.9);
-      color: #9ca3af;
-    }
-
-    /* Blog section */
-    .blog-list {
+    .list {
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.9rem;
+      gap: 0.7rem;
+      font-size: 0.88rem;
+      color: var(--text-soft);
     }
 
-    .blog-item-title {
-      font-size: 0.95rem;
+    .list-item-title {
+      font-size: 0.9rem;
+      color: var(--text);
       margin-bottom: 0.1rem;
     }
 
-    .blog-item-title a {
-      color: var(--text);
-    }
-
-    .blog-item-title a:hover {
+    .list-item-title a:hover {
       text-decoration: underline;
     }
 
-    .blog-item-date {
-      font-size: 0.75rem;
+    .list-item-meta {
+      font-size: 0.78rem;
       color: #6b7280;
       margin-bottom: 0.25rem;
     }
 
-    /* Products section */
-    .product-price {
-      font-size: 0.9rem;
-      color: var(--accent);
-      font-weight: 500;
-    }
+    /* Contact */
 
-    .product-label {
-      font-size: 0.7rem;
-      color: #6b7280;
-    }
-
-    /* Contact / footer */
     .contact-box {
       border-radius: var(--radius-lg);
+      background: linear-gradient(to right, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 1));
+      border: 1px solid rgba(31, 41, 55, 0.95);
       padding: 1.1rem 1.2rem;
-      background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 50%),
-                  linear-gradient(to bottom right, rgba(15,23,42,0.98), rgba(15,23,42,1));
-      border: 1px solid rgba(55, 65, 81, 0.95);
-      box-shadow: 0 16px 55px rgba(15, 23, 42, 0.9);
-      margin-top: 1.5rem;
-    }
-
-    .contact-row {
+      box-shadow: var(--shadow-soft);
       display: flex;
       flex-wrap: wrap;
-      gap: 1.2rem;
+      justify-content: space-between;
+      gap: 0.9rem;
       align-items: center;
     }
 
-    .contact-main {
+    .contact-text {
       font-size: 0.9rem;
-      color: var(--muted);
+      color: var(--text-soft);
+      max-width: 540px;
     }
 
-    .contact-links {
+    .contact-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 0.6rem;
-      font-size: 0.85rem;
+      font-size: 0.86rem;
     }
 
-    .contact-link-pill {
-      padding: 0.35rem 0.8rem;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.96);
-      color: var(--muted);
-      transition: background var(--transition-fast),
-                  border-color var(--transition-fast),
-                  transform var(--transition-fast);
+    .pill-link {
+      padding: 0.4rem 0.95rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.98);
+      color: var(--text-soft);
+      transition: background var(--transition-fast), border-color var(--transition-fast),
+                  transform var(--transition-fast), color var(--transition-fast);
     }
 
-    .contact-link-pill:hover {
-      background: rgba(15, 23, 42, 1);
+    .pill-link:hover {
       border-color: rgba(75, 85, 99, 1);
-      transform: translateY(-1px);
+      background: #020617;
       color: var(--text);
+      transform: translateY(-1px);
     }
 
     footer {
-      padding: 2rem 0 0.75rem;
-      font-size: 0.75rem;
+      padding: 2.2rem 0 0.9rem;
+      font-size: 0.78rem;
       color: #6b7280;
       text-align: center;
     }
@@ -554,14 +412,15 @@
       <div class="max-w">
         <nav class="nav">
           <div class="logo">
-            <span class="logo-dot"></span>
-            <span>Your Name</span>
+            <div class="logo-name">YUSUF ERDEM SAKIN</div>
+            <div class="logo-tagline">AI-focused Product Manager</div>
           </div>
           <div class="nav-links">
             <a href="#about" class="nav-link">About</a>
-            <a href="#blog" class="nav-link">Blog</a>
-            <a href="#products" class="nav-link">Products</a>
-            <a href="#contact" class="nav-link nav-cta">Contact</a>
+            <a href="#work" class="nav-link">Work &amp; AI</a>
+            <a href="#writing" class="nav-link">Writing</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link nav-link-primary">Connect</a>
           </div>
         </nav>
       </div>
@@ -569,166 +428,197 @@
 
     <main>
       <div class="max-w">
-        <!-- Hero / About -->
+        <!-- Hero -->
         <section id="about">
           <div class="hero">
             <div>
-              <div class="hero-badge">
-                <span>Personal site</span>
-                <span class="hero-badge-pill">About • Blog • Products</span>
-              </div>
-
+              <div class="hero-kicker">Hi, I’m Erdem.</div>
               <h1 class="hero-title">
-                Hi, I’m <span>Your Name</span>.
+                I design <span>AI-driven workflows</span> that actually fit how people work.
               </h1>
-
+              <p class="hero-role">
+                Product Manager at
+                <a href="https://autommate.com/" target="_blank" rel="noopener noreferrer">
+                  Autom Mate
+                </a>
+              </p>
               <p class="hero-text">
-                A short sentence about you. For example:
-                “I enjoy building digital products, writing about technology,
-                and sharing ideas that help people work smarter.”
+                I’m an industrial engineering graduate, four years into the IT world as a Product Manager.
+                I’ve led post-sales teams for tools like ManageEngine, SolarWinds, Xurrent and Quest.
+                Today, I focus on pre-sales at Autom Mate and build AI Agents for different customers,
+                industries and use cases.
               </p>
 
-              <div class="hero-buttons">
-                <a href="#blog" class="btn btn-primary">Read my posts</a>
-                <a href="#products" class="btn btn-ghost">See my products</a>
+              <div class="hero-chips">
+                <span class="chip">AI &amp; agentic workflows</span>
+                <span class="chip">IT operations &amp; automation</span>
+                <span class="chip">Product thinking with real customers</span>
               </div>
 
-              <div class="hero-tags">
-                <span class="hero-tag">Blogging</span>
-                <span class="hero-tag">Side projects</span>
-                <span class="hero-tag">Automation</span>
-              </div>
+              <p class="hero-note">
+                Outside of work I’m usually tuning aquariums, playing guitar,
+                riding my bike, or deep into a game.
+              </p>
             </div>
 
             <aside class="hero-card">
-              <div class="hero-orbit"></div>
-              <div class="hero-card-header">
-                <div class="hero-avatar">
-                  <!-- You can replace initials below -->
-                  <span>YN</span>
-                </div>
-                <div>
-                  <div class="hero-name">Your Name</div>
-                  <div class="hero-role">Your role / tagline</div>
-                </div>
+              <div class="hero-card-title">A quick snapshot</div>
+              <div class="hero-card-body">
+                I like the intersection of <strong>business problems</strong> and
+                <strong>practical automation</strong>—turning vague “we should use AI” into
+                concrete flows that save time for support teams and operations.
               </div>
-
-              <div class="hero-pill-row">
-                <div class="hero-pill">📍 Based in Somewhere</div>
-                <div class="hero-pill">💻 Working on: Your main thing</div>
-                <div class="hero-pill">✍️ Writing about: topics you like</div>
-              </div>
-
-              <div class="hero-highlight">
-                I use this website to <strong>share what I’m building</strong>,
-                collect notes, and highlight the <strong>products & ideas</strong>
-                I’m excited about right now.
+              <div class="hero-meta">
+                <span>🎯 Product Manager, Autom Mate</span>
+                <span>🤖 AI Agents &amp; orchestration</span>
+                <span>🌍 Based in Türkiye</span>
               </div>
             </aside>
           </div>
         </section>
 
-        <!-- Blog -->
-        <section id="blog">
-          <h2>Blog</h2>
-          <div class="section-title">Latest posts</div>
+        <!-- Work & AI -->
+        <section id="work">
+          <h2>Work &amp; AI</h2>
+          <div class="section-title">What I’m focused on</div>
           <p class="section-subtitle">
-            A few recent thoughts. You can keep this section simple and just
-            link to posts hosted elsewhere (Medium, Substack, etc.), or you can
-            create standalone pages later.
+            Most of my time goes into understanding how support, IT and business teams actually operate,
+            then designing AI Agents and automations that plug into those workflows without getting in the way.
           </p>
 
           <div class="grid-2">
             <article class="card">
-              <div class="card-title-row">
-                <div class="card-title">Starting this personal site</div>
-                <span class="card-tag">New</span>
+              <div class="card-header">
+                <div class="card-title">AI Agents at Autom Mate</div>
+                <span class="card-label">Day job</span>
               </div>
               <div class="card-body">
-                A short intro explaining why you created this website,
-                what you plan to share, and what people can expect.
+                At Autom Mate, I work on pre-sales and solution design—turning customer problems into
+                end-to-end AI workflows. That includes ticket triage, knowledge search, approvals,
+                and automations that sit on top of tools like ServiceNow, Xurrent and others.
               </div>
               <div class="card-meta">
-                <span>Post · #meta</span>
-                <span>YYYY · MM · DD</span>
+                <span>Focus: agentic flows, orchestration, IT use cases</span>
+                <span>Stack: Autom Mate, OpenAI &amp; friends</span>
               </div>
             </article>
 
-            <div class="card">
-              <div class="card-title-row">
-                <div class="card-title">More posts</div>
+            <article class="card">
+              <div class="card-header">
+                <div class="card-title">A business view on AI</div>
+                <span class="card-label">How I think</span>
               </div>
               <div class="card-body">
-                You can list posts like this:
+                I try to look at AI from a business perspective first: who owns the process,
+                where the data lives, and what “better” actually means for a team.
+                The tech is fun, but the goal is always fewer clicks, less noise,
+                and happier operators.
               </div>
-              <div class="blog-list">
-                <div>
-                  <div class="blog-item-title">
-                    <a href="#">How I approach side projects</a>
-                  </div>
-                  <div class="blog-item-date">Soon</div>
-                  <div class="card-body">
-                    Short description of a future or existing article.
-                  </div>
-                </div>
+              <div class="card-meta">
+                <span>Outcome-driven, not buzzword-driven</span>
+                <span>Bridge between tech &amp; business</span>
+              </div>
+            </article>
+          </div>
+        </section>
 
-                <div>
-                  <div class="blog-item-title">
-                    <a href="#">Notes on tools I use daily</a>
-                  </div>
-                  <div class="blog-item-date">Soon</div>
-                </div>
+        <!-- Writing -->
+        <section id="writing">
+          <h2>Writing</h2>
+          <div class="section-title">Notes on AI &amp; orchestration</div>
+          <p class="section-subtitle">
+            A few draft topics I’m exploring around AI Agents, orchestration and how companies can use them
+            without turning everything into a science project.
+          </p>
+
+          <div class="grid-2">
+            <article class="card">
+              <div class="card-header">
+                <div class="card-title">From tickets to flows: AI Agents in IT operations</div>
               </div>
+              <div class="card-body">
+                Why most teams don’t need a generic “chatbot”, but a set of focused agents that
+                understand tickets, approvals and knowledge—and know when to hand off to humans.
+              </div>
+              <div class="card-meta">
+                <span>Topic: AI in service desks</span>
+                <span>Status: Drafting</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-header">
+                <div class="card-title">Orchestrating tools instead of replacing them</div>
+              </div>
+              <div class="card-body">
+                Thoughts on connecting systems like ServiceNow, Xurrent and others
+                with AI orchestration—so teams keep the tools they know, but workflows
+                get much smarter.
+              </div>
+              <div class="card-meta">
+                <span>Topic: AI orchestration</span>
+                <span>Status: Coming soon</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="card" style="margin-top: 1rem;">
+            <div class="card-header">
+              <div class="card-title">Building AI Agents for real people</div>
+            </div>
+            <div class="card-body">
+              A more personal angle: what I’ve learned moving from post-sales and support to
+              AI-heavy product work—where the hard parts are not the models, but expectations,
+              scope and adoption.
+            </div>
+            <div class="card-meta">
+              <span>Topic: career &amp; product</span>
+              <span>Status: In ideas list</span>
             </div>
           </div>
         </section>
 
-        <!-- Products -->
-        <section id="products">
-          <h2>Products</h2>
-          <div class="section-title">Things I’ve built</div>
+        <!-- Projects -->
+        <section id="projects">
+          <h2>Projects</h2>
+          <div class="section-title">Things I’m building</div>
           <p class="section-subtitle">
-            This is a simple showcase area. You can add digital products, tools,
-            templates, or anything else you want to highlight.
+            A mix of work projects and side experiments that keep me curious.
           </p>
 
           <div class="grid-2">
             <article class="card">
-              <div class="card-title-row">
-                <div class="card-title">Product / Project #1</div>
-                <span class="card-tag">Available</span>
+              <div class="card-header">
+                <div class="card-title">LoadTest Pro – stress testing as a product</div>
+                <span class="card-label">Side project</span>
               </div>
               <div class="card-body">
-                Brief description of your product or project. What problem does
-                it solve? Who is it for? Add a short, clear benefit.
-              </div>
-              <div class="badge-row">
-                <span class="badge">Notion</span>
-                <span class="badge">Automation</span>
-                <span class="badge">Template</span>
+                <a href="https://www.loadtest.pro" target="_blank" rel="noopener noreferrer">
+                  www.loadtest.pro
+                </a>
+                is a stress-test project I’m working on. The idea: make it easier for teams to
+                understand how their services behave under real traffic and weird edge cases—
+                without needing a dedicated performance engineer.
               </div>
               <div class="card-meta">
-                <span class="product-price">$19 or free</span>
-                <span class="product-label"><a href="#">View details →</a></span>
+                <span>Stage: In development</span>
+                <span>Focus: Reliability &amp; insights</span>
               </div>
             </article>
 
             <article class="card">
-              <div class="card-title-row">
-                <div class="card-title">Product / Project #2</div>
-                <span class="card-tag">Coming soon</span>
+              <div class="card-header">
+                <div class="card-title">Autom Mate AI Agents</div>
+                <span class="card-label">At work</span>
               </div>
               <div class="card-body">
-                Another product, experiment, or idea. You can link out to Gumroad,
-                a GitHub repo, or any landing page.
-              </div>
-              <div class="badge-row">
-                <span class="badge">Prototype</span>
-                <span class="badge">Ideas</span>
+                At Autom Mate I contribute to ready-to-use AI Agents that customers can plug into
+                their environments—covering support flows, approvals, ticket analysis and more.
+                Think of it as a growing catalog of practical, automation-ready agents.
               </div>
               <div class="card-meta">
-                <span class="product-price">Notify list</span>
-                <span class="product-label"><a href="#">Join waitlist →</a></span>
+                <span>Area: AI + workflow automation</span>
+                <span>Role: Product &amp; solution design</span>
               </div>
             </article>
           </div>
@@ -737,33 +627,35 @@
         <!-- Contact -->
         <section id="contact">
           <h2>Contact</h2>
-          <div class="section-title">Say hello</div>
+          <div class="section-title">Let’s connect</div>
 
           <div class="contact-box">
-            <div class="contact-row">
-              <div class="contact-main">
-                Prefer email? Reach out at
-                <strong>you@example.com</strong>.<br />
-                Or find me on these platforms:
-              </div>
-              <div class="contact-links">
-                <a href="#" class="contact-link-pill">LinkedIn</a>
-                <a href="#" class="contact-link-pill">GitHub</a>
-                <a href="#" class="contact-link-pill">Twitter / X</a>
-              </div>
+            <div class="contact-text">
+              I’m always open to conversations about AI Agents, workflow automation,
+              or interesting product problems. The easiest way to reach me is on LinkedIn.
+            </div>
+            <div class="contact-actions">
+              <a
+                href="https://www.linkedin.com/in/yusuferdemsakin/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="pill-link"
+              >
+                View my LinkedIn profile
+              </a>
             </div>
           </div>
         </section>
 
         <footer>
-          © <span id="year"></span> Your Name. All rights reserved.
+          © <span id="year"></span> Yusuf Erdem Sakın. Built with static HTML &amp; GitHub Pages.
         </footer>
       </div>
     </main>
   </div>
 
   <script>
-    // Set current year automatically
+    // keep the year updated automatically
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
