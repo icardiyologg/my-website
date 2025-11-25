@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Name – About Me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Personal website of Your Name – about me, blog, and products." />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card-bg: #020617;
+      --border: #1f2937;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+      --shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.55);
+      --transition-fast: 0.18s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .max-w {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.92), rgba(2, 6, 23, 0.65), transparent);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.8);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #f97316, #22c55e 55%, #0ea5e9 100%);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.6);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-link {
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-full);
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: background var(--transition-fast), color var(--transition-fast),
+                  border-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text);
+      border-color: rgba(55, 65, 81, 0.9);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      border-radius: var(--radius-full);
+      padding: 0.4rem 0.9rem;
+      border: 1px solid rgba(56, 189, 248, 0.6);
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.14), transparent 55%);
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    main {
+      flex: 1;
+      padding: 1.5rem 0 3rem;
+    }
+
+    section {
+      padding: 3rem 0 0;
+    }
+
+    section:first-of-type {
+      padding-top: 2rem;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.4rem;
+      max-width: 540px;
+    }
+
+    /* Hero / About */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-badge-pill {
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-full);
+      background: rgba(56, 189, 248, 0.08);
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, #38bdf8, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 1.4rem;
+      max-width: 520px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: var(--radius-full);
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: transform var(--transition-fast),
+                  box-shadow var(--transition-fast),
+                  background var(--transition-fast),
+                  border-color var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: radial-gradient(circle at top left, #22d3ee, #6366f1);
+      color: white;
+      box-shadow: 0 18px 45px rgba(59, 130, 246, 0.55);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 60px rgba(59, 130, 246, 0.75);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      border-color: rgba(55, 65, 81, 0.9);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 1);
+      border-color: rgba(75, 85, 99, 1);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .hero-tag {
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(55, 65, 81, 0.8);
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 26px;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.22), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(147,51,234,0.22), transparent 55%),
+                  var(--card-bg);
+      padding: 1.4rem;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: radial-gradient(circle at 30% 0, #38bdf8, #1e293b 55%, #000 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.1rem;
+    }
+
+    .hero-avatar span {
+      font-weight: 700;
+      color: white;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-name {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .hero-role {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-pill {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+    }
+
+    .hero-highlight {
+      font-size: 0.8rem;
+      background: rgba(15, 23, 42, 0.92);
+      border-radius: 14px;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+    }
+
+    .hero-highlight strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-orbit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .hero-orbit::before,
+    .hero-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.3);
+    }
+
+    .hero-orbit::before {
+      inset: 6%;
+    }
+
+    .hero-orbit::after {
+      inset: 14%;
+    }
+
+    /* Shared Card layout */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.5fr);
+      gap: 1.4rem;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(to bottom right, rgba(15,23,42,0.95), rgba(15,23,42,1));
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      padding: 1.1rem 1.1rem 1rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+                  border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 55px rgba(15, 23, 42, 0.95);
+      border-color: rgba(55, 65, 81, 0.95);
+      background: linear-gradient(to bottom right, rgba(15,23,42,0.98), rgba(15,23,42,1));
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .card-tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-full);
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.6);
+    }
+
+    .card-body {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .badge {
+      font-size: 0.7rem;
+      padding: 0.18rem 0.45rem;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px dashed rgba(55, 65, 81, 0.9);
+      color: #9ca3af;
+    }
+
+    /* Blog section */
+    .blog-list {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.9rem;
+    }
+
+    .blog-item-title {
+      font-size: 0.95rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .blog-item-title a {
+      color: var(--text);
+    }
+
+    .blog-item-title a:hover {
+      text-decoration: underline;
+    }
+
+    .blog-item-date {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Products section */
+    .product-price {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .product-label {
+      font-size: 0.7rem;
+      color: #6b7280;
+    }
+
+    /* Contact / footer */
+    .contact-box {
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.2rem;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 50%),
+                  linear-gradient(to bottom right, rgba(15,23,42,0.98), rgba(15,23,42,1));
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      box-shadow: 0 16px 55px rgba(15, 23, 42, 0.9);
+      margin-top: 1.5rem;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    .contact-main {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+    }
+
+    .contact-link-pill {
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--muted);
+      transition: background var(--transition-fast),
+                  border-color var(--transition-fast),
+                  transform var(--transition-fast);
+    }
+
+    .contact-link-pill:hover {
+      background: rgba(15, 23, 42, 1);
+      border-color: rgba(75, 85, 99, 1);
+      transform: translateY(-1px);
+      color: var(--text);
+    }
+
+    footer {
+      padding: 2rem 0 0.75rem;
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="max-w">
+        <nav class="nav">
+          <div class="logo">
+            <span class="logo-dot"></span>
+            <span>Your Name</span>
+          </div>
+          <div class="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#blog" class="nav-link">Blog</a>
+            <a href="#products" class="nav-link">Products</a>
+            <a href="#contact" class="nav-link nav-cta">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="max-w">
+        <!-- Hero / About -->
+        <section id="about">
+          <div class="hero">
+            <div>
+              <div class="hero-badge">
+                <span>Personal site</span>
+                <span class="hero-badge-pill">About • Blog • Products</span>
+              </div>
+
+              <h1 class="hero-title">
+                Hi, I’m <span>Your Name</span>.
+              </h1>
+
+              <p class="hero-text">
+                A short sentence about you. For example:
+                “I enjoy building digital products, writing about technology,
+                and sharing ideas that help people work smarter.”
+              </p>
+
+              <div class="hero-buttons">
+                <a href="#blog" class="btn btn-primary">Read my posts</a>
+                <a href="#products" class="btn btn-ghost">See my products</a>
+              </div>
+
+              <div class="hero-tags">
+                <span class="hero-tag">Blogging</span>
+                <span class="hero-tag">Side projects</span>
+                <span class="hero-tag">Automation</span>
+              </div>
+            </div>
+
+            <aside class="hero-card">
+              <div class="hero-orbit"></div>
+              <div class="hero-card-header">
+                <div class="hero-avatar">
+                  <!-- You can replace initials below -->
+                  <span>YN</span>
+                </div>
+                <div>
+                  <div class="hero-name">Your Name</div>
+                  <div class="hero-role">Your role / tagline</div>
+                </div>
+              </div>
+
+              <div class="hero-pill-row">
+                <div class="hero-pill">📍 Based in Somewhere</div>
+                <div class="hero-pill">💻 Working on: Your main thing</div>
+                <div class="hero-pill">✍️ Writing about: topics you like</div>
+              </div>
+
+              <div class="hero-highlight">
+                I use this website to <strong>share what I’m building</strong>,
+                collect notes, and highlight the <strong>products & ideas</strong>
+                I’m excited about right now.
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- Blog -->
+        <section id="blog">
+          <h2>Blog</h2>
+          <div class="section-title">Latest posts</div>
+          <p class="section-subtitle">
+            A few recent thoughts. You can keep this section simple and just
+            link to posts hosted elsewhere (Medium, Substack, etc.), or you can
+            create standalone pages later.
+          </p>
+
+          <div class="grid-2">
+            <article class="card">
+              <div class="card-title-row">
+                <div class="card-title">Starting this personal site</div>
+                <span class="card-tag">New</span>
+              </div>
+              <div class="card-body">
+                A short intro explaining why you created this website,
+                what you plan to share, and what people can expect.
+              </div>
+              <div class="card-meta">
+                <span>Post · #meta</span>
+                <span>YYYY · MM · DD</span>
+              </div>
+            </article>
+
+            <div class="card">
+              <div class="card-title-row">
+                <div class="card-title">More posts</div>
+              </div>
+              <div class="card-body">
+                You can list posts like this:
+              </div>
+              <div class="blog-list">
+                <div>
+                  <div class="blog-item-title">
+                    <a href="#">How I approach side projects</a>
+                  </div>
+                  <div class="blog-item-date">Soon</div>
+                  <div class="card-body">
+                    Short description of a future or existing article.
+                  </div>
+                </div>
+
+                <div>
+                  <div class="blog-item-title">
+                    <a href="#">Notes on tools I use daily</a>
+                  </div>
+                  <div class="blog-item-date">Soon</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Products -->
+        <section id="products">
+          <h2>Products</h2>
+          <div class="section-title">Things I’ve built</div>
+          <p class="section-subtitle">
+            This is a simple showcase area. You can add digital products, tools,
+            templates, or anything else you want to highlight.
+          </p>
+
+          <div class="grid-2">
+            <article class="card">
+              <div class="card-title-row">
+                <div class="card-title">Product / Project #1</div>
+                <span class="card-tag">Available</span>
+              </div>
+              <div class="card-body">
+                Brief description of your product or project. What problem does
+                it solve? Who is it for? Add a short, clear benefit.
+              </div>
+              <div class="badge-row">
+                <span class="badge">Notion</span>
+                <span class="badge">Automation</span>
+                <span class="badge">Template</span>
+              </div>
+              <div class="card-meta">
+                <span class="product-price">$19 or free</span>
+                <span class="product-label"><a href="#">View details →</a></span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-title-row">
+                <div class="card-title">Product / Project #2</div>
+                <span class="card-tag">Coming soon</span>
+              </div>
+              <div class="card-body">
+                Another product, experiment, or idea. You can link out to Gumroad,
+                a GitHub repo, or any landing page.
+              </div>
+              <div class="badge-row">
+                <span class="badge">Prototype</span>
+                <span class="badge">Ideas</span>
+              </div>
+              <div class="card-meta">
+                <span class="product-price">Notify list</span>
+                <span class="product-label"><a href="#">Join waitlist →</a></span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+          <h2>Contact</h2>
+          <div class="section-title">Say hello</div>
+
+          <div class="contact-box">
+            <div class="contact-row">
+              <div class="contact-main">
+                Prefer email? Reach out at
+                <strong>you@example.com</strong>.<br />
+                Or find me on these platforms:
+              </div>
+              <div class="contact-links">
+                <a href="#" class="contact-link-pill">LinkedIn</a>
+                <a href="#" class="contact-link-pill">GitHub</a>
+                <a href="#" class="contact-link-pill">Twitter / X</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          © <span id="year"></span> Your Name. All rights reserved.
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Set current year automatically
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
