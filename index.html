@@ -2,23 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Yusuf Erdem Sakın – About</title>
+  <title>Yusuf Erdem Sakın – AI Product Designer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Personal website of Yusuf Erdem Sakın – Product Manager at Autom Mate, working on AI Agents and workflow automation." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #020617;          /* main background */
-      --bg-elevated: #020817; /* cards / sections */
-      --border-subtle: #1f2937;
-      --text: #f9fafb;
-      --text-soft: #9ca3af;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --radius-lg: 14px;
-      --radius-pill: 999px;
-      --shadow-soft: 0 14px 40px rgba(15, 23, 42, 0.7);
-      --transition-fast: 0.18s ease-out;
+      --bg-primary: #0a0a0b;
+      --bg-secondary: #111113;
+      --bg-tertiary: #18181b;
+      --bg-card: rgba(24, 24, 27, 0.6);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.15);
+      --text-primary: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+      --accent-primary: #22d3ee;
+      --accent-secondary: #a78bfa;
+      --accent-tertiary: #f472b6;
+      --gradient-main: linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #f472b6 100%);
+      --gradient-subtle: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(167, 139, 250, 0.15) 50%, rgba(244, 114, 182, 0.15) 100%);
+      --font-display: 'Syne', sans-serif;
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     * {
@@ -27,12 +40,23 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #0b1120 0, #020617 55%, #000 100%);
-      color: var(--text);
+      font-family: var(--font-display);
+      background: var(--bg-primary);
+      color: var(--text-primary);
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
+      overflow-x: hidden;
+      transform: translateZ(0);
+    }
+
+    ::selection {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
     }
 
     a {
@@ -40,623 +64,1354 @@
       text-decoration: none;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
+    /* Reduce noise texture impact */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.02;
+      pointer-events: none;
+      z-index: 1000;
+      will-change: auto;
     }
 
+    /* Animated gradient orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: -1;
+      will-change: transform;
+      contain: layout style paint;
+    }
+
+    .orb-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--accent-primary);
+      top: -200px;
+      right: -100px;
+      animation: float1 20s ease-in-out infinite;
+    }
+
+    .orb-2 {
+      width: 500px;
+      height: 500px;
+      background: var(--accent-secondary);
+      bottom: -150px;
+      left: -100px;
+      animation: float2 25s ease-in-out infinite;
+    }
+
+    .orb-3 {
+      width: 400px;
+      height: 400px;
+      background: var(--accent-tertiary);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: float3 30s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-50px, 100px) scale(1.1); }
+      66% { transform: translate(50px, -50px) scale(0.9); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(80px, -80px) scale(1.15); }
+      66% { transform: translate(-40px, 40px) scale(0.85); }
+    }
+
+    @keyframes float3 {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.3); }
+    }
+
+    /* Page structure */
     .page {
+      position: relative;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
-    .max-w {
-      max-width: 900px;
+    .container {
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1.25rem;
-      width: 100%;
+      padding: 0 2rem;
     }
 
-    /* Header / nav */
-
+    /* Header */
     header {
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 10;
-      backdrop-filter: blur(10px);
-      background: linear-gradient(to bottom, rgba(2, 6, 23, 0.95), rgba(2, 6, 23, 0.75), transparent);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.85);
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.5rem 0;
+      background: rgba(10, 10, 11, 0.9);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
     }
 
     .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--gradient-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--bg-primary);
+      transition: transform 0.4s var(--ease-out-back);
+    }
+
+    .logo:hover .logo-mark {
+      transform: rotate(-10deg) scale(1.05);
+    }
+
+    .logo-text {
       display: flex;
       flex-direction: column;
       gap: 0.1rem;
     }
 
     .logo-name {
+      font-weight: 700;
       font-size: 0.95rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
-    .logo-tagline {
+    .logo-title {
       font-size: 0.75rem;
-      color: var(--text-soft);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
     }
 
     .nav-links {
       display: flex;
-      gap: 0.75rem;
-      font-size: 0.85rem;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .nav-link {
-      padding: 0.35rem 0.8rem;
-      border-radius: var(--radius-pill);
-      color: var(--text-soft);
-      border: 1px solid transparent;
-      transition: background var(--transition-fast), color var(--transition-fast),
-                  border-color var(--transition-fast), transform var(--transition-fast);
+      padding: 0.6rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: 100px;
+      transition: all 0.3s var(--ease-out-expo);
+      position: relative;
     }
 
     .nav-link:hover {
-      background: rgba(15, 23, 42, 0.96);
-      color: var(--text);
-      border-color: rgba(51, 65, 85, 0.9);
-      transform: translateY(-1px);
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
     }
 
-    .nav-link-primary {
-      border-color: rgba(56, 189, 248, 0.6);
-      color: var(--accent);
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 60%);
-    }
-
-    main {
-      flex: 1;
-      padding: 2.25rem 0 3rem;
-    }
-
-    section {
-      padding: 2.5rem 0 0;
-    }
-
-    section:first-of-type {
-      padding-top: 1.5rem;
-    }
-
-    h1, h2, h3 {
+    .nav-link-cta {
+      background: var(--text-primary);
+      color: var(--bg-primary);
       font-weight: 600;
-      letter-spacing: 0.02em;
     }
 
-    h2 {
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      color: var(--text-soft);
-      margin-bottom: 0.35rem;
-    }
-
-    .section-title {
-      font-size: 1.7rem;
-      margin-bottom: 0.85rem;
-    }
-
-    .section-subtitle {
-      font-size: 0.95rem;
-      color: var(--text-soft);
-      margin-bottom: 1.3rem;
-      max-width: 560px;
+    .nav-link-cta:hover {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
     }
 
     /* Hero */
-
     .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 0 6rem;
+      position: relative;
+    }
+
+    .hero-content {
       display: grid;
-      grid-template-columns: minmax(0, 2.5fr) minmax(0, 1.8fr);
-      gap: 1.7rem;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 4rem;
       align-items: center;
     }
 
-    @media (max-width: 768px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.5rem 1rem 0.5rem 0.5rem;
+      background: rgba(24, 24, 27, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      animation: slideUp 0.8s var(--ease-out-expo) 0.1s both;
     }
 
-    .hero-kicker {
-      font-size: 0.8rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 0.5rem;
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
     }
 
     .hero-title {
-      font-size: clamp(2rem, 3.4vw, 2.4rem);
-      margin-bottom: 0.3rem;
+      font-size: clamp(3rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      animation: slideUp 0.8s var(--ease-out-expo) 0.2s both;
     }
 
-    .hero-title span {
-      background: linear-gradient(to right, #38bdf8, #a855f7, #ec4899);
+    .hero-title-line {
+      display: block;
+    }
+
+    .hero-title-gradient {
+      background: var(--gradient-main);
       -webkit-background-clip: text;
-      color: transparent;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
-    .hero-role {
-      font-size: 0.96rem;
-      margin-bottom: 0.9rem;
-      color: var(--text-soft);
+    .hero-title-serif {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-style: italic;
     }
 
-    .hero-role a {
-      color: var(--accent);
-      text-decoration: none;
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+      animation: slideUp 0.8s var(--ease-out-expo) 0.3s both;
     }
 
-    .hero-role a:hover {
-      text-decoration: underline;
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      animation: slideUp 0.8s var(--ease-out-expo) 0.4s both;
     }
 
-    .hero-text {
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 1rem 1.8rem;
       font-size: 0.95rem;
-      color: var(--text-soft);
-      margin-bottom: 1.3rem;
-      max-width: 560px;
+      font-weight: 600;
+      font-family: var(--font-display);
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s var(--ease-out-expo);
     }
 
-    .hero-chips {
+    .btn-primary {
+      background: var(--text-primary);
+      color: var(--bg-primary);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-primary);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(34, 211, 238, 0.25);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-icon {
+      transition: transform 0.3s var(--ease-out-expo);
+    }
+
+    .btn:hover .btn-icon {
+      transform: translateX(4px);
+    }
+
+    /* Hero card */
+    .hero-card {
+      position: relative;
+      animation: slideUp 0.8s var(--ease-out-expo) 0.5s both;
+    }
+
+    .hero-card-inner {
+      background: rgba(24, 24, 27, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-subtle);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .hero-card:hover .hero-card-inner::before {
+      opacity: 1;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-card-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: var(--gradient-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .hero-card-info h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-card-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .hero-card-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+      font-family: var(--font-mono);
+    }
+
+    .hero-card-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tag {
+      padding: 0.4rem 0.9rem;
       font-size: 0.75rem;
-      margin-bottom: 0.4rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
     }
 
-    .chip {
-      padding: 0.25rem 0.7rem;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(51, 65, 85, 0.9);
-      background: rgba(15, 23, 42, 0.96);
-      color: var(--text-soft);
+    .tag:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
     }
 
-    .hero-note {
+    /* Floating elements */
+    .floating-element {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .floating-code {
+      top: -20px;
+      right: -30px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-primary);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .floating-emoji {
+      bottom: 30px;
+      left: -40px;
+      width: 60px;
+      height: 60px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      animation: float 5s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(3deg); }
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       font-size: 0.8rem;
-      color: var(--text-soft);
+      font-weight: 600;
+      font-family: var(--font-mono);
+      color: var(--accent-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
     }
 
-    .hero-card {
-      border-radius: 18px;
-      background: linear-gradient(to bottom right, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 1));
-      border: 1px solid rgba(31, 41, 55, 0.95);
-      padding: 1.1rem 1.2rem;
-      box-shadow: var(--shadow-soft);
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
     }
 
-    .hero-card-title {
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Work section */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .work-card {
+      background: rgba(24, 24, 27, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: all 0.4s var(--ease-out-expo);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .work-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-subtle);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .work-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-5px);
+    }
+
+    .work-card:hover::before {
+      opacity: 1;
+    }
+
+    .work-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--gradient-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .work-card-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      padding: 0.3rem 0.7rem;
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border-radius: 100px;
+      margin-bottom: 0.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .work-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .work-card p {
       font-size: 0.95rem;
-      margin-bottom: 0.4rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
     }
 
-    .hero-card-body {
-      font-size: 0.85rem;
-      color: var(--text-soft);
-      margin-bottom: 0.9rem;
-    }
-
-    .hero-meta {
+    .work-card-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
-      font-size: 0.8rem;
-      color: var(--text-soft);
+      gap: 0.5rem;
+      position: relative;
+      z-index: 1;
     }
 
-    /* Cards & layout */
+    .work-card-meta span {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      padding: 0.3rem 0.7rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 6px;
+    }
 
-    .grid-2 {
+    /* Writing section */
+    .writing-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 1.2rem;
+      gap: 1rem;
     }
 
-    @media (max-width: 768px) {
-      .grid-2 {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    .writing-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background: rgba(24, 24, 27, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.4s var(--ease-out-expo);
+      cursor: pointer;
     }
 
-    .card {
-      border-radius: var(--radius-lg);
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-subtle);
-      padding: 1rem 1rem 0.9rem;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
-      transition: background var(--transition-fast), border-color var(--transition-fast),
-                  transform var(--transition-fast), box-shadow var(--transition-fast);
+    .writing-card:hover {
+      border-color: var(--border-hover);
+      transform: translateX(10px);
+      background: rgba(255, 255, 255, 0.02);
     }
 
-    .card:hover {
-      background: #02091a;
-      border-color: rgba(55, 65, 81, 0.95);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.9);
+    .writing-number {
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.5;
     }
 
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
+    .writing-content h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
       margin-bottom: 0.4rem;
     }
 
-    .card-title {
-      font-size: 0.98rem;
-    }
-
-    .card-label {
-      font-size: 0.72rem;
-      padding: 0.15rem 0.55rem;
-      border-radius: var(--radius-pill);
-      background: var(--accent-soft);
-      color: var(--accent);
-      border: 1px solid rgba(56, 189, 248, 0.6);
-    }
-
-    .card-body {
-      font-size: 0.85rem;
-      color: var(--text-soft);
-      margin-bottom: 0.7rem;
-    }
-
-    .card-meta {
-      font-size: 0.78rem;
-      color: #6b7280;
-      display: flex;
-      justify-content: space-between;
-      gap: 0.6rem;
-      padding-top: 0.4rem;
-      border-top: 1px dashed rgba(51, 65, 85, 0.8);
-    }
-
-    .list {
-      display: grid;
-      gap: 0.7rem;
-      font-size: 0.88rem;
-      color: var(--text-soft);
-    }
-
-    .list-item-title {
+    .writing-content p {
       font-size: 0.9rem;
-      color: var(--text);
-      margin-bottom: 0.1rem;
+      color: var(--text-secondary);
     }
 
-    .list-item-title a:hover {
-      text-decoration: underline;
-    }
-
-    .list-item-meta {
-      font-size: 0.78rem;
-      color: #6b7280;
-      margin-bottom: 0.25rem;
-    }
-
-    /* Contact */
-
-    .contact-box {
-      border-radius: var(--radius-lg);
-      background: linear-gradient(to right, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 1));
-      border: 1px solid rgba(31, 41, 55, 0.95);
-      padding: 1.1rem 1.2rem;
-      box-shadow: var(--shadow-soft);
+    .writing-meta {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.9rem;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.3rem;
+    }
+
+    .writing-status {
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      padding: 0.3rem 0.7rem;
+      border-radius: 100px;
+      background: rgba(167, 139, 250, 0.1);
+      color: var(--accent-secondary);
+    }
+
+    .writing-arrow {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+    }
+
+    .writing-card:hover .writing-arrow {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+      transform: translateX(5px);
+    }
+
+    /* Projects section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: rgba(24, 24, 27, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-visual {
+      height: 180px;
+      background: var(--gradient-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .project-card:hover .project-visual::before {
+      transform: translateX(100%);
+    }
+
+    .project-visual-content {
+      font-size: 3rem;
+    }
+
+    .project-info {
+      padding: 1.5rem;
+    }
+
+    .project-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      padding: 0.3rem 0.7rem;
+      background: rgba(244, 114, 182, 0.1);
+      color: var(--accent-tertiary);
+      border-radius: 100px;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-info h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-info p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent-primary);
+      transition: gap 0.3s ease;
+    }
+
+    .project-link:hover {
+      gap: 0.8rem;
+    }
+
+    /* Contact section */
+    .contact-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 4rem;
       align-items: center;
     }
 
-    .contact-text {
-      font-size: 0.9rem;
-      color: var(--text-soft);
-      max-width: 540px;
+    .contact-text h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .contact-text h2 span {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .contact-text p {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 500px;
     }
 
     .contact-actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      font-size: 0.86rem;
+      flex-direction: column;
+      gap: 1rem;
     }
 
-    .pill-link {
-      padding: 0.4rem 0.95rem;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(55, 65, 81, 0.95);
-      background: rgba(15, 23, 42, 0.98);
-      color: var(--text-soft);
-      transition: background var(--transition-fast), border-color var(--transition-fast),
-                  transform var(--transition-fast), color var(--transition-fast);
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.3s var(--ease-out-expo);
     }
 
-    .pill-link:hover {
-      border-color: rgba(75, 85, 99, 1);
-      background: #020617;
-      color: var(--text);
-      transform: translateY(-1px);
+    .contact-btn:hover {
+      border-color: var(--accent-primary);
+      transform: translateX(10px);
     }
 
+    .contact-btn-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--gradient-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .contact-btn-text {
+      flex: 1;
+    }
+
+    .contact-btn-text strong {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-btn-text span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .contact-btn-arrow {
+      color: var(--text-muted);
+      transition: transform 0.3s ease;
+    }
+
+    .contact-btn:hover .contact-btn-arrow {
+      transform: translateX(5px);
+      color: var(--accent-primary);
+    }
+
+    /* Footer */
     footer {
-      padding: 2.2rem 0 0.9rem;
-      font-size: 0.78rem;
-      color: #6b7280;
-      text-align: center;
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
     }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-copy {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-primary);
+    }
+
+    /* Animations */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s var(--ease-out-expo);
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .work-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .floating-element {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 7rem 0 4rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+      }
+
+      .btn {
+        justify-content: center;
+      }
+
+      .writing-card {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .writing-number {
+        display: none;
+      }
+
+      .writing-meta {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+    }
+
+    /* Scroll reveal stagger */
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
   </style>
 </head>
 <body>
+  <!-- Background orbs -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
   <div class="page">
+    <!-- Header -->
     <header>
-      <div class="max-w">
+      <div class="container">
         <nav class="nav">
-          <div class="logo">
-            <div class="logo-name">YUSUF ERDEM SAKIN</div>
-            <div class="logo-tagline">AI-focused Product Manager</div>
-          </div>
+          <a href="#" class="logo">
+            <div class="logo-mark">YE</div>
+            <div class="logo-text">
+              <div class="logo-name">Yusuf Erdem Sakın</div>
+              <div class="logo-title">Product Manager</div>
+            </div>
+          </a>
           <div class="nav-links">
             <a href="#about" class="nav-link">About</a>
-            <a href="#work" class="nav-link">Work &amp; AI</a>
+            <a href="#work" class="nav-link">Work</a>
             <a href="#writing" class="nav-link">Writing</a>
             <a href="#projects" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link nav-link-primary">Connect</a>
+            <a href="#contact" class="nav-link nav-link-cta">Let's Talk</a>
           </div>
         </nav>
       </div>
     </header>
 
     <main>
-      <div class="max-w">
-        <!-- Hero -->
-        <section id="about">
-          <div class="hero">
-            <div>
-              <div class="hero-kicker">Hi, I’m Erdem.</div>
+      <!-- Hero -->
+      <section class="hero" id="about">
+        <div class="container">
+          <div class="hero-content">
+            <div class="hero-text">
+              <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Available for AI consulting
+              </div>
               <h1 class="hero-title">
-                I design <span>AI-driven workflows</span> that actually fit how people work.
+                <span class="hero-title-line">I design</span>
+                <span class="hero-title-line hero-title-gradient">AI workflows</span>
+                <span class="hero-title-line">that <span class="hero-title-serif">actually</span> work.</span>
               </h1>
-              <p class="hero-role">
-                Product Manager at
-                <a href="https://autommate.com/" target="_blank" rel="noopener noreferrer">
-                  Autom Mate
+              <p class="hero-subtitle">
+                Product Manager at Autom Mate, building AI Agents that transform how support teams 
+                operate. Four years turning complex business problems into elegant automation solutions.
+              </p>
+              <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">
+                  Start a Conversation
+                  <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
                 </a>
+                <a href="#work" class="btn btn-secondary">See My Work</a>
+              </div>
+            </div>
+
+            <div class="hero-card">
+              <div class="floating-element floating-code">&lt;agent/&gt;</div>
+              <div class="floating-element floating-emoji">🤖</div>
+              <div class="hero-card-inner">
+                <div class="hero-card-header">
+                  <div class="hero-card-avatar">👨‍💻</div>
+                  <div class="hero-card-info">
+                    <h3>Erdem</h3>
+                    <p>@autommate</p>
+                  </div>
+                </div>
+                <div class="hero-card-stats">
+                  <div class="stat">
+                    <div class="stat-value">4+</div>
+                    <div class="stat-label">Years in IT</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">AI Agents</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-value">∞</div>
+                    <div class="stat-label">Curiosity</div>
+                  </div>
+                </div>
+                <div class="hero-card-tags">
+                  <span class="tag">AI Agents</span>
+                  <span class="tag">Orchestration</span>
+                  <span class="tag">ITSM</span>
+                  <span class="tag">Automation</span>
+                  <span class="tag">Product</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Work Section -->
+      <section id="work">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-label">
+              <span>◆</span> What I Do
+            </div>
+            <h2 class="section-title">Bridging AI & Business Reality</h2>
+            <p class="section-subtitle">
+              I specialize in turning vague "we should use AI" requests into focused, 
+              measurable automation that saves real time for real teams.
+            </p>
+          </div>
+
+          <div class="work-grid">
+            <article class="work-card animate-on-scroll stagger-1">
+              <div class="work-card-icon">🎯</div>
+              <span class="work-card-label">Primary Focus</span>
+              <h3>AI Agents at Autom Mate</h3>
+              <p>
+                Leading pre-sales and solution design—transforming customer challenges into 
+                end-to-end AI workflows. Ticket triage, knowledge search, approvals, and 
+                automations integrated with ServiceNow, Xurrent, and beyond.
               </p>
-              <p class="hero-text">
-                I’m an industrial engineering graduate, four years into the IT world as a Product Manager.
-                I’ve led post-sales teams for tools like ManageEngine, SolarWinds, Xurrent and Quest.
-                Today, I focus on pre-sales at Autom Mate and build AI Agents for different customers,
-                industries and use cases.
+              <div class="work-card-meta">
+                <span>Agentic Flows</span>
+                <span>Orchestration</span>
+                <span>IT Ops</span>
+              </div>
+            </article>
+
+            <article class="work-card animate-on-scroll stagger-2">
+              <div class="work-card-icon">💡</div>
+              <span class="work-card-label">My Approach</span>
+              <h3>Business-First AI Thinking</h3>
+              <p>
+                I start with who owns the process, where the data lives, and what "better" 
+                actually means for the team. The tech is exciting, but the goal is always 
+                fewer clicks, less noise, and happier operators.
               </p>
-
-              <div class="hero-chips">
-                <span class="chip">AI &amp; agentic workflows</span>
-                <span class="chip">IT operations &amp; automation</span>
-                <span class="chip">Product thinking with real customers</span>
+              <div class="work-card-meta">
+                <span>Outcome-Driven</span>
+                <span>Tech ↔ Business</span>
+                <span>Practical</span>
               </div>
+            </article>
 
-              <p class="hero-note">
-                Outside of work I’m usually tuning aquariums, playing guitar,
-                riding my bike, or deep into a game.
+            <article class="work-card animate-on-scroll stagger-3">
+              <div class="work-card-icon">🛠️</div>
+              <span class="work-card-label">Background</span>
+              <h3>Post-Sales to Pre-Sales Journey</h3>
+              <p>
+                Industrial engineering foundation. Four years leading post-sales teams for 
+                ManageEngine, SolarWinds, Xurrent, and Quest. That hands-on experience shapes 
+                how I design solutions today.
               </p>
-            </div>
-
-            <aside class="hero-card">
-              <div class="hero-card-title">A quick snapshot</div>
-              <div class="hero-card-body">
-                I like the intersection of <strong>business problems</strong> and
-                <strong>practical automation</strong>—turning vague “we should use AI” into
-                concrete flows that save time for support teams and operations.
-              </div>
-              <div class="hero-meta">
-                <span>🎯 Product Manager, Autom Mate</span>
-                <span>🤖 AI Agents &amp; orchestration</span>
-                <span>🌍 Based in Türkiye</span>
-              </div>
-            </aside>
-          </div>
-        </section>
-
-        <!-- Work & AI -->
-        <section id="work">
-          <h2>Work &amp; AI</h2>
-          <div class="section-title">What I’m focused on</div>
-          <p class="section-subtitle">
-            Most of my time goes into understanding how support, IT and business teams actually operate,
-            then designing AI Agents and automations that plug into those workflows without getting in the way.
-          </p>
-
-          <div class="grid-2">
-            <article class="card">
-              <div class="card-header">
-                <div class="card-title">AI Agents at Autom Mate</div>
-                <span class="card-label">Day job</span>
-              </div>
-              <div class="card-body">
-                At Autom Mate, I work on pre-sales and solution design—turning customer problems into
-                end-to-end AI workflows. That includes ticket triage, knowledge search, approvals,
-                and automations that sit on top of tools like ServiceNow, Xurrent and others.
-              </div>
-              <div class="card-meta">
-                <span>Focus: agentic flows, orchestration, IT use cases</span>
-                <span>Stack: Autom Mate, OpenAI &amp; friends</span>
+              <div class="work-card-meta">
+                <span>ITSM Tools</span>
+                <span>Customer Success</span>
+                <span>Implementation</span>
               </div>
             </article>
 
-            <article class="card">
-              <div class="card-header">
-                <div class="card-title">A business view on AI</div>
-                <span class="card-label">How I think</span>
-              </div>
-              <div class="card-body">
-                I try to look at AI from a business perspective first: who owns the process,
-                where the data lives, and what “better” actually means for a team.
-                The tech is fun, but the goal is always fewer clicks, less noise,
-                and happier operators.
-              </div>
-              <div class="card-meta">
-                <span>Outcome-driven, not buzzword-driven</span>
-                <span>Bridge between tech &amp; business</span>
+            <article class="work-card animate-on-scroll stagger-4">
+              <div class="work-card-icon">🌱</div>
+              <span class="work-card-label">Beyond Work</span>
+              <h3>Life Outside the Screen</h3>
+              <p>
+                When I'm not designing AI flows, you'll find me tuning aquariums, playing guitar, 
+                riding my bike around Istanbul, or deep in an immersive game. Balance fuels creativity.
+              </p>
+              <div class="work-card-meta">
+                <span>Aquariums 🐠</span>
+                <span>Guitar 🎸</span>
+                <span>Gaming 🎮</span>
               </div>
             </article>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- Writing -->
-        <section id="writing">
-          <h2>Writing</h2>
-          <div class="section-title">Notes on AI &amp; orchestration</div>
-          <p class="section-subtitle">
-            A few draft topics I’m exploring around AI Agents, orchestration and how companies can use them
-            without turning everything into a science project.
-          </p>
+      <!-- Writing Section -->
+      <section id="writing">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-label">
+              <span>◆</span> Writing
+            </div>
+            <h2 class="section-title">Thoughts on AI & Orchestration</h2>
+            <p class="section-subtitle">
+              Exploring how companies can adopt AI Agents without turning everything 
+              into a science project. Practical insights from the field.
+            </p>
+          </div>
 
-          <div class="grid-2">
-            <article class="card">
-              <div class="card-header">
-                <div class="card-title">From tickets to flows: AI Agents in IT operations</div>
+          <div class="writing-grid">
+            <article class="writing-card animate-on-scroll stagger-1">
+              <span class="writing-number">01</span>
+              <div class="writing-content">
+                <h3>From Tickets to Flows: AI Agents in IT Operations</h3>
+                <p>Why teams need focused agents that understand tickets, approvals, and knowledge—not generic chatbots.</p>
               </div>
-              <div class="card-body">
-                Why most teams don’t need a generic “chatbot”, but a set of focused agents that
-                understand tickets, approvals and knowledge—and know when to hand off to humans.
-              </div>
-              <div class="card-meta">
-                <span>Topic: AI in service desks</span>
-                <span>Status: Drafting</span>
+              <div class="writing-meta">
+                <span class="writing-status">Drafting</span>
+                <div class="writing-arrow">→</div>
               </div>
             </article>
 
-            <article class="card">
-              <div class="card-header">
-                <div class="card-title">Orchestrating tools instead of replacing them</div>
+            <article class="writing-card animate-on-scroll stagger-2">
+              <span class="writing-number">02</span>
+              <div class="writing-content">
+                <h3>Orchestrating Tools Instead of Replacing Them</h3>
+                <p>Connecting ServiceNow, Xurrent, and others with AI—keeping familiar tools while making workflows smarter.</p>
               </div>
-              <div class="card-body">
-                Thoughts on connecting systems like ServiceNow, Xurrent and others
-                with AI orchestration—so teams keep the tools they know, but workflows
-                get much smarter.
+              <div class="writing-meta">
+                <span class="writing-status">Coming Soon</span>
+                <div class="writing-arrow">→</div>
               </div>
-              <div class="card-meta">
-                <span>Topic: AI orchestration</span>
-                <span>Status: Coming soon</span>
+            </article>
+
+            <article class="writing-card animate-on-scroll stagger-3">
+              <span class="writing-number">03</span>
+              <div class="writing-content">
+                <h3>Building AI Agents for Real People</h3>
+                <p>What I've learned moving from support to AI product work—where the hard parts aren't the models.</p>
+              </div>
+              <div class="writing-meta">
+                <span class="writing-status">In Ideas</span>
+                <div class="writing-arrow">→</div>
               </div>
             </article>
           </div>
+        </div>
+      </section>
 
-          <div class="card" style="margin-top: 1rem;">
-            <div class="card-header">
-              <div class="card-title">Building AI Agents for real people</div>
+      <!-- Projects Section -->
+      <section id="projects">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-label">
+              <span>◆</span> Projects
             </div>
-            <div class="card-body">
-              A more personal angle: what I’ve learned moving from post-sales and support to
-              AI-heavy product work—where the hard parts are not the models, but expectations,
-              scope and adoption.
-            </div>
-            <div class="card-meta">
-              <span>Topic: career &amp; product</span>
-              <span>Status: In ideas list</span>
-            </div>
+            <h2 class="section-title">Things I'm Building</h2>
+            <p class="section-subtitle">
+              A mix of work projects and side experiments that keep me curious and learning.
+            </p>
           </div>
-        </section>
 
-        <!-- Projects -->
-        <section id="projects">
-          <h2>Projects</h2>
-          <div class="section-title">Things I’m building</div>
-          <p class="section-subtitle">
-            A mix of work projects and side experiments that keep me curious.
-          </p>
-
-          <div class="grid-2">
-            <article class="card">
-              <div class="card-header">
-                <div class="card-title">LoadTest Pro – stress testing as a product</div>
-                <span class="card-label">Side project</span>
+          <div class="projects-grid">
+            <article class="project-card animate-on-scroll stagger-1">
+              <div class="project-visual">
+                <div class="project-visual-content">⚡</div>
               </div>
-              <div class="card-body">
-                <a href="https://www.loadtest.pro" target="_blank" rel="noopener noreferrer">
-                  www.loadtest.pro
+              <div class="project-info">
+                <span class="project-label">Side Project</span>
+                <h3>LoadTest Pro</h3>
+                <p>
+                  Making it easier for teams to understand how services behave under real traffic 
+                  and edge cases—without needing a dedicated performance engineer.
+                </p>
+                <a href="https://www.loadtest.pro" target="_blank" rel="noopener noreferrer" class="project-link">
+                  Visit loadtest.pro
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                  </svg>
                 </a>
-                is a stress-test project I’m working on. The idea: make it easier for teams to
-                understand how their services behave under real traffic and weird edge cases—
-                without needing a dedicated performance engineer.
-              </div>
-              <div class="card-meta">
-                <span>Stage: In development</span>
-                <span>Focus: Reliability &amp; insights</span>
               </div>
             </article>
 
-            <article class="card">
-              <div class="card-header">
-                <div class="card-title">Autom Mate AI Agents</div>
-                <span class="card-label">At work</span>
+            <article class="project-card animate-on-scroll stagger-2">
+              <div class="project-visual">
+                <div class="project-visual-content">🤖</div>
               </div>
-              <div class="card-body">
-                At Autom Mate I contribute to ready-to-use AI Agents that customers can plug into
-                their environments—covering support flows, approvals, ticket analysis and more.
-                Think of it as a growing catalog of practical, automation-ready agents.
-              </div>
-              <div class="card-meta">
-                <span>Area: AI + workflow automation</span>
-                <span>Role: Product &amp; solution design</span>
+              <div class="project-info">
+                <span class="project-label">At Work</span>
+                <h3>Autom Mate AI Agent Catalog</h3>
+                <p>
+                  Contributing to ready-to-use AI Agents customers can plug into their 
+                  environments—support flows, approvals, ticket analysis, and more.
+                </p>
+                <a href="https://autommate.com" target="_blank" rel="noopener noreferrer" class="project-link">
+                  Explore Autom Mate
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 17L17 7M17 7H7M17 7v10"/>
+                  </svg>
+                </a>
               </div>
             </article>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- Contact -->
-        <section id="contact">
-          <h2>Contact</h2>
-          <div class="section-title">Let’s connect</div>
-
-          <div class="contact-box">
-            <div class="contact-text">
-              I’m always open to conversations about AI Agents, workflow automation,
-              or interesting product problems. The easiest way to reach me is on LinkedIn.
+      <!-- Contact Section -->
+      <section class="contact-section" id="contact">
+        <div class="container">
+          <div class="contact-content">
+            <div class="contact-text animate-on-scroll">
+              <h2>Let's build <span>something</span> together.</h2>
+              <p>
+                I'm always open to conversations about AI Agents, workflow automation, 
+                or interesting product problems. Let's connect and explore possibilities.
+              </p>
             </div>
-            <div class="contact-actions">
-              <a
-                href="https://www.linkedin.com/in/yusuferdemsakin/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="pill-link"
-              >
-                View my LinkedIn profile
+            <div class="contact-actions animate-on-scroll stagger-1">
+              <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                <div class="contact-btn-icon">💼</div>
+                <div class="contact-btn-text">
+                  <strong>LinkedIn</strong>
+                  <span>Connect professionally</span>
+                </div>
+                <span class="contact-btn-arrow">→</span>
               </a>
+
             </div>
           </div>
-        </section>
-
-        <footer>
-          © <span id="year"></span> Yusuf Erdem Sakın
-        </footer>
-      </div>
+        </div>
+      </section>
     </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-copy">
+            © <span id="year"></span> Yusuf Erdem Sakın · Turkey 🇹🇷
+          </div>
+          <div class="footer-links">
+            <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://autommate.com" target="_blank" rel="noopener noreferrer">Autom Mate</a>
+            <a href="https://www.loadtest.pro" target="_blank" rel="noopener noreferrer">LoadTest Pro</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <script>
-    // keep the year updated automatically
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
   </script>
 </body>
 </html>
