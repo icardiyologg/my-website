@@ -1119,6 +1119,24 @@
       font-size: 1.2rem;
     }
 
+    /* Special version of contact-btn-icon for image logos */
+.contact-btn-icon-image {
+  width: 48px;
+  height: 48px;
+  background: transparent;   /* no gradient behind the logo */
+  padding: 0;
+}
+
+/* The LinkedIn logo itself */
+.contact-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;       /* optional: soften edges */
+  object-fit: cover;         /* or 'contain' if you prefer full logo visible */
+  display: block;
+}
+
+
     .contact-btn-text {
       flex: 1;
     }
@@ -1872,16 +1890,17 @@
               </p>
             </div>
             <div class="contact-actions animate-on-scroll stagger-1">
-              <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer" class="contact-btn">
-                <div class="project-visual">
-                  <img src="linkedin2.png" alt="LinkedIn Logo" class="project-logo">
-                </div>
-                <div class="contact-btn-text">
-                  <strong>LinkedIn</strong>
-                  <span>Connect professionally</span>
-                </div>
-                <span class="contact-btn-arrow">→</span>
-              </a>
+             <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer" class="contact-btn">
+  <div class="contact-btn-icon contact-btn-icon-image">
+    <img src="linkedin2.png" alt="LinkedIn Logo" class="contact-logo">
+  </div>
+  <div class="contact-btn-text">
+    <strong>LinkedIn</strong>
+    <span>Connect professionally</span>
+  </div>
+  <span class="contact-btn-arrow">→</span>
+</a>
+
 
             </div>
           </div>
