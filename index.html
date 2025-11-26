@@ -1,1981 +1,1928 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Yusuf Erdem Sakın – AI Product Designer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Personal website of Yusuf Erdem Sakın – Product Manager at Autom Mate, working on AI Agents and workflow automation." />
-
-  <!-- Add these lines after the existing meta tags -->
-<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
-  
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg-primary: #0a0a0b;
-      --bg-secondary: #111113;
-      --bg-tertiary: #18181b;
-      --bg-card: rgba(24, 24, 27, 0.6);
-      --border: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.15);
-      --text-primary: #fafafa;
-      --text-secondary: #a1a1aa;
-      --text-muted: #71717a;
-      --accent-primary: #22d3ee;
-      --accent-secondary: #a78bfa;
-      --accent-tertiary: #f472b6;
-      --gradient-main: linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #f472b6 100%);
-      --gradient-subtle: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(167, 139, 250, 0.15) 50%, rgba(244, 114, 182, 0.15) 100%);
-      --font-display: 'Syne', sans-serif;
-      --font-serif: 'Instrument Serif', Georgia, serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: var(--font-display);
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
-      overflow-x: hidden;
-      transform: translateZ(0);
-    }
-
-    ::selection {
-      background: var(--accent-primary);
-      color: var(--bg-primary);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* Static gradient background instead of animated orbs */
-    .bg-gradient {
-      position: fixed;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34, 211, 238, 0.12), transparent),
-        radial-gradient(ellipse 60% 40% at 90% 80%, rgba(167, 139, 250, 0.08), transparent),
-        radial-gradient(ellipse 50% 30% at 10% 60%, rgba(244, 114, 182, 0.06), transparent);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* Page structure */
-    .page {
-      position: relative;
-      min-height: 100vh;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1.5rem 0;
-      background: rgba(10, 10, 11, 0.9);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .logo-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      object-fit: cover;
-      transition: transform 0.4s var(--ease-out-back);
-    }
-
-    .logo:hover .logo-mark {
-      transform: rotate(-10deg) scale(1.05);
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-    }
-
-    .logo-name {
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.02em;
-    }
-
-    .logo-title {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .nav-link {
-      padding: 0.6rem 1.1rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      border-radius: 100px;
-      transition: all 0.3s var(--ease-out-expo);
-      position: relative;
-    }
-
-    .nav-link:hover {
-      color: var(--text-primary);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .nav-link-cta {
-      background: var(--text-primary);
-      color: var(--bg-primary);
-      font-weight: 600;
-    }
-
-    .nav-link-cta:hover {
-      background: var(--accent-primary);
-      color: var(--bg-primary);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
-    }
-
-    /* Hero */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 8rem 0 6rem;
-      position: relative;
-    }
-
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.5rem 1rem 0.5rem 0.5rem;
-      background: rgba(24, 24, 27, 0.95);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-      animation: slideUp 0.8s var(--ease-out-expo) 0.1s both;
-    }
-
-    .hero-badge-dot {
-      width: 8px;
-      height: 8px;
-      background: #22c55e;
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-      box-shadow: 0 0 10px #22c55e;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
-    }
-
-    .hero-title {
-      font-size: clamp(3rem, 6vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
-      animation: slideUp 0.8s var(--ease-out-expo) 0.2s both;
-    }
-
-    .hero-title-line {
-      display: block;
-    }
-
-    .hero-title-gradient {
-      background: var(--gradient-main);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-title-serif {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      font-style: italic;
-    }
-
-    .hero-subtitle {
-      font-size: 1.15rem;
-      color: var(--text-secondary);
-      max-width: 480px;
-      margin-bottom: 2rem;
-      line-height: 1.7;
-      animation: slideUp 0.8s var(--ease-out-expo) 0.3s both;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      animation: slideUp 0.8s var(--ease-out-expo) 0.4s both;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 1rem 1.8rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      font-family: var(--font-display);
-      border-radius: 100px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.4s var(--ease-out-expo);
-    }
-
-    .btn-primary {
-      background: var(--text-primary);
-      color: var(--bg-primary);
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-primary);
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(34, 211, 238, 0.25);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-primary);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--text-primary);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .btn-icon {
-      transition: transform 0.3s var(--ease-out-expo);
-    }
-
-    .btn:hover .btn-icon {
-      transform: translateX(4px);
-    }
-
-    /* Hero card */
-    .hero-card {
-      position: relative;
-      animation: slideUp 0.8s var(--ease-out-expo) 0.5s both;
-    }
-
-    .hero-card-inner {
-      background: rgba(24, 24, 27, 0.95);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card-inner::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--gradient-subtle);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    .hero-card:hover .hero-card-inner::before {
-      opacity: 1;
-    }
-
-    .hero-card-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-card-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      background: var(--gradient-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-    }
-
-    .hero-card-info h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-
-    .hero-card-info p {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-    }
-
-    .hero-card-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .stat {
-      text-align: center;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.03);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
-
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      background: var(--gradient-main);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 0.3rem;
-      font-family: var(--font-mono);
-    }
-
-    .hero-card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .tag {
-      padding: 0.4rem 0.9rem;
-      font-size: 0.75rem;
-      font-weight: 500;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      color: var(--text-secondary);
-      transition: all 0.3s ease;
-    }
-
-    .tag:hover {
-      border-color: var(--accent-primary);
-      color: var(--accent-primary);
-    }
-
-    /* Floating elements */
-    .floating-element {
-      position: absolute;
-      pointer-events: none;
-    }
-
-    .floating-code {
-      top: -20px;
-      right: -30px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.8rem 1rem;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--accent-primary);
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .floating-emoji {
-      bottom: 30px;
-      left: -40px;
-      width: 60px;
-      height: 60px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      animation: float 5s ease-in-out infinite reverse;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-15px) rotate(3deg); }
-    }
-
-    /* Sections */
-    section {
-      padding: 6rem 0;
-      position: relative;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      color: var(--accent-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-
-    .section-subtitle {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Work section - Expandable Accordion */
-    .work-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .work-card {
-      background: rgba(24, 24, 27, 0.95);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: border-color 0.3s ease;
-    }
-
-    .work-card:hover {
-      border-color: var(--border-hover);
-    }
-
-    .work-card.active {
-      border-color: var(--accent-primary);
-    }
-
-    .work-card-header {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      padding: 1.5rem 2rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .work-card-header:hover {
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .work-card-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: var(--gradient-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-    }
-
-    .work-card-header-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .work-card-label {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      padding: 0.25rem 0.6rem;
-      background: rgba(34, 211, 238, 0.1);
-      color: var(--accent-primary);
-      border-radius: 100px;
-      margin-bottom: 0.4rem;
-    }
-
-    .work-card-header h3 {
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin: 0;
-    }
-
-    .work-card-toggle {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.4s var(--ease-out-expo);
-    }
-
-    .work-card-toggle svg {
-      width: 18px;
-      height: 18px;
-      color: var(--text-muted);
-      transition: transform 0.4s var(--ease-out-expo), color 0.3s ease;
-    }
-
-    .work-card.active .work-card-toggle {
-      background: var(--accent-primary);
-      border-color: var(--accent-primary);
-    }
-
-    .work-card.active .work-card-toggle svg {
-      transform: rotate(180deg);
-      color: var(--bg-primary);
-    }
-
-    .work-card-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s var(--ease-out-expo);
-    }
-
-    .work-card.active .work-card-body {
-      max-height: 600px;
-    }
-
-    .work-card-content {
-      padding: 0 2rem 2rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .work-card-description {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      margin: 1.5rem 0;
-    }
-
-    .work-card-details {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .work-card-detail {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-    }
-
-    .work-card-detail-label {
-      font-size: 0.7rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.4rem;
-    }
-
-    .work-card-detail-value {
-      font-size: 0.9rem;
-      color: var(--text-primary);
-      font-weight: 500;
-    }
-
-    .work-card-highlights {
-      margin-bottom: 1.5rem;
-    }
-
-    .work-card-highlights h4 {
-      font-size: 0.8rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.75rem;
-    }
-
-    .work-card-highlights ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .work-card-highlights li {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      padding-left: 1.25rem;
-      position: relative;
-    }
-
-    .work-card-highlights li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent-primary);
-    }
-
-    .work-card-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .work-card-meta span {
-      font-size: 0.75rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      padding: 0.35rem 0.75rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-    }
-
-    @media (max-width: 600px) {
-      .work-card-details {
-        grid-template-columns: 1fr;
+  <head>
+    <meta charset="UTF-8" />
+    <title>Yusuf Erdem Sakın – AI Product Designer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Personal website of Yusuf Erdem Sakın – Product Manager at Autom Mate, working on AI Agents and workflow automation." />
+    <!-- Add these lines after the existing meta tags -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-primary: #0a0a0b;
+        --bg-secondary: #111113;
+        --bg-tertiary: #18181b;
+        --bg-card: rgba(24, 24, 27, 0.6);
+        --border: rgba(255, 255, 255, 0.08);
+        --border-hover: rgba(255, 255, 255, 0.15);
+        --text-primary: #fafafa;
+        --text-secondary: #a1a1aa;
+        --text-muted: #71717a;
+        --accent-primary: #22d3ee;
+        --accent-secondary: #a78bfa;
+        --accent-tertiary: #f472b6;
+        --gradient-main: linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #f472b6 100%);
+        --gradient-subtle: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(167, 139, 250, 0.15) 50%, rgba(244, 114, 182, 0.15) 100%);
+        --font-display: 'Syne', sans-serif;
+        --font-serif: 'Instrument Serif', Georgia, serif;
+        --font-mono: 'JetBrains Mono', monospace;
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
       }
-    }
 
-    /* Writing section - Expandable Accordion */
-    .writing-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .writing-card {
-      background: rgba(24, 24, 27, 0.95);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: border-color 0.3s ease;
-    }
-
-    .writing-card:hover {
-      border-color: var(--border-hover);
-    }
-
-    .writing-card.active {
-      border-color: var(--accent-secondary);
-    }
-
-    .writing-card-header {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      padding: 1.5rem 2rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .writing-card-header:hover {
-      background: rgba(255, 255, 255, 0.02);
-    }
-
-    .writing-number {
-      font-size: 1.5rem;
-      font-weight: 800;
-      font-family: var(--font-mono);
-      background: var(--gradient-main);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      opacity: 0.6;
-      min-width: 50px;
-    }
-
-    .writing-card-header-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .writing-card-header-content h3 {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-
-    .writing-card-header-content p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-
-    .writing-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-shrink: 0;
-    }
-
-    .writing-status {
-      font-size: 0.7rem;
-      font-family: var(--font-mono);
-      padding: 0.3rem 0.7rem;
-      border-radius: 100px;
-      background: rgba(167, 139, 250, 0.1);
-      color: var(--accent-secondary);
-    }
-
-    .writing-card-toggle {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: all 0.4s var(--ease-out-expo);
-    }
-
-    .writing-card-toggle svg {
-      width: 18px;
-      height: 18px;
-      color: var(--text-muted);
-      transition: transform 0.4s var(--ease-out-expo), color 0.3s ease;
-    }
-
-    .writing-card.active .writing-card-toggle {
-      background: var(--accent-secondary);
-      border-color: var(--accent-secondary);
-    }
-
-    .writing-card.active .writing-card-toggle svg {
-      transform: rotate(180deg);
-      color: var(--bg-primary);
-    }
-
-    .writing-card-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s var(--ease-out-expo);
-    }
-
-    .writing-card.active .writing-card-body {
-      max-height: 800px;
-    }
-
-    .writing-card-content {
-      padding: 0 2rem 2rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .writing-card-excerpt {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      margin: 1.5rem 0;
-    }
-
-    .writing-card-sections {
-      margin-bottom: 1.5rem;
-    }
-
-    .writing-card-sections h4 {
-      font-size: 0.8rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.75rem;
-    }
-
-    .writing-card-sections ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .writing-card-sections li {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      padding-left: 1.25rem;
-      position: relative;
-    }
-
-    .writing-card-sections li::before {
-      content: '•';
-      position: absolute;
-      left: 0;
-      color: var(--accent-secondary);
-    }
-
-    .writing-card-info {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .writing-card-info-item {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .writing-card-info-label {
-      font-size: 0.7rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.3rem;
-    }
-
-    .writing-card-info-value {
-      font-size: 0.85rem;
-      color: var(--text-primary);
-      font-weight: 500;
-    }
-
-    .writing-card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .writing-card-tags span {
-      font-size: 0.75rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-      padding: 0.35rem 0.75rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-    }
-
-    .section-cta {
-      display: flex;
-      justify-content: center;
-      margin-top: 2.5rem;
-    }
-
-    .section-cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.9rem 1.8rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      transition: all 0.3s var(--ease-out-expo);
-    }
-
-    .section-cta-btn:hover {
-      background: rgba(255, 255, 255, 0.06);
-      border-color: var(--border-hover);
-      color: var(--text-primary);
-      transform: translateY(-2px);
-    }
-
-    .section-cta-btn svg {
-      transition: transform 0.3s ease;
-    }
-
-    .section-cta-btn:hover svg {
-      transform: translateX(4px);
-    }
-
-    @media (max-width: 600px) {
-      .writing-card-info {
-        grid-template-columns: 1fr;
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
-      
-      .writing-card-header {
-        flex-wrap: wrap;
-        gap: 1rem;
+
+      html {
+        scroll-behavior: smooth;
       }
-      
-      .writing-number {
-        min-width: auto;
+
+      body {
+        font-family: var(--font-display);
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        -webkit-font-smoothing: antialiased;
+        line-height: 1.6;
+        overflow-x: hidden;
+        transform: translateZ(0);
       }
-      
-      .writing-meta {
-        width: 100%;
+
+      ::selection {
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* Static gradient background instead of animated orbs */
+      .bg-gradient {
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34, 211, 238, 0.12), transparent),
+          radial-gradient(ellipse 60% 40% at 90% 80%, rgba(167, 139, 250, 0.08), transparent),
+          radial-gradient(ellipse 50% 30% at 10% 60%, rgba(244, 114, 182, 0.06), transparent);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* Page structure */
+      .page {
+        position: relative;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1.5rem 0;
+        background: rgba(10, 10, 11, 0.9);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
         justify-content: space-between;
       }
-    }
 
-    /* Projects section */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-
-    .project-card {
-      background: rgba(24, 24, 27, 0.95);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      transition: border-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .project-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-4px);
-    }
-
-    .project-visual {
-      height: 180px;
-      background: var(--gradient-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .project-visual-content {
-      font-size: 3rem;
-    }
-
-    .project-info {
-      padding: 1.5rem;
-    }
-
-    .project-label {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      padding: 0.3rem 0.7rem;
-      background: rgba(244, 114, 182, 0.1);
-      color: var(--accent-tertiary);
-      border-radius: 100px;
-      margin-bottom: 0.8rem;
-    }
-
-    .project-info h3 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.6rem;
-    }
-
-    .project-info p {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .project-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--accent-primary);
-      transition: gap 0.3s ease;
-    }
-
-    .project-link:hover {
-      gap: 0.8rem;
-    }
-
-    /* Contact section */
-    .contact-section {
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .contact-content {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .contact-text h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    .contact-text h2 span {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    .contact-text p {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      max-width: 500px;
-    }
-
-    .contact-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .contact-btn {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.5rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      transition: all 0.3s var(--ease-out-expo);
-    }
-
-    .contact-btn:hover {
-      border-color: var(--accent-primary);
-      transform: translateX(10px);
-    }
-
-    .contact-btn-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--gradient-main);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-    }
-
-    /* Special version of contact-btn-icon for image logos */
-.contact-btn-icon-image {
-  width: 48px;
-  height: 48px;
-  background: transparent;   /* no gradient behind the logo */
-  padding: 0;
-}
-
-/* The LinkedIn logo itself */
-.contact-logo {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;       /* optional: soften edges */
-  object-fit: cover;         /* or 'contain' if you prefer full logo visible */
-  display: block;
-}
-
-
-    .contact-btn-text {
-      flex: 1;
-    }
-
-    .contact-btn-text strong {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 0.2rem;
-    }
-
-    .contact-btn-text span {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .contact-btn-arrow {
-      color: var(--text-muted);
-      transition: transform 0.3s ease;
-    }
-
-    .contact-btn:hover .contact-btn-arrow {
-      transform: translateX(5px);
-      color: var(--accent-primary);
-    }
-
-    /* Footer */
-    footer {
-      padding: 3rem 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-copy {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-links a {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      transition: color 0.3s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--accent-primary);
-    }
-
-    /* Animations */
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-on-scroll {
-      opacity: 1;
-    }
-
-    .animate-on-scroll.visible {
-      opacity: 1;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
       }
 
-      .work-grid,
-      .projects-grid {
-        grid-template-columns: 1fr;
+      .logo-mark {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        object-fit: cover;
+        transition: transform 0.4s var(--ease-out-back);
       }
 
-      .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+      .logo:hover .logo-mark {
+        transform: rotate(-10deg) scale(1.05);
+      }
+
+      .logo-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+      }
+
+      .logo-name {
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+      }
+
+      .logo-title {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-family: var(--font-mono);
       }
 
       .nav-links {
-        display: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
       }
 
-      .floating-element {
-        display: none;
+      .nav-link {
+        padding: 0.6rem 1.1rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        border-radius: 100px;
+        transition: all 0.3s var(--ease-out-expo);
+        position: relative;
       }
-    }
 
-    @media (max-width: 600px) {
+      .nav-link:hover {
+        color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .nav-link-cta {
+        background: var(--text-primary);
+        color: var(--bg-primary);
+        font-weight: 600;
+      }
+
+      .nav-link-cta:hover {
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
+      }
+
+      /* Hero */
       .hero {
-        padding: 7rem 0 4rem;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 8rem 0 6rem;
+        position: relative;
       }
 
-      .hero-cta {
-        flex-direction: column;
-      }
-
-      .btn {
-        justify-content: center;
-      }
-
-      .writing-card {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .writing-number {
-        display: none;
-      }
-
-      .writing-meta {
-        flex-direction: row;
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 4rem;
         align-items: center;
       }
 
-      .footer-content {
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.5rem 1rem 0.5rem 0.5rem;
+        background: rgba(24, 24, 27, 0.95);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        animation: slideUp 0.8s var(--ease-out-expo) 0.1s both;
+      }
+
+      .hero-badge-dot {
+        width: 8px;
+        height: 8px;
+        background: #22c55e;
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+        box-shadow: 0 0 10px #22c55e;
+      }
+
+      @keyframes pulse {
+
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        50% {
+          opacity: 0.5;
+          transform: scale(0.8);
+        }
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 6vw, 4.5rem);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.5rem;
+        animation: slideUp 0.8s var(--ease-out-expo) 0.2s both;
+      }
+
+      .hero-title-line {
+        display: block;
+      }
+
+      .hero-title-gradient {
+        background: var(--gradient-main);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-title-serif {
+        font-family: var(--font-serif);
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .hero-subtitle {
+        font-size: 1.15rem;
+        color: var(--text-secondary);
+        max-width: 480px;
+        margin-bottom: 2rem;
+        line-height: 1.7;
+        animation: slideUp 0.8s var(--ease-out-expo) 0.3s both;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 1rem;
+        animation: slideUp 0.8s var(--ease-out-expo) 0.4s both;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 1rem 1.8rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        font-family: var(--font-display);
+        border-radius: 100px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.4s var(--ease-out-expo);
+      }
+
+      .btn-primary {
+        background: var(--text-primary);
+        color: var(--bg-primary);
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-primary);
+        transform: translateY(-3px);
+        box-shadow: 0 20px 40px rgba(34, 211, 238, 0.25);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .btn-icon {
+        transition: transform 0.3s var(--ease-out-expo);
+      }
+
+      .btn:hover .btn-icon {
+        transform: translateX(4px);
+      }
+
+      /* Hero card */
+      .hero-card {
+        position: relative;
+        animation: slideUp 0.8s var(--ease-out-expo) 0.5s both;
+      }
+
+      .hero-card-inner {
+        background: rgba(24, 24, 27, 0.95);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-card-inner::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--gradient-subtle);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .hero-card:hover .hero-card-inner::before {
+        opacity: 1;
+      }
+
+      .hero-card-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-card-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 16px;
+        background: var(--gradient-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+      }
+
+      .hero-card-info h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+
+      .hero-card-info p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-family: var(--font-mono);
+      }
+
+      .hero-card-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .stat {
+        text-align: center;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: var(--gradient-main);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-label {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 0.3rem;
+        font-family: var(--font-mono);
+      }
+
+      .hero-card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .tag {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        color: var(--text-secondary);
+        transition: all 0.3s ease;
+      }
+
+      .tag:hover {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+      }
+
+      /* Floating elements */
+      .floating-element {
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .floating-code {
+        top: -20px;
+        right: -30px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 0.8rem 1rem;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--accent-primary);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .floating-emoji {
+        bottom: 30px;
+        left: -40px;
+        width: 60px;
+        height: 60px;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        animation: float 5s ease-in-out infinite reverse;
+      }
+
+      @keyframes float {
+
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+
+        50% {
+          transform: translateY(-15px) rotate(3deg);
+        }
+      }
+
+      /* Sections */
+      section {
+        padding: 6rem 0;
+        position: relative;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        font-family: var(--font-mono);
+        color: var(--accent-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        margin-bottom: 1rem;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin-bottom: 1rem;
+      }
+
+      .section-subtitle {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Work section - Expandable Accordion */
+      .work-grid {
+        display: flex;
         flex-direction: column;
         gap: 1rem;
+      }
+
+      .work-card {
+        background: rgba(24, 24, 27, 0.95);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .work-card:hover {
+        border-color: var(--border-hover);
+      }
+
+      .work-card.active {
+        border-color: var(--accent-primary);
+      }
+
+      .work-card-header {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        padding: 1.5rem 2rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .work-card-header:hover {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .work-card-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: var(--gradient-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        flex-shrink: 0;
+      }
+
+      .work-card-header-content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .work-card-label {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 600;
+        font-family: var(--font-mono);
+        padding: 0.25rem 0.6rem;
+        background: rgba(34, 211, 238, 0.1);
+        color: var(--accent-primary);
+        border-radius: 100px;
+        margin-bottom: 0.4rem;
+      }
+
+      .work-card-header h3 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .work-card-toggle {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.4s var(--ease-out-expo);
+      }
+
+      .work-card-toggle svg {
+        width: 18px;
+        height: 18px;
+        color: var(--text-muted);
+        transition: transform 0.4s var(--ease-out-expo), color 0.3s ease;
+      }
+
+      .work-card.active .work-card-toggle {
+        background: var(--accent-primary);
+        border-color: var(--accent-primary);
+      }
+
+      .work-card.active .work-card-toggle svg {
+        transform: rotate(180deg);
+        color: var(--bg-primary);
+      }
+
+      .work-card-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s var(--ease-out-expo);
+      }
+
+      .work-card.active .work-card-body {
+        max-height: 600px;
+      }
+
+      .work-card-content {
+        padding: 0 2rem 2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .work-card-description {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin: 1.5rem 0;
+      }
+
+      .work-card-details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .work-card-detail {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem;
+      }
+
+      .work-card-detail-label {
+        font-size: 0.7rem;
+        font-family: var(--font-mono);
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.4rem;
+      }
+
+      .work-card-detail-value {
+        font-size: 0.9rem;
+        color: var(--text-primary);
+        font-weight: 500;
+      }
+
+      .work-card-highlights {
+        margin-bottom: 1.5rem;
+      }
+
+      .work-card-highlights h4 {
+        font-size: 0.8rem;
+        font-family: var(--font-mono);
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+      }
+
+      .work-card-highlights ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .work-card-highlights li {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        padding-left: 1.25rem;
+        position: relative;
+      }
+
+      .work-card-highlights li::before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        color: var(--accent-primary);
+      }
+
+      .work-card-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .work-card-meta span {
+        font-size: 0.75rem;
+        font-family: var(--font-mono);
+        color: var(--text-muted);
+        padding: 0.35rem 0.75rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+      }
+
+      @media (max-width: 600px) {
+        .work-card-details {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Writing section - Expandable Accordion */
+      .writing-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .writing-card {
+        background: rgba(24, 24, 27, 0.95);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+
+      .writing-card:hover {
+        border-color: var(--border-hover);
+      }
+
+      .writing-card.active {
+        border-color: var(--accent-secondary);
+      }
+
+      .writing-card-header {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        padding: 1.5rem 2rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .writing-card-header:hover {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .writing-number {
+        font-size: 1.5rem;
+        font-weight: 800;
+        font-family: var(--font-mono);
+        background: var(--gradient-main);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        opacity: 0.6;
+        min-width: 50px;
+      }
+
+      .writing-card-header-content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .writing-card-header-content h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+      }
+
+      .writing-card-header-content p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+
+      .writing-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      .writing-status {
+        font-size: 0.7rem;
+        font-family: var(--font-mono);
+        padding: 0.3rem 0.7rem;
+        border-radius: 100px;
+        background: rgba(167, 139, 250, 0.1);
+        color: var(--accent-secondary);
+      }
+
+      .writing-card-toggle {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.4s var(--ease-out-expo);
+      }
+
+      .writing-card-toggle svg {
+        width: 18px;
+        height: 18px;
+        color: var(--text-muted);
+        transition: transform 0.4s var(--ease-out-expo), color 0.3s ease;
+      }
+
+      .writing-card.active .writing-card-toggle {
+        background: var(--accent-secondary);
+        border-color: var(--accent-secondary);
+      }
+
+      .writing-card.active .writing-card-toggle svg {
+        transform: rotate(180deg);
+        color: var(--bg-primary);
+      }
+
+      .writing-card-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s var(--ease-out-expo);
+      }
+
+      .writing-card.active .writing-card-body {
+        max-height: 800px;
+      }
+
+      .writing-card-content {
+        padding: 0 2rem 2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .writing-card-excerpt {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin: 1.5rem 0;
+      }
+
+      .writing-card-sections {
+        margin-bottom: 1.5rem;
+      }
+
+      .writing-card-sections h4 {
+        font-size: 0.8rem;
+        font-family: var(--font-mono);
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+      }
+
+      .writing-card-sections ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .writing-card-sections li {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        padding-left: 1.25rem;
+        position: relative;
+      }
+
+      .writing-card-sections li::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: var(--accent-secondary);
+      }
+
+      .writing-card-info {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .writing-card-info-item {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem;
         text-align: center;
       }
-    }
 
-    /* Scroll reveal stagger */
-    .stagger-1 { transition-delay: 0.1s; }
-    .stagger-2 { transition-delay: 0.2s; }
-    .stagger-3 { transition-delay: 0.3s; }
-    .stagger-4 { transition-delay: 0.4s; }
-  </style>
-</head>
-<body>
-  <!-- Static gradient background -->
-  <div class="bg-gradient"></div>
-
-  <div class="page">
-    <!-- Header -->
-    <header>
-      <div class="container">
-        <nav class="nav">
-          <a href="#" class="logo">
-            <img src="favicon.png" alt="YE" class="logo-mark">
-            <div class="logo-text">
-              <div class="logo-name">Yusuf Erdem Sakın</div>
-              <div class="logo-title">Product Manager</div>
-            </div>
-          </a>
-          <div class="nav-links">
-            <a href="#about" class="nav-link">About</a>
-            <a href="#work" class="nav-link">Work</a>
-            <a href="#writing" class="nav-link">Writing</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link nav-link-cta">Let's Talk</a>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-    <main>
-      <!-- Hero -->
-      <section class="hero" id="about">
-        <div class="container">
-          <div class="hero-content">
-            <div class="hero-text">
-              <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                Available for AI consulting
-              </div>
-              <h1 class="hero-title">
-                <span class="hero-title-line">I design</span>
-                <span class="hero-title-line hero-title-gradient">AI workflows</span>
-                <span class="hero-title-line">that <span class="hero-title-serif">actually</span> work.</span>
-              </h1>
-              <p class="hero-subtitle">
-                Product Manager at Autom Mate, building AI Agents that transform how support teams 
-                operate. Four years turning complex business problems into elegant automation solutions.
-              </p>
-              <div class="hero-cta">
-                <a href="#contact" class="btn btn-primary">
-                  Start a Conversation
-                  <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </a>
-                <a href="#work" class="btn btn-secondary">See My Work</a>
-              </div>
-            </div>
-
-            <div class="hero-card">
-              <div class="floating-element floating-code">&lt;agent/&gt;</div>
-              <div class="floating-element floating-emoji">🤖</div>
-              <div class="hero-card-inner">
-                <div class="hero-card-header">
-                  <div class="hero-card-avatar">👨‍💻</div>
-                  <div class="hero-card-info">
-                    <h3>Erdem</h3>
-                    <p>@autommate</p>
-                  </div>
-                </div>
-                <div class="hero-card-stats">
-                  <div class="stat">
-                    <div class="stat-value">4+</div>
-                    <div class="stat-label">Years in IT</div>
-                  </div>
-                  <div class="stat">
-                    <div class="stat-value">20+</div>
-                    <div class="stat-label">AI Agents</div>
-                  </div>
-                  <div class="stat">
-                    <div class="stat-value">∞</div>
-                    <div class="stat-label">Curiosity</div>
-                  </div>
-                </div>
-                <div class="hero-card-tags">
-                  <span class="tag">AI Agents</span>
-                  <span class="tag">Orchestration</span>
-                  <span class="tag">ITSM</span>
-                  <span class="tag">Automation</span>
-                  <span class="tag">Product</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Work Section -->
-      <section id="work">
-        <div class="container">
-          <div class="section-header">
-            <div class="section-label">
-              <span>◆</span> What I Do
-            </div>
-            <h2 class="section-title">Bridging AI & Business Reality</h2>
-            <p class="section-subtitle">
-              I specialize in turning vague "we should use AI" requests into focused, 
-              measurable automation that saves real time for real teams.
-            </p>
-          </div>
-
-          <div class="work-grid">
-            <article class="work-card animate-on-scroll stagger-1">
-              <div class="work-card-header" onclick="toggleCard(this)">
-                <div class="work-card-icon">🎯</div>
-                <div class="work-card-header-content">
-                  <span class="work-card-label">Primary Focus</span>
-                  <h3>AI Agents at Autom Mate</h3>
-                </div>
-                <div class="work-card-toggle">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </div>
-              </div>
-              <div class="work-card-body">
-                <div class="work-card-content">
-                  <p class="work-card-description">
-                    At Autom Mate, I lead pre-sales and solution design—transforming customer challenges into end-to-end AI workflows. My work spans ticket triage, knowledge search, approvals, and automations integrated with enterprise tools like ServiceNow, Xurrent, and beyond. I bridge the gap between what customers need and what our AI platform can deliver.
-                  </p>
-                  <div class="work-card-details">
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">Role</div>
-                      <div class="work-card-detail-value">Product Manager & Solution Designer</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">Focus Area</div>
-                      <div class="work-card-detail-value">Enterprise AI Agents</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">Integrations</div>
-                      <div class="work-card-detail-value">ServiceNow, Xurrent, Jira, Slack</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">AI Stack</div>
-                      <div class="work-card-detail-value">OpenAI, LangChain, Custom Orchestration</div>
-                    </div>
-                  </div>
-                  <div class="work-card-highlights">
-                    <h4>Key Responsibilities</h4>
-                    <ul>
-                      <li>Designing multi-step AI agents for IT service management workflows</li>
-                      <li>Building POCs and demos for enterprise prospects</li>
-                      <li>Collaborating with engineering on agent architecture and capabilities</li>
-                      <li>Creating technical documentation and solution blueprints</li>
-                    </ul>
-                  </div>
-                  <div class="work-card-meta">
-                    <span>Agentic Flows</span>
-                    <span>Orchestration</span>
-                    <span>IT Ops</span>
-                    <span>Pre-Sales</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="work-card animate-on-scroll stagger-2">
-              <div class="work-card-header" onclick="toggleCard(this)">
-                <div class="work-card-icon">💡</div>
-                <div class="work-card-header-content">
-                  <span class="work-card-label">My Approach</span>
-                  <h3>Business-First AI Thinking</h3>
-                </div>
-                <div class="work-card-toggle">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </div>
-              </div>
-              <div class="work-card-body">
-                <div class="work-card-content">
-                  <p class="work-card-description">
-                    I believe the best AI solutions start with understanding the business, not the technology. Before writing a single prompt or designing an agent, I ask: who owns this process? Where does the data live? What does "better" actually mean for this team? The tech is exciting, but the goal is always fewer clicks, less noise, and happier operators.
-                  </p>
-                  <div class="work-card-details">
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">Philosophy</div>
-                      <div class="work-card-detail-value">Outcomes over outputs</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">Method</div>
-                      <div class="work-card-detail-value">Discovery → Design → Validate</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">Stakeholders</div>
-                      <div class="work-card-detail-value">IT Ops, Support Teams, Leadership</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">Success Metric</div>
-                      <div class="work-card-detail-value">Time saved, errors reduced</div>
-                    </div>
-                  </div>
-                  <div class="work-card-highlights">
-                    <h4>How I Approach Projects</h4>
-                    <ul>
-                      <li>Map the current workflow before proposing automation</li>
-                      <li>Identify the 20% of work causing 80% of the pain</li>
-                      <li>Start small with high-impact, low-risk use cases</li>
-                      <li>Measure baseline metrics before and after implementation</li>
-                      <li>Build trust through quick wins, then expand scope</li>
-                    </ul>
-                  </div>
-                  <div class="work-card-meta">
-                    <span>Outcome-Driven</span>
-                    <span>Tech ↔ Business</span>
-                    <span>Practical</span>
-                    <span>Data-Informed</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="work-card animate-on-scroll stagger-3">
-              <div class="work-card-header" onclick="toggleCard(this)">
-                <div class="work-card-icon">🛠️</div>
-                <div class="work-card-header-content">
-                  <span class="work-card-label">Background</span>
-                  <h3>Post-Sales to Pre-Sales Journey</h3>
-                </div>
-                <div class="work-card-toggle">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </div>
-              </div>
-              <div class="work-card-body">
-                <div class="work-card-content">
-                  <p class="work-card-description">
-                    My foundation is industrial engineering—systems thinking, process optimization, and understanding how things actually work in practice. Over four years, I led post-sales teams for major ITSM vendors, implementing and supporting tools like ManageEngine, SolarWinds, Xurrent, and Quest. That hands-on experience with real customer problems shapes how I design solutions today.
-                  </p>
-                  <div class="work-card-details">
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">Education</div>
-                      <div class="work-card-detail-value">Industrial Engineering</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">Experience</div>
-                      <div class="work-card-detail-value">4+ Years in IT Industry</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">Previous Tools</div>
-                      <div class="work-card-detail-value">ManageEngine, SolarWinds, Quest</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">Domain</div>
-                      <div class="work-card-detail-value">ITSM, IT Operations, Support</div>
-                    </div>
-                  </div>
-                  <div class="work-card-highlights">
-                    <h4>Career Milestones</h4>
-                    <ul>
-                      <li>Led post-sales implementation for 50+ enterprise customers</li>
-                      <li>Transitioned from support to solution design and product</li>
-                      <li>Developed expertise across multiple ITSM platforms</li>
-                      <li>Now combining domain knowledge with AI capabilities</li>
-                    </ul>
-                  </div>
-                  <div class="work-card-meta">
-                    <span>ITSM Tools</span>
-                    <span>Customer Success</span>
-                    <span>Implementation</span>
-                    <span>Support</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="work-card animate-on-scroll stagger-4">
-              <div class="work-card-header" onclick="toggleCard(this)">
-                <div class="work-card-icon">🌱</div>
-                <div class="work-card-header-content">
-                  <span class="work-card-label">Beyond Work</span>
-                  <h3>Life Outside the Screen</h3>
-                </div>
-                <div class="work-card-toggle">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </div>
-              </div>
-              <div class="work-card-body">
-                <div class="work-card-content">
-                  <p class="work-card-description">
-                    When I'm not designing AI flows, you'll find me maintaining my planted aquariums (it's surprisingly meditative), playing guitar, cycling around Çanakkale, or deep in an immersive game. I believe balance fuels creativity—stepping away from work often leads to the best ideas.
-                  </p>
-                  <div class="work-card-details">
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">🐠 Aquariums</div>
-                      <div class="work-card-detail-value">Planted tanks, aquascaping</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">🎸 Music</div>
-                      <div class="work-card-detail-value">Guitar, rock & blues</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">🚴 Cycling</div>
-                      <div class="work-card-detail-value">City rides around Çanakkale</div>
-                    </div>
-                    <div class="work-card-detail">
-                      <div class="work-card-detail-label">🎮 Gaming</div>
-                      <div class="work-card-detail-value">RPGs, strategy, immersive sims</div>
-                    </div>
-                  </div>
-                  <div class="work-card-highlights">
-                    <h4>Why These Matter</h4>
-                    <ul>
-                      <li>Aquariums teach patience and systems thinking</li>
-                      <li>Music provides creative expression and stress relief</li>
-                      <li>Cycling clears the mind and sparks new ideas</li>
-                      <li>Gaming inspires UX thinking and problem-solving</li>
-                    </ul>
-                  </div>
-                  <div class="work-card-meta">
-                    <span>Aquariums 🐠</span>
-                    <span>Guitar 🎸</span>
-                    <span>Cycling 🚴</span>
-                    <span>Gaming 🎮</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Writing Section -->
-      <section id="writing">
-        <div class="container">
-          <div class="section-header">
-            <div class="section-label">
-              <span>◆</span> Writing
-            </div>
-            <h2 class="section-title">Thoughts on AI & Orchestration</h2>
-            <p class="section-subtitle">
-              Exploring how companies can adopt AI Agents without turning everything 
-              into a science project. Practical insights from the field.
-            </p>
-          </div>
-
-          <div class="writing-grid">
-            <article class="writing-card animate-on-scroll stagger-1">
-              <div class="writing-card-header" onclick="toggleWritingCard(this)">
-                <span class="writing-number">01</span>
-                <div class="writing-card-header-content">
-                  <h3>From Tickets to Flows: AI Agents in IT Operations</h3>
-                  <p>Why teams need focused agents that understand tickets, approvals, and knowledge—not generic chatbots.</p>
-                </div>
-                <div class="writing-meta">
-                  <span class="writing-status">Drafting</span>
-                  <div class="writing-card-toggle">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="writing-card-body">
-                <div class="writing-card-content">
-                  <p class="writing-card-excerpt">
-                    Most companies approach AI in IT operations with the wrong mindset. They want a "chatbot" that can answer anything, but what teams actually need is a set of focused, specialized agents that deeply understand the workflows they support. This article explores how to design AI agents for ticket triage, knowledge retrieval, and approval workflows—and when to hand off to humans.
-                  </p>
-                  <div class="writing-card-info">
-                    <div class="writing-card-info-item">
-                      <div class="writing-card-info-label">Reading Time</div>
-                      <div class="writing-card-info-value">~8 min</div>
-                    </div>
-                    <div class="writing-card-info-item">
-                      <div class="writing-card-info-label">Category</div>
-                      <div class="writing-card-info-value">AI in ITSM</div>
-                    </div>
-                    <div class="writing-card-info-item">
-                      <div class="writing-card-info-label">Status</div>
-                      <div class="writing-card-info-value">First Draft</div>
-                    </div>
-                  </div>
-                  <div class="writing-card-sections">
-                    <h4>What You'll Learn</h4>
-                    <ul>
-                      <li>Why generic chatbots fail in IT operations environments</li>
-                      <li>The anatomy of a focused ticket triage agent</li>
-                      <li>Designing knowledge agents that actually find answers</li>
-                      <li>Building approval workflows with human-in-the-loop</li>
-                      <li>Real examples from ServiceNow and Xurrent implementations</li>
-                    </ul>
-                  </div>
-                  <div class="writing-card-tags">
-                    <span>AI Agents</span>
-                    <span>IT Operations</span>
-                    <span>Ticket Triage</span>
-                    <span>Automation</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="writing-card animate-on-scroll stagger-2">
-              <div class="writing-card-header" onclick="toggleWritingCard(this)">
-                <span class="writing-number">02</span>
-                <div class="writing-card-header-content">
-                  <h3>Orchestrating Tools Instead of Replacing Them</h3>
-                  <p>Connecting ServiceNow, Xurrent, and others with AI—keeping familiar tools while making workflows smarter.</p>
-                </div>
-                <div class="writing-meta">
-                  <span class="writing-status">Coming Soon</span>
-                  <div class="writing-card-toggle">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="writing-card-body">
-                <div class="writing-card-content">
-                  <p class="writing-card-excerpt">
-                    The biggest mistake companies make with AI adoption is trying to replace their existing tools. Teams have spent years learning ServiceNow, Jira, or Xurrent—and that knowledge is valuable. Instead of replacement, the smarter approach is orchestration: connecting these systems with AI that sits on top, making workflows smarter without disrupting what already works.
-                  </p>
-                  <div class="writing-card-info">
-                    <div class="writing-card-info-item">
-                      <div class="writing-card-info-label">Reading Time</div>
-                      <div class="writing-card-info-value">~10 min</div>
-                    </div>
-                    <div class="writing-card-info-item">
-                      <div class="writing-card-info-label">Category</div>
-                      <div class="writing-card-info-value">AI Strategy</div>
-                    </div>
-                    <div class="writing-card-info-item">
-                      <div class="writing-card-info-label">Status</div>
-                      <div class="writing-card-info-value">Outlining</div>
-                    </div>
-                  </div>
-                  <div class="writing-card-sections">
-                    <h4>Key Topics</h4>
-                    <ul>
-                      <li>The orchestration mindset vs. replacement mindset</li>
-                      <li>API-first integration patterns for ITSM tools</li>
-                      <li>Building AI layers that enhance existing workflows</li>
-                      <li>Change management: getting teams to adopt AI overlays</li>
-                      <li>Case study: Multi-tool orchestration in enterprise IT</li>
-                    </ul>
-                  </div>
-                  <div class="writing-card-tags">
-                    <span>Orchestration</span>
-                    <span>ServiceNow</span>
-                    <span>Xurrent</span>
-                    <span>Integration</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="writing-card animate-on-scroll stagger-3">
-              <div class="writing-card-header" onclick="toggleWritingCard(this)">
-                <span class="writing-number">03</span>
-                <div class="writing-card-header-content">
-                  <h3>Building AI Agents for Real People</h3>
-                  <p>What I've learned moving from support to AI product work—where the hard parts aren't the models.</p>
-                </div>
-                <div class="writing-meta">
-                  <span class="writing-status">In Ideas</span>
-                  <div class="writing-card-toggle">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="writing-card-body">
-                <div class="writing-card-content">
-                  <p class="writing-card-excerpt">
-                    After years in post-sales support and now working on AI products, I've learned that the technical challenges are rarely the hard part. The real difficulties are managing expectations, defining scope, and driving adoption. This is a personal reflection on transitioning from support to AI-heavy product work and the lessons that don't fit in a technical guide.
-                  </p>
-                  <div class="writing-card-info">
-                    <div class="writing-card-info-item">
-                      <div class="writing-card-info-label">Reading Time</div>
-                      <div class="writing-card-info-value">~6 min</div>
-                    </div>
-                    <div class="writing-card-info-item">
-                      <div class="writing-card-info-label">Category</div>
-                      <div class="writing-card-info-value">Career & Product</div>
-                    </div>
-                    <div class="writing-card-info-item">
-                      <div class="writing-card-info-label">Status</div>
-                      <div class="writing-card-info-value">Idea Stage</div>
-                    </div>
-                  </div>
-                  <div class="writing-card-sections">
-                    <h4>Themes I'll Explore</h4>
-                    <ul>
-                      <li>Why support experience is underrated in product roles</li>
-                      <li>Managing the gap between AI hype and reality</li>
-                      <li>How to scope AI projects that actually ship</li>
-                      <li>Getting users to trust (and use) AI features</li>
-                      <li>The soft skills that matter more than prompt engineering</li>
-                    </ul>
-                  </div>
-                  <div class="writing-card-tags">
-                    <span>Career</span>
-                    <span>Product Management</span>
-                    <span>AI Adoption</span>
-                    <span>Personal</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="section-cta">
-            <a href="writings.html" class="section-cta-btn">
-              See All Writings
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects Section -->
-<section id="projects">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">
-        <span>◆</span> Projects
-      </div>
-      <h2 class="section-title">Things I'm Building</h2>
-      <p class="section-subtitle">
-        A mix of work projects and side experiments that keep me curious and learning.
-      </p>
-    </div>
-
-    <div class="projects-grid">
-
-      <!-- LoadTest Pro -->
-      <article class="project-card animate-on-scroll stagger-1">
-        <div class="project-visual">
-          <img src="logo.png" alt="LoadTest Pro Logo" class="project-logo" style="height: 120px; width: auto;">
-        </div>
-        <div class="project-info">
-          <span class="project-label">Side Project</span>
-          <h3>LoadTest Pro</h3>
-          <p>
-            Making it easier for teams to understand how services behave under real traffic 
-            and edge cases—without needing a dedicated performance engineer.
-          </p>
-          <a href="https://loadtest.pro" target="_blank" rel="noopener noreferrer" class="project-link">
-            Explore LoadTest Pro
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </article>
-
-      <!-- Autom Mate -->
-      <article class="project-card animate-on-scroll stagger-2">
-        <div class="project-visual">
-          <img src="au2.png" alt="Autom Mate Logo" class="project-logo" style="height: 120px; width: auto;">
-        </div>
-        <div class="project-info">
-          <span class="project-label">At Work</span>
-          <h3>Autom Mate</h3>
-          <p>
-            Contributing to ready-to-use AI Agents customers can plug into their 
-            environments—support flows, approvals, ticket analysis, and more.
-          </p>
-          <a href="https://autommate.com" target="_blank" rel="noopener noreferrer" class="project-link">
-            Explore Autom Mate
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M7 17L17 7M17 7H7M17 7v10"/>
-            </svg>
-          </a>
-        </div>
-      </article>
-
-    </div>
-
-    <div class="section-cta">
-      <a href="projects.html" class="section-cta-btn">
-        See All Projects
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-
-      <!-- Contact Section -->
-      <section class="contact-section" id="contact">
-        <div class="container">
-          <div class="contact-content">
-            <div class="contact-text animate-on-scroll">
-              <h2>Let's build <span>something</span> together.</h2>
-              <p>
-                I'm always open to conversations about AI Agents, workflow automation, 
-                or interesting product problems. Let's connect and explore possibilities.
-              </p>
-            </div>
-            <div class="contact-actions animate-on-scroll stagger-1">
-             <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer" class="contact-btn">
-  <div class="contact-btn-icon contact-btn-icon-image">
-    <img src="linkedin2.png" alt="LinkedIn Logo" class="contact-logo">
-  </div>
-  <div class="contact-btn-text">
-    <strong>LinkedIn</strong>
-    <span>Connect professionally</span>
-  </div>
-  <span class="contact-btn-arrow">→</span>
-</a>
-
-
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-copy">
-            © <span id="year"></span> Yusuf Erdem Sakın · Türkiye 🇹🇷
-          </div>
-          <div class="footer-links">
-            <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://www.loadtest.pro" target="_blank" rel="noopener noreferrer">LoadTest Pro</a>
-            <a href="https://autommate.com" target="_blank" rel="noopener noreferrer">Autom Mate</a>
-            <a href="https://community.autommate.com" target="_blank" rel="noopener noreferrer">Autom Mate Community</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-
-  <script>
-    // Update year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Work Accordion toggle function
-    function toggleCard(header) {
-      const card = header.closest('.work-card');
-      const isActive = card.classList.contains('active');
-      
-      // Close all work cards
-      document.querySelectorAll('.work-card').forEach(c => {
-        c.classList.remove('active');
-      });
-      
-      // Open clicked card if it wasn't already open
-      if (!isActive) {
-        card.classList.add('active');
+      .writing-card-info-label {
+        font-size: 0.7rem;
+        font-family: var(--font-mono);
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.3rem;
       }
-    }
 
-    // Writing Accordion toggle function
-    function toggleWritingCard(header) {
-      const card = header.closest('.writing-card');
-      const isActive = card.classList.contains('active');
-      
-      // Close all writing cards
-      document.querySelectorAll('.writing-card').forEach(c => {
-        c.classList.remove('active');
-      });
-      
-      // Open clicked card if it wasn't already open
-      if (!isActive) {
-        card.classList.add('active');
+      .writing-card-info-value {
+        font-size: 0.85rem;
+        color: var(--text-primary);
+        font-weight: 500;
       }
-    }
 
-    // Smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+      .writing-card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .writing-card-tags span {
+        font-size: 0.75rem;
+        font-family: var(--font-mono);
+        color: var(--text-muted);
+        padding: 0.35rem 0.75rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+      }
+
+      .section-cta {
+        display: flex;
+        justify-content: center;
+        margin-top: 2.5rem;
+      }
+
+      .section-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.9rem 1.8rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        transition: all 0.3s var(--ease-out-expo);
+      }
+
+      .section-cta-btn:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: var(--border-hover);
+        color: var(--text-primary);
+        transform: translateY(-2px);
+      }
+
+      .section-cta-btn svg {
+        transition: transform 0.3s ease;
+      }
+
+      .section-cta-btn:hover svg {
+        transform: translateX(4px);
+      }
+
+      @media (max-width: 600px) {
+        .writing-card-info {
+          grid-template-columns: 1fr;
         }
-      });
-    });
 
-  </script>
-</body>
+        .writing-card-header {
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        .writing-number {
+          min-width: auto;
+        }
+
+        .writing-meta {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+
+      /* Projects section */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .project-card {
+        background: rgba(24, 24, 27, 0.95);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: border-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .project-card:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-4px);
+      }
+
+      .project-visual {
+        height: 180px;
+        background: var(--gradient-subtle);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .project-visual-content {
+        font-size: 3rem;
+      }
+
+      .project-info {
+        padding: 1.5rem;
+      }
+
+      .project-label {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 600;
+        font-family: var(--font-mono);
+        padding: 0.3rem 0.7rem;
+        background: rgba(244, 114, 182, 0.1);
+        color: var(--accent-tertiary);
+        border-radius: 100px;
+        margin-bottom: 0.8rem;
+      }
+
+      .project-info h3 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.6rem;
+      }
+
+      .project-info p {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 1rem;
+      }
+
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--accent-primary);
+        transition: gap 0.3s ease;
+      }
+
+      .project-link:hover {
+        gap: 0.8rem;
+      }
+
+      /* Contact section */
+      .contact-section {
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .contact-content {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .contact-text h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .contact-text h2 span {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-weight: 400;
+      }
+
+      .contact-text p {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        max-width: 500px;
+      }
+
+      .contact-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .contact-btn {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        transition: all 0.3s var(--ease-out-expo);
+      }
+
+      .contact-btn:hover {
+        border-color: var(--accent-primary);
+        transform: translateX(10px);
+      }
+
+      .contact-btn-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--gradient-main);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+      }
+
+      /* Special version of contact-btn-icon for image logos */
+      .contact-btn-icon-image {
+        width: 48px;
+        height: 48px;
+        background: transparent;
+        /* no gradient behind the logo */
+        padding: 0;
+      }
+
+      /* The LinkedIn logo itself */
+      .contact-logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        /* optional: soften edges */
+        object-fit: cover;
+        /* or 'contain' if you prefer full logo visible */
+        display: block;
+      }
+
+      .contact-btn-text {
+        flex: 1;
+      }
+
+      .contact-btn-text strong {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+      }
+
+      .contact-btn-text span {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .contact-btn-arrow {
+        color: var(--text-muted);
+        transition: transform 0.3s ease;
+      }
+
+      .contact-btn:hover .contact-btn-arrow {
+        transform: translateX(5px);
+        color: var(--accent-primary);
+      }
+
+      /* Footer */
+      footer {
+        padding: 3rem 0;
+        border-top: 1px solid var(--border);
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-copy {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .footer-links a {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        transition: color 0.3s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--accent-primary);
+      }
+
+      /* Animations */
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-on-scroll {
+        opacity: 1;
+      }
+
+      .animate-on-scroll.visible {
+        opacity: 1;
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+
+        .work-grid,
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .floating-element {
+          display: none;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .hero {
+          padding: 7rem 0 4rem;
+        }
+
+        .hero-cta {
+          flex-direction: column;
+        }
+
+        .btn {
+          justify-content: center;
+        }
+
+        .writing-card {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .writing-number {
+          display: none;
+        }
+
+        .writing-meta {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .footer-content {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+      }
+
+      /* Scroll reveal stagger */
+      .stagger-1 {
+        transition-delay: 0.1s;
+      }
+
+      .stagger-2 {
+        transition-delay: 0.2s;
+      }
+
+      .stagger-3 {
+        transition-delay: 0.3s;
+      }
+
+      .stagger-4 {
+        transition-delay: 0.4s;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Static gradient background -->
+    <div class="bg-gradient"></div>
+    <div class="page">
+      <!-- Header -->
+      <header>
+        <div class="container">
+          <nav class="nav">
+            <a href="#" class="logo">
+              <img src="favicon.png" alt="YE" class="logo-mark">
+              <div class="logo-text">
+                <div class="logo-name">Yusuf Erdem Sakın</div>
+                <div class="logo-title">Product Manager</div>
+              </div>
+            </a>
+            <div class="nav-links">
+              <a href="#about" class="nav-link">About</a>
+              <a href="#work" class="nav-link">Work</a>
+              <a href="#writing" class="nav-link">Writing</a>
+              <a href="#projects" class="nav-link">Projects</a>
+              <a href="#contact" class="nav-link nav-link-cta">Let's Talk</a>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <main>
+        <!-- Hero -->
+        <section class="hero" id="about">
+          <div class="container">
+            <div class="hero-content">
+              <div class="hero-text">
+                <div class="hero-badge">
+                  <span class="hero-badge-dot"></span> Available for AI consulting
+                </div>
+                <h1 class="hero-title">
+                  <span class="hero-title-line">I design</span>
+                  <span class="hero-title-line hero-title-gradient">AI workflows</span>
+                  <span class="hero-title-line">that <span class="hero-title-serif">actually</span> work. </span>
+                </h1>
+                <p class="hero-subtitle"> Product Manager at Autom Mate, building AI Agents that transform how support teams operate. Four years turning complex business problems into elegant automation solutions. </p>
+                <div class="hero-cta">
+                  <a href="#contact" class="btn btn-primary"> Start a Conversation <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                  <a href="#work" class="btn btn-secondary">See My Work</a>
+                </div>
+              </div>
+              <div class="hero-card">
+                <div class="floating-element floating-code">&lt;agent/&gt;</div>
+                <div class="floating-element floating-emoji">🤖</div>
+                <div class="hero-card-inner">
+                  <div class="hero-card-header">
+                    <div class="hero-card-avatar">👨‍💻</div>
+                    <div class="hero-card-info">
+                      <h3>Erdem</h3>
+                      <p>@autommate</p>
+                    </div>
+                  </div>
+                  <div class="hero-card-stats">
+                    <div class="stat">
+                      <div class="stat-value">4+</div>
+                      <div class="stat-label">Years in IT</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">20+</div>
+                      <div class="stat-label">AI Agents</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">∞</div>
+                      <div class="stat-label">Curiosity</div>
+                    </div>
+                  </div>
+                  <div class="hero-card-tags">
+                    <span class="tag">AI Agents</span>
+                    <span class="tag">Orchestration</span>
+                    <span class="tag">ITSM</span>
+                    <span class="tag">Automation</span>
+                    <span class="tag">Product</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Work Section -->
+        <section id="work">
+          <div class="container">
+            <div class="section-header">
+              <div class="section-label">
+                <span>◆</span> What I Do
+              </div>
+              <h2 class="section-title">Bridging AI & Business Reality</h2>
+              <p class="section-subtitle"> I specialize in turning vague "we should use AI" requests into focused, measurable automation that saves real time for real teams. </p>
+            </div>
+            <div class="work-grid">
+              <article class="work-card animate-on-scroll stagger-1">
+                <div class="work-card-header" onclick="toggleCard(this)">
+                  <div class="work-card-icon">🎯</div>
+                  <div class="work-card-header-content">
+                    <span class="work-card-label">Primary Focus</span>
+                    <h3>AI Agents at Autom Mate</h3>
+                  </div>
+                  <div class="work-card-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div class="work-card-body">
+                  <div class="work-card-content">
+                    <p class="work-card-description"> At Autom Mate, I lead pre-sales and solution design—transforming customer challenges into end-to-end AI workflows. My work spans ticket triage, knowledge search, approvals, and automations integrated with enterprise tools like ServiceNow, Xurrent, and beyond. I bridge the gap between what customers need and what our AI platform can deliver. </p>
+                    <div class="work-card-details">
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">Role</div>
+                        <div class="work-card-detail-value">Product Manager & Solution Designer</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">Focus Area</div>
+                        <div class="work-card-detail-value">Enterprise AI Agents</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">Integrations</div>
+                        <div class="work-card-detail-value">ServiceNow, Xurrent, Jira, Slack</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">AI Stack</div>
+                        <div class="work-card-detail-value">OpenAI, LangChain, Custom Orchestration</div>
+                      </div>
+                    </div>
+                    <div class="work-card-highlights">
+                      <h4>Key Responsibilities</h4>
+                      <ul>
+                        <li>Designing multi-step AI agents for IT service management workflows</li>
+                        <li>Building POCs and demos for enterprise prospects</li>
+                        <li>Collaborating with engineering on agent architecture and capabilities</li>
+                        <li>Creating technical documentation and solution blueprints</li>
+                      </ul>
+                    </div>
+                    <div class="work-card-meta">
+                      <span>Agentic Flows</span>
+                      <span>Orchestration</span>
+                      <span>IT Ops</span>
+                      <span>Pre-Sales</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="work-card animate-on-scroll stagger-2">
+                <div class="work-card-header" onclick="toggleCard(this)">
+                  <div class="work-card-icon">💡</div>
+                  <div class="work-card-header-content">
+                    <span class="work-card-label">My Approach</span>
+                    <h3>Business-First AI Thinking</h3>
+                  </div>
+                  <div class="work-card-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div class="work-card-body">
+                  <div class="work-card-content">
+                    <p class="work-card-description"> I believe the best AI solutions start with understanding the business, not the technology. Before writing a single prompt or designing an agent, I ask: who owns this process? Where does the data live? What does "better" actually mean for this team? The tech is exciting, but the goal is always fewer clicks, less noise, and happier operators. </p>
+                    <div class="work-card-details">
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">Philosophy</div>
+                        <div class="work-card-detail-value">Outcomes over outputs</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">Method</div>
+                        <div class="work-card-detail-value">Discovery → Design → Validate</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">Stakeholders</div>
+                        <div class="work-card-detail-value">IT Ops, Support Teams, Leadership</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">Success Metric</div>
+                        <div class="work-card-detail-value">Time saved, errors reduced</div>
+                      </div>
+                    </div>
+                    <div class="work-card-highlights">
+                      <h4>How I Approach Projects</h4>
+                      <ul>
+                        <li>Map the current workflow before proposing automation</li>
+                        <li>Identify the 20% of work causing 80% of the pain</li>
+                        <li>Start small with high-impact, low-risk use cases</li>
+                        <li>Measure baseline metrics before and after implementation</li>
+                        <li>Build trust through quick wins, then expand scope</li>
+                      </ul>
+                    </div>
+                    <div class="work-card-meta">
+                      <span>Outcome-Driven</span>
+                      <span>Tech ↔ Business</span>
+                      <span>Practical</span>
+                      <span>Data-Informed</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="work-card animate-on-scroll stagger-3">
+                <div class="work-card-header" onclick="toggleCard(this)">
+                  <div class="work-card-icon">🛠️</div>
+                  <div class="work-card-header-content">
+                    <span class="work-card-label">Background</span>
+                    <h3>Post-Sales to Pre-Sales Journey</h3>
+                  </div>
+                  <div class="work-card-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div class="work-card-body">
+                  <div class="work-card-content">
+                    <p class="work-card-description"> My foundation is industrial engineering—systems thinking, process optimization, and understanding how things actually work in practice. Over four years, I led post-sales teams for major ITSM vendors, implementing and supporting tools like ManageEngine, SolarWinds, Xurrent, and Quest. That hands-on experience with real customer problems shapes how I design solutions today. </p>
+                    <div class="work-card-details">
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">Education</div>
+                        <div class="work-card-detail-value">Industrial Engineering</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">Experience</div>
+                        <div class="work-card-detail-value">4+ Years in IT Industry</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">Previous Tools</div>
+                        <div class="work-card-detail-value">ManageEngine, SolarWinds, Quest</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">Domain</div>
+                        <div class="work-card-detail-value">ITSM, IT Operations, Support</div>
+                      </div>
+                    </div>
+                    <div class="work-card-highlights">
+                      <h4>Career Milestones</h4>
+                      <ul>
+                        <li>Led post-sales implementation for 50+ enterprise customers</li>
+                        <li>Transitioned from support to solution design and product</li>
+                        <li>Developed expertise across multiple ITSM platforms</li>
+                        <li>Now combining domain knowledge with AI capabilities</li>
+                      </ul>
+                    </div>
+                    <div class="work-card-meta">
+                      <span>ITSM Tools</span>
+                      <span>Customer Success</span>
+                      <span>Implementation</span>
+                      <span>Support</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="work-card animate-on-scroll stagger-4">
+                <div class="work-card-header" onclick="toggleCard(this)">
+                  <div class="work-card-icon">🌱</div>
+                  <div class="work-card-header-content">
+                    <span class="work-card-label">Beyond Work</span>
+                    <h3>Life Outside the Screen</h3>
+                  </div>
+                  <div class="work-card-toggle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </div>
+                </div>
+                <div class="work-card-body">
+                  <div class="work-card-content">
+                    <p class="work-card-description"> When I'm not designing AI flows, you'll find me maintaining my planted aquariums (it's surprisingly meditative), playing guitar, cycling around Çanakkale, or deep in an immersive game. I believe balance fuels creativity—stepping away from work often leads to the best ideas. </p>
+                    <div class="work-card-details">
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">🐠 Aquariums</div>
+                        <div class="work-card-detail-value">Planted tanks, aquascaping</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">🎸 Music</div>
+                        <div class="work-card-detail-value">Guitar, rock & blues</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">🚴 Cycling</div>
+                        <div class="work-card-detail-value">City rides around Çanakkale</div>
+                      </div>
+                      <div class="work-card-detail">
+                        <div class="work-card-detail-label">🎮 Gaming</div>
+                        <div class="work-card-detail-value">RPGs, strategy, immersive sims</div>
+                      </div>
+                    </div>
+                    <div class="work-card-highlights">
+                      <h4>Why These Matter</h4>
+                      <ul>
+                        <li>Aquariums teach patience and systems thinking</li>
+                        <li>Music provides creative expression and stress relief</li>
+                        <li>Cycling clears the mind and sparks new ideas</li>
+                        <li>Gaming inspires UX thinking and problem-solving</li>
+                      </ul>
+                    </div>
+                    <div class="work-card-meta">
+                      <span>Aquariums 🐠</span>
+                      <span>Guitar 🎸</span>
+                      <span>Cycling 🚴</span>
+                      <span>Gaming 🎮</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+        <!-- Writing Section -->
+        <section id="writing">
+          <div class="container">
+            <div class="section-header">
+              <div class="section-label">
+                <span>◆</span> Writing
+              </div>
+              <h2 class="section-title">Thoughts on AI & Orchestration</h2>
+              <p class="section-subtitle"> Exploring how companies can adopt AI Agents without turning everything into a science project. Practical insights from the field. </p>
+            </div>
+            <div class="writing-grid">
+              <article class="writing-card animate-on-scroll stagger-1">
+                <div class="writing-card-header" onclick="toggleWritingCard(this)">
+                  <span class="writing-number">01</span>
+                  <div class="writing-card-header-content">
+                    <h3>From Tickets to Flows: AI Agents in IT Operations</h3>
+                    <p>Why teams need focused agents that understand tickets, approvals, and knowledge—not generic chatbots.</p>
+                  </div>
+                  <div class="writing-meta">
+                    <span class="writing-status">Drafting</span>
+                    <div class="writing-card-toggle">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="writing-card-body">
+                  <div class="writing-card-content">
+                    <p class="writing-card-excerpt"> Most companies approach AI in IT operations with the wrong mindset. They want a "chatbot" that can answer anything, but what teams actually need is a set of focused, specialized agents that deeply understand the workflows they support. This article explores how to design AI agents for ticket triage, knowledge retrieval, and approval workflows—and when to hand off to humans. </p>
+                    <div class="writing-card-info">
+                      <div class="writing-card-info-item">
+                        <div class="writing-card-info-label">Reading Time</div>
+                        <div class="writing-card-info-value">~8 min</div>
+                      </div>
+                      <div class="writing-card-info-item">
+                        <div class="writing-card-info-label">Category</div>
+                        <div class="writing-card-info-value">AI in ITSM</div>
+                      </div>
+                      <div class="writing-card-info-item">
+                        <div class="writing-card-info-label">Status</div>
+                        <div class="writing-card-info-value">First Draft</div>
+                      </div>
+                    </div>
+                    <div class="writing-card-sections">
+                      <h4>What You'll Learn</h4>
+                      <ul>
+                        <li>Why generic chatbots fail in IT operations environments</li>
+                        <li>The anatomy of a focused ticket triage agent</li>
+                        <li>Designing knowledge agents that actually find answers</li>
+                        <li>Building approval workflows with human-in-the-loop</li>
+                        <li>Real examples from ServiceNow and Xurrent implementations</li>
+                      </ul>
+                    </div>
+                    <div class="writing-card-tags">
+                      <span>AI Agents</span>
+                      <span>IT Operations</span>
+                      <span>Ticket Triage</span>
+                      <span>Automation</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="writing-card animate-on-scroll stagger-2">
+                <div class="writing-card-header" onclick="toggleWritingCard(this)">
+                  <span class="writing-number">02</span>
+                  <div class="writing-card-header-content">
+                    <h3>Orchestrating Tools Instead of Replacing Them</h3>
+                    <p>Connecting ServiceNow, Xurrent, and others with AI—keeping familiar tools while making workflows smarter.</p>
+                  </div>
+                  <div class="writing-meta">
+                    <span class="writing-status">Coming Soon</span>
+                    <div class="writing-card-toggle">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="writing-card-body">
+                  <div class="writing-card-content">
+                    <p class="writing-card-excerpt"> The biggest mistake companies make with AI adoption is trying to replace their existing tools. Teams have spent years learning ServiceNow, Jira, or Xurrent—and that knowledge is valuable. Instead of replacement, the smarter approach is orchestration: connecting these systems with AI that sits on top, making workflows smarter without disrupting what already works. </p>
+                    <div class="writing-card-info">
+                      <div class="writing-card-info-item">
+                        <div class="writing-card-info-label">Reading Time</div>
+                        <div class="writing-card-info-value">~10 min</div>
+                      </div>
+                      <div class="writing-card-info-item">
+                        <div class="writing-card-info-label">Category</div>
+                        <div class="writing-card-info-value">AI Strategy</div>
+                      </div>
+                      <div class="writing-card-info-item">
+                        <div class="writing-card-info-label">Status</div>
+                        <div class="writing-card-info-value">Outlining</div>
+                      </div>
+                    </div>
+                    <div class="writing-card-sections">
+                      <h4>Key Topics</h4>
+                      <ul>
+                        <li>The orchestration mindset vs. replacement mindset</li>
+                        <li>API-first integration patterns for ITSM tools</li>
+                        <li>Building AI layers that enhance existing workflows</li>
+                        <li>Change management: getting teams to adopt AI overlays</li>
+                        <li>Case study: Multi-tool orchestration in enterprise IT</li>
+                      </ul>
+                    </div>
+                    <div class="writing-card-tags">
+                      <span>Orchestration</span>
+                      <span>ServiceNow</span>
+                      <span>Xurrent</span>
+                      <span>Integration</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="writing-card animate-on-scroll stagger-3">
+                <div class="writing-card-header" onclick="toggleWritingCard(this)">
+                  <span class="writing-number">03</span>
+                  <div class="writing-card-header-content">
+                    <h3>Building AI Agents for Real People</h3>
+                    <p>What I've learned moving from support to AI product work—where the hard parts aren't the models.</p>
+                  </div>
+                  <div class="writing-meta">
+                    <span class="writing-status">In Ideas</span>
+                    <div class="writing-card-toggle">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="writing-card-body">
+                  <div class="writing-card-content">
+                    <p class="writing-card-excerpt"> After years in post-sales support and now working on AI products, I've learned that the technical challenges are rarely the hard part. The real difficulties are managing expectations, defining scope, and driving adoption. This is a personal reflection on transitioning from support to AI-heavy product work and the lessons that don't fit in a technical guide. </p>
+                    <div class="writing-card-info">
+                      <div class="writing-card-info-item">
+                        <div class="writing-card-info-label">Reading Time</div>
+                        <div class="writing-card-info-value">~6 min</div>
+                      </div>
+                      <div class="writing-card-info-item">
+                        <div class="writing-card-info-label">Category</div>
+                        <div class="writing-card-info-value">Career & Product</div>
+                      </div>
+                      <div class="writing-card-info-item">
+                        <div class="writing-card-info-label">Status</div>
+                        <div class="writing-card-info-value">Idea Stage</div>
+                      </div>
+                    </div>
+                    <div class="writing-card-sections">
+                      <h4>Themes I'll Explore</h4>
+                      <ul>
+                        <li>Why support experience is underrated in product roles</li>
+                        <li>Managing the gap between AI hype and reality</li>
+                        <li>How to scope AI projects that actually ship</li>
+                        <li>Getting users to trust (and use) AI features</li>
+                        <li>The soft skills that matter more than prompt engineering</li>
+                      </ul>
+                    </div>
+                    <div class="writing-card-tags">
+                      <span>Career</span>
+                      <span>Product Management</span>
+                      <span>AI Adoption</span>
+                      <span>Personal</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+            <div class="section-cta">
+              <a href="writings.html" class="section-cta-btn"> See All Writings <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+        <!-- Projects Section -->
+        <section id="projects">
+          <div class="container">
+            <div class="section-header">
+              <div class="section-label">
+                <span>◆</span> Projects
+              </div>
+              <h2 class="section-title">Things I'm Building</h2>
+              <p class="section-subtitle"> A mix of work projects and side experiments that keep me curious and learning. </p>
+            </div>
+            <div class="projects-grid">
+              <!-- LoadTest Pro -->
+              <article class="project-card animate-on-scroll stagger-1">
+                <div class="project-visual">
+                  <img src="logo.png" alt="LoadTest Pro Logo" class="project-logo" style="height: 120px; width: auto;">
+                </div>
+                <div class="project-info">
+                  <span class="project-label">Side Project</span>
+                  <h3>LoadTest Pro</h3>
+                  <p> Making it easier for teams to understand how services behave under real traffic and edge cases—without needing a dedicated performance engineer. </p>
+                  <a href="https://loadtest.pro" target="_blank" rel="noopener noreferrer" class="project-link"> Explore LoadTest Pro <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              </article>
+              <!-- Autom Mate -->
+              <article class="project-card animate-on-scroll stagger-2">
+                <div class="project-visual">
+                  <img src="au2.png" alt="Autom Mate Logo" class="project-logo" style="height: 120px; width: auto;">
+                </div>
+                <div class="project-info">
+                  <span class="project-label">At Work</span>
+                  <h3>Autom Mate</h3>
+                  <p> Contributing to ready-to-use AI Agents customers can plug into their environments—support flows, approvals, ticket analysis, and more. </p>
+                  <a href="https://autommate.com" target="_blank" rel="noopener noreferrer" class="project-link"> Explore Autom Mate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M7 17L17 7M17 7H7M17 7v10" />
+                    </svg>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <div class="section-cta">
+              <a href="projects.html" class="section-cta-btn"> See All Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+          <div class="container">
+            <div class="contact-content">
+              <div class="contact-text animate-on-scroll">
+                <h2>Let's build <span>something</span> together. </h2>
+                <p> I'm always open to conversations about AI Agents, workflow automation, or interesting product problems. Let's connect and explore possibilities. </p>
+              </div>
+              <div class="contact-actions animate-on-scroll stagger-1">
+                <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer" class="contact-btn">
+                  <div class="contact-btn-icon contact-btn-icon-image">
+                    <img src="linkedin2.png" alt="LinkedIn Logo" class="contact-logo">
+                  </div>
+                  <div class="contact-btn-text">
+                    <strong>LinkedIn</strong>
+                    <span>Connect professionally</span>
+                  </div>
+                  <span class="contact-btn-arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <!-- Footer -->
+      <footer>
+        <div class="container">
+          <div class="footer-content">
+            <div class="footer-copy"> © <span id="year"></span> Yusuf Erdem Sakın · Türkiye 🇹🇷 </div>
+            <div class="footer-links">
+              <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://www.loadtest.pro" target="_blank" rel="noopener noreferrer">LoadTest Pro</a>
+              <a href="https://autommate.com" target="_blank" rel="noopener noreferrer">Autom Mate</a>
+              <a href="https://community.autommate.com" target="_blank" rel="noopener noreferrer">Autom Mate Community</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script>
+      // Update year
+      document.getElementById('year').textContent = new Date().getFullYear();
+      // Work Accordion toggle function
+      function toggleCard(header) {
+        const card = header.closest('.work-card');
+        const isActive = card.classList.contains('active');
+        // Close all work cards
+        document.querySelectorAll('.work-card').forEach(c => {
+          c.classList.remove('active');
+        });
+        // Open clicked card if it wasn't already open
+        if (!isActive) {
+          card.classList.add('active');
+        }
+      }
+      // Writing Accordion toggle function
+      function toggleWritingCard(header) {
+        const card = header.closest('.writing-card');
+        const isActive = card.classList.contains('active');
+        // Close all writing cards
+        document.querySelectorAll('.writing-card').forEach(c => {
+          c.classList.remove('active');
+        });
+        // Open clicked card if it wasn't already open
+        if (!isActive) {
+          card.classList.add('active');
+        }
+      }
+      // Smooth scroll for navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
