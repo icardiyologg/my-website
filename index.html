@@ -5,11 +5,9 @@
     <title>Yusuf Erdem Sakın – AI Product Designer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Personal website of Yusuf Erdem Sakın – Product Manager at Autom Mate, working on AI Agents and workflow automation." />
-    <!-- Add these lines after the existing meta tags -->
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -66,7 +64,6 @@
         text-decoration: none;
       }
 
-      /* Static gradient background instead of animated orbs */
       .bg-gradient {
         position: fixed;
         inset: 0;
@@ -78,7 +75,6 @@
         z-index: -1;
       }
 
-      /* Page structure */
       .page {
         position: relative;
         min-height: 100vh;
@@ -90,7 +86,6 @@
         padding: 0 2rem;
       }
 
-      /* Header */
       header {
         position: fixed;
         top: 0;
@@ -99,6 +94,7 @@
         z-index: 100;
         padding: 1.5rem 0;
         background: rgba(10, 10, 11, 0.9);
+        backdrop-filter: blur(20px);
         border-bottom: 1px solid var(--border);
       }
 
@@ -178,7 +174,6 @@
         box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
       }
 
-      /* Hero */
       .hero {
         min-height: 100vh;
         display: flex;
@@ -218,13 +213,10 @@
       }
 
       @keyframes pulse {
-
-        0%,
-        100% {
+        0%, 100% {
           opacity: 1;
           transform: scale(1);
         }
-
         50% {
           opacity: 0.5;
           transform: scale(0.8);
@@ -316,7 +308,6 @@
         transform: translateX(4px);
       }
 
-      /* Hero card */
       .hero-card {
         position: relative;
         animation: slideUp 0.8s var(--ease-out-expo) 0.5s both;
@@ -433,7 +424,6 @@
         color: var(--accent-primary);
       }
 
-      /* Floating elements */
       .floating-element {
         position: absolute;
         pointer-events: none;
@@ -468,18 +458,14 @@
       }
 
       @keyframes float {
-
-        0%,
-        100% {
+        0%, 100% {
           transform: translateY(0) rotate(0deg);
         }
-
         50% {
           transform: translateY(-15px) rotate(3deg);
         }
       }
 
-      /* Sections */
       section {
         padding: 6rem 0;
         position: relative;
@@ -517,7 +503,6 @@
         margin: 0 auto;
       }
 
-      /* Work section - Expandable Accordion */
       .work-grid {
         display: flex;
         flex-direction: column;
@@ -725,44 +710,38 @@
         }
       }
 
-      /* Writing section - Expandable Accordion */
-      .writing-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
+      /* Writing Preview Cards */
+      .writing-preview-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
       }
 
-      .writing-card {
+      .writing-preview-card {
         background: rgba(24, 24, 27, 0.95);
         border: 1px solid var(--border);
         border-radius: 16px;
-        overflow: hidden;
-        transition: border-color 0.3s ease;
+        padding: 1.5rem;
+        transition: all 0.3s var(--ease-out-expo);
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
       }
 
-      .writing-card:hover {
-        border-color: var(--border-hover);
-      }
-
-      .writing-card.active {
+      .writing-preview-card:hover {
         border-color: var(--accent-secondary);
+        transform: translateY(-4px);
       }
 
-      .writing-card-header {
+      .writing-preview-header {
         display: flex;
         align-items: center;
-        gap: 1.25rem;
-        padding: 1.5rem 2rem;
-        cursor: pointer;
-        transition: background 0.3s ease;
+        justify-content: space-between;
+        margin-bottom: 1rem;
       }
 
-      .writing-card-header:hover {
-        background: rgba(255, 255, 255, 0.02);
-      }
-
-      .writing-number {
-        font-size: 1.5rem;
+      .writing-preview-number {
+        font-size: 1.25rem;
         font-weight: 800;
         font-family: var(--font-mono);
         background: var(--gradient-main);
@@ -770,230 +749,52 @@
         -webkit-text-fill-color: transparent;
         background-clip: text;
         opacity: 0.6;
-        min-width: 50px;
       }
 
-      .writing-card-header-content {
-        flex: 1;
-        min-width: 0;
-      }
-
-      .writing-card-header-content h3 {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 0.3rem;
-      }
-
-      .writing-card-header-content p {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-      }
-
-      .writing-meta {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        flex-shrink: 0;
-      }
-
-      .writing-status {
-        font-size: 0.7rem;
+      .writing-preview-status {
+        font-size: 0.65rem;
         font-family: var(--font-mono);
         padding: 0.3rem 0.7rem;
         border-radius: 100px;
         background: rgba(167, 139, 250, 0.1);
         color: var(--accent-secondary);
+        text-transform: uppercase;
       }
 
-      .writing-card-toggle {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid var(--border);
+      .writing-preview-card h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+      }
+
+      .writing-preview-card p {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .writing-preview-meta {
         display: flex;
         align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        transition: all 0.4s var(--ease-out-expo);
-      }
-
-      .writing-card-toggle svg {
-        width: 18px;
-        height: 18px;
-        color: var(--text-muted);
-        transition: transform 0.4s var(--ease-out-expo), color 0.3s ease;
-      }
-
-      .writing-card.active .writing-card-toggle {
-        background: var(--accent-secondary);
-        border-color: var(--accent-secondary);
-      }
-
-      .writing-card.active .writing-card-toggle svg {
-        transform: rotate(180deg);
-        color: var(--bg-primary);
-      }
-
-      .writing-card-body {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s var(--ease-out-expo);
-      }
-
-      .writing-card.active .writing-card-body {
-        max-height: 800px;
-      }
-
-      .writing-card-content {
-        padding: 0 2rem 2rem;
+        gap: 1rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
         border-top: 1px solid var(--border);
       }
 
-      .writing-card-excerpt {
-        font-size: 0.95rem;
-        color: var(--text-secondary);
-        line-height: 1.8;
-        margin: 1.5rem 0;
-      }
-
-      .writing-card-sections {
-        margin-bottom: 1.5rem;
-      }
-
-      .writing-card-sections h4 {
-        font-size: 0.8rem;
-        font-family: var(--font-mono);
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.75rem;
-      }
-
-      .writing-card-sections ul {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-
-      .writing-card-sections li {
-        font-size: 0.9rem;
-        color: var(--text-secondary);
-        padding-left: 1.25rem;
-        position: relative;
-      }
-
-      .writing-card-sections li::before {
-        content: '•';
-        position: absolute;
-        left: 0;
-        color: var(--accent-secondary);
-      }
-
-      .writing-card-info {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .writing-card-info-item {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 1rem;
-        text-align: center;
-      }
-
-      .writing-card-info-label {
+      .writing-preview-meta span {
         font-size: 0.7rem;
         font-family: var(--font-mono);
         color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 0.3rem;
       }
 
-      .writing-card-info-value {
-        font-size: 0.85rem;
-        color: var(--text-primary);
-        font-weight: 500;
-      }
-
-      .writing-card-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-      }
-
-      .writing-card-tags span {
-        font-size: 0.75rem;
-        font-family: var(--font-mono);
-        color: var(--text-muted);
-        padding: 0.35rem 0.75rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-      }
-
-      .section-cta {
-        display: flex;
-        justify-content: center;
-        margin-top: 2.5rem;
-      }
-
-      .section-cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        padding: 0.9rem 1.8rem;
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid var(--border);
-        border-radius: 100px;
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: var(--text-secondary);
-        transition: all 0.3s var(--ease-out-expo);
-      }
-
-      .section-cta-btn:hover {
-        background: rgba(255, 255, 255, 0.06);
-        border-color: var(--border-hover);
-        color: var(--text-primary);
-        transform: translateY(-2px);
-      }
-
-      .section-cta-btn svg {
-        transition: transform 0.3s ease;
-      }
-
-      .section-cta-btn:hover svg {
-        transform: translateX(4px);
-      }
-
-      @media (max-width: 600px) {
-        .writing-card-info {
-          grid-template-columns: 1fr;
-        }
-
-        .writing-card-header {
-          flex-wrap: wrap;
-          gap: 1rem;
-        }
-
-        .writing-number {
-          min-width: auto;
-        }
-
-        .writing-meta {
-          width: 100%;
-          justify-content: space-between;
-        }
-      }
-
-      /* Projects section */
-      .projects-grid {
+      /* Project Preview Cards */
+      .projects-preview-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
@@ -1005,6 +806,7 @@
         border-radius: 20px;
         overflow: hidden;
         transition: border-color 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
       }
 
       .project-card:hover {
@@ -1067,7 +869,41 @@
         gap: 0.8rem;
       }
 
-      /* Contact section */
+      .section-cta {
+        display: flex;
+        justify-content: center;
+        margin-top: 2.5rem;
+      }
+
+      .section-cta-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.9rem 1.8rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        transition: all 0.3s var(--ease-out-expo);
+      }
+
+      .section-cta-btn:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: var(--border-hover);
+        color: var(--text-primary);
+        transform: translateY(-2px);
+      }
+
+      .section-cta-btn svg {
+        transition: transform 0.3s ease;
+      }
+
+      .section-cta-btn:hover svg {
+        transform: translateX(4px);
+      }
+
       .contact-section {
         background: var(--bg-secondary);
         border-top: 1px solid var(--border);
@@ -1132,23 +968,18 @@
         font-size: 1.2rem;
       }
 
-      /* Special version of contact-btn-icon for image logos */
       .contact-btn-icon-image {
         width: 48px;
         height: 48px;
         background: transparent;
-        /* no gradient behind the logo */
         padding: 0;
       }
 
-      /* The LinkedIn logo itself */
       .contact-logo {
         width: 48px;
         height: 48px;
         border-radius: 12px;
-        /* optional: soften edges */
         object-fit: cover;
-        /* or 'contain' if you prefer full logo visible */
         display: block;
       }
 
@@ -1177,7 +1008,6 @@
         color: var(--accent-primary);
       }
 
-      /* Footer */
       footer {
         padding: 3rem 0;
         border-top: 1px solid var(--border);
@@ -1209,13 +1039,11 @@
         color: var(--accent-primary);
       }
 
-      /* Animations */
       @keyframes slideUp {
         from {
           opacity: 0;
           transform: translateY(30px);
         }
-
         to {
           opacity: 1;
           transform: translateY(0);
@@ -1230,7 +1058,6 @@
         opacity: 1;
       }
 
-      /* Responsive */
       @media (max-width: 900px) {
         .hero-content {
           grid-template-columns: 1fr;
@@ -1238,7 +1065,11 @@
         }
 
         .work-grid,
-        .projects-grid {
+        .projects-preview-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .writing-preview-grid {
           grid-template-columns: 1fr;
         }
 
@@ -1269,20 +1100,6 @@
           justify-content: center;
         }
 
-        .writing-card {
-          grid-template-columns: 1fr;
-          gap: 1rem;
-        }
-
-        .writing-number {
-          display: none;
-        }
-
-        .writing-meta {
-          flex-direction: row;
-          align-items: center;
-        }
-
         .footer-content {
           flex-direction: column;
           gap: 1rem;
@@ -1290,29 +1107,15 @@
         }
       }
 
-      /* Scroll reveal stagger */
-      .stagger-1 {
-        transition-delay: 0.1s;
-      }
-
-      .stagger-2 {
-        transition-delay: 0.2s;
-      }
-
-      .stagger-3 {
-        transition-delay: 0.3s;
-      }
-
-      .stagger-4 {
-        transition-delay: 0.4s;
-      }
+      .stagger-1 { transition-delay: 0.1s; }
+      .stagger-2 { transition-delay: 0.2s; }
+      .stagger-3 { transition-delay: 0.3s; }
+      .stagger-4 { transition-delay: 0.4s; }
     </style>
   </head>
   <body>
-    <!-- Static gradient background -->
     <div class="bg-gradient"></div>
     <div class="page">
-      <!-- Header -->
       <header>
         <div class="container">
           <nav class="nav">
@@ -1326,13 +1129,14 @@
             <div class="nav-links">
               <a href="#about" class="nav-link">About</a>
               <a href="#work" class="nav-link">Work</a>
-              <a href="#writing" class="nav-link">Writing</a>
-              <a href="#projects" class="nav-link">Projects</a>
+              <a href="writings.html" class="nav-link">Writings</a>
+              <a href="projects.html" class="nav-link">Projects</a>
               <a href="#contact" class="nav-link nav-link-cta">Let's Talk</a>
             </div>
           </nav>
         </div>
       </header>
+
       <main>
         <!-- Hero -->
         <section class="hero" id="about">
@@ -1345,12 +1149,14 @@
                 <h1 class="hero-title">
                   <span class="hero-title-line">I design</span>
                   <span class="hero-title-line hero-title-gradient">AI workflows</span>
-                  <span class="hero-title-line">that <span class="hero-title-serif">actually</span> work. </span>
+                  <span class="hero-title-line">that <span class="hero-title-serif">actually</span> work.</span>
                 </h1>
-                <p class="hero-subtitle"> Product Manager at Autom Mate, building AI Agents that transform how support teams operate. Four years turning complex business problems into elegant automation solutions. </p>
+                <p class="hero-subtitle">Product Manager at Autom Mate, building AI Agents that transform how support teams operate. Four years turning complex business problems into elegant automation solutions.</p>
                 <div class="hero-cta">
-                  <a href="#contact" class="btn btn-primary"> Start a Conversation <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
+                  <a href="#contact" class="btn btn-primary">
+                    Start a Conversation
+                    <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
                   </a>
                   <a href="#work" class="btn btn-secondary">See My Work</a>
@@ -1393,15 +1199,14 @@
             </div>
           </div>
         </section>
+
         <!-- Work Section -->
         <section id="work">
           <div class="container">
             <div class="section-header">
-              <div class="section-label">
-                <span>◆</span> What I Do
-              </div>
+              <div class="section-label"><span>◆</span> What I Do</div>
               <h2 class="section-title">Bridging AI & Business Reality</h2>
-              <p class="section-subtitle"> I specialize in turning vague "we should use AI" requests into focused, measurable automation that saves real time for real teams. </p>
+              <p class="section-subtitle">I specialize in turning vague "we should use AI" requests into focused, measurable automation that saves real time for real teams.</p>
             </div>
             <div class="work-grid">
               <article class="work-card animate-on-scroll stagger-1">
@@ -1419,7 +1224,7 @@
                 </div>
                 <div class="work-card-body">
                   <div class="work-card-content">
-                    <p class="work-card-description"> At Autom Mate, I lead pre-sales and solution design—transforming customer challenges into end-to-end AI workflows. My work spans ticket triage, knowledge search, approvals, and automations integrated with enterprise tools like ServiceNow, Xurrent, and beyond. I bridge the gap between what customers need and what our AI platform can deliver. </p>
+                    <p class="work-card-description">At Autom Mate, I lead pre-sales and solution design—transforming customer challenges into end-to-end AI workflows. My work spans ticket triage, knowledge search, approvals, and automations integrated with enterprise tools like ServiceNow, Xurrent, and beyond.</p>
                     <div class="work-card-details">
                       <div class="work-card-detail">
                         <div class="work-card-detail-label">Role</div>
@@ -1456,6 +1261,7 @@
                   </div>
                 </div>
               </article>
+
               <article class="work-card animate-on-scroll stagger-2">
                 <div class="work-card-header" onclick="toggleCard(this)">
                   <div class="work-card-icon">💡</div>
@@ -1471,7 +1277,7 @@
                 </div>
                 <div class="work-card-body">
                   <div class="work-card-content">
-                    <p class="work-card-description"> I believe the best AI solutions start with understanding the business, not the technology. Before writing a single prompt or designing an agent, I ask: who owns this process? Where does the data live? What does "better" actually mean for this team? The tech is exciting, but the goal is always fewer clicks, less noise, and happier operators. </p>
+                    <p class="work-card-description">I believe the best AI solutions start with understanding the business, not the technology. Before writing a single prompt or designing an agent, I ask: who owns this process? Where does the data live? What does "better" actually mean for this team?</p>
                     <div class="work-card-details">
                       <div class="work-card-detail">
                         <div class="work-card-detail-label">Philosophy</div>
@@ -1497,7 +1303,6 @@
                         <li>Identify the 20% of work causing 80% of the pain</li>
                         <li>Start small with high-impact, low-risk use cases</li>
                         <li>Measure baseline metrics before and after implementation</li>
-                        <li>Build trust through quick wins, then expand scope</li>
                       </ul>
                     </div>
                     <div class="work-card-meta">
@@ -1509,6 +1314,7 @@
                   </div>
                 </div>
               </article>
+
               <article class="work-card animate-on-scroll stagger-3">
                 <div class="work-card-header" onclick="toggleCard(this)">
                   <div class="work-card-icon">🛠️</div>
@@ -1524,7 +1330,7 @@
                 </div>
                 <div class="work-card-body">
                   <div class="work-card-content">
-                    <p class="work-card-description"> My foundation is industrial engineering—systems thinking, process optimization, and understanding how things actually work in practice. Over four years, I led post-sales teams for major ITSM vendors, implementing and supporting tools like ManageEngine, SolarWinds, Xurrent, and Quest. That hands-on experience with real customer problems shapes how I design solutions today. </p>
+                    <p class="work-card-description">My foundation is industrial engineering—systems thinking, process optimization, and understanding how things actually work in practice. Over four years, I led post-sales teams for major ITSM vendors, implementing and supporting tools like ManageEngine, SolarWinds, Xurrent, and Quest.</p>
                     <div class="work-card-details">
                       <div class="work-card-detail">
                         <div class="work-card-detail-label">Education</div>
@@ -1561,6 +1367,7 @@
                   </div>
                 </div>
               </article>
+
               <article class="work-card animate-on-scroll stagger-4">
                 <div class="work-card-header" onclick="toggleCard(this)">
                   <div class="work-card-icon">🌱</div>
@@ -1576,7 +1383,7 @@
                 </div>
                 <div class="work-card-body">
                   <div class="work-card-content">
-                    <p class="work-card-description"> When I'm not designing AI flows, you'll find me maintaining my planted aquariums (it's surprisingly meditative), playing guitar, cycling around Çanakkale, or deep in an immersive game. I believe balance fuels creativity—stepping away from work often leads to the best ideas. </p>
+                    <p class="work-card-description">When I'm not designing AI flows, you'll find me maintaining my planted aquariums (it's surprisingly meditative), playing guitar, cycling around Çanakkale, or deep in an immersive game. I believe balance fuels creativity.</p>
                     <div class="work-card-details">
                       <div class="work-card-detail">
                         <div class="work-card-detail-label">🐠 Aquariums</div>
@@ -1616,239 +1423,124 @@
             </div>
           </div>
         </section>
-        <!-- Writing Section -->
+
+        <!-- Writing Section - Preview -->
         <section id="writing">
           <div class="container">
             <div class="section-header">
-              <div class="section-label">
-                <span>◆</span> Writings
-              </div>
+              <div class="section-label"><span>◆</span> Writings</div>
               <h2 class="section-title">Thoughts on AI & Orchestration</h2>
-              <p class="section-subtitle"> Exploring how companies can adopt AI Agents without turning everything into a science project. Practical insights from the field. </p>
+              <p class="section-subtitle">Exploring how companies can adopt AI Agents without turning everything into a science project.</p>
             </div>
-            <div class="writing-grid">
-              <article class="writing-card animate-on-scroll stagger-1">
-                <div class="writing-card-header" onclick="toggleWritingCard(this)">
-                  <span class="writing-number">01</span>
-                  <div class="writing-card-header-content">
-                    <h3>From Tickets to Flows: AI Agents in IT Operations</h3>
-                    <p>Why teams need focused agents that understand tickets, approvals, and knowledge—not generic chatbots.</p>
-                  </div>
-                  <div class="writing-meta">
-                    <span class="writing-status">Drafting</span>
-                    <div class="writing-card-toggle">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                      </svg>
-                    </div>
-                  </div>
+            <div class="writing-preview-grid">
+              <a href="writings.html" class="writing-preview-card animate-on-scroll stagger-1">
+                <div class="writing-preview-header">
+                  <span class="writing-preview-number">01</span>
+                  <span class="writing-preview-status">Published</span>
                 </div>
-                <div class="writing-card-body">
-                  <div class="writing-card-content">
-                    <p class="writing-card-excerpt"> Most companies approach AI in IT operations with the wrong mindset. They want a "chatbot" that can answer anything, but what teams actually need is a set of focused, specialized agents that deeply understand the workflows they support. This article explores how to design AI agents for ticket triage, knowledge retrieval, and approval workflows—and when to hand off to humans. </p>
-                    <div class="writing-card-info">
-                      <div class="writing-card-info-item">
-                        <div class="writing-card-info-label">Reading Time</div>
-                        <div class="writing-card-info-value">~8 min</div>
-                      </div>
-                      <div class="writing-card-info-item">
-                        <div class="writing-card-info-label">Category</div>
-                        <div class="writing-card-info-value">AI in ITSM</div>
-                      </div>
-                      <div class="writing-card-info-item">
-                        <div class="writing-card-info-label">Status</div>
-                        <div class="writing-card-info-value">First Draft</div>
-                      </div>
-                    </div>
-                    <div class="writing-card-sections">
-                      <h4>What You'll Learn</h4>
-                      <ul>
-                        <li>Why generic chatbots fail in IT operations environments</li>
-                        <li>The anatomy of a focused ticket triage agent</li>
-                        <li>Designing knowledge agents that actually find answers</li>
-                        <li>Building approval workflows with human-in-the-loop</li>
-                        <li>Real examples from ServiceNow and Xurrent implementations</li>
-                      </ul>
-                    </div>
-                    <div class="writing-card-tags">
-                      <span>AI Agents</span>
-                      <span>IT Operations</span>
-                      <span>Ticket Triage</span>
-                      <span>Automation</span>
-                    </div>
-                  </div>
+                <h3>Why Most AI Chatbots in IT Fail</h3>
+                <p>Everyone wants a magical chatbot. But specialized agents beat generalist bots every time.</p>
+                <div class="writing-preview-meta">
+                  <span>8 min read</span>
+                  <span>AI & Agents</span>
                 </div>
-              </article>
-              <article class="writing-card animate-on-scroll stagger-2">
-                <div class="writing-card-header" onclick="toggleWritingCard(this)">
-                  <span class="writing-number">02</span>
-                  <div class="writing-card-header-content">
-                    <h3>Orchestrating Tools Instead of Replacing Them</h3>
-                    <p>Connecting ServiceNow, Xurrent, and others with AI—keeping familiar tools while making workflows smarter.</p>
-                  </div>
-                  <div class="writing-meta">
-                    <span class="writing-status">Coming Soon</span>
-                    <div class="writing-card-toggle">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                      </svg>
-                    </div>
-                  </div>
+              </a>
+              <a href="writings.html" class="writing-preview-card animate-on-scroll stagger-2">
+                <div class="writing-preview-header">
+                  <span class="writing-preview-number">02</span>
+                  <span class="writing-preview-status">Published</span>
                 </div>
-                <div class="writing-card-body">
-                  <div class="writing-card-content">
-                    <p class="writing-card-excerpt"> The biggest mistake companies make with AI adoption is trying to replace their existing tools. Teams have spent years learning ServiceNow, Jira, or Xurrent—and that knowledge is valuable. Instead of replacement, the smarter approach is orchestration: connecting these systems with AI that sits on top, making workflows smarter without disrupting what already works. </p>
-                    <div class="writing-card-info">
-                      <div class="writing-card-info-item">
-                        <div class="writing-card-info-label">Reading Time</div>
-                        <div class="writing-card-info-value">~10 min</div>
-                      </div>
-                      <div class="writing-card-info-item">
-                        <div class="writing-card-info-label">Category</div>
-                        <div class="writing-card-info-value">AI Strategy</div>
-                      </div>
-                      <div class="writing-card-info-item">
-                        <div class="writing-card-info-label">Status</div>
-                        <div class="writing-card-info-value">Outlining</div>
-                      </div>
-                    </div>
-                    <div class="writing-card-sections">
-                      <h4>Key Topics</h4>
-                      <ul>
-                        <li>The orchestration mindset vs. replacement mindset</li>
-                        <li>API-first integration patterns for ITSM tools</li>
-                        <li>Building AI layers that enhance existing workflows</li>
-                        <li>Change management: getting teams to adopt AI overlays</li>
-                        <li>Case study: Multi-tool orchestration in enterprise IT</li>
-                      </ul>
-                    </div>
-                    <div class="writing-card-tags">
-                      <span>Orchestration</span>
-                      <span>ServiceNow</span>
-                      <span>Xurrent</span>
-                      <span>Integration</span>
-                    </div>
-                  </div>
+                <h3>Istanbul at 3 AM</h3>
+                <p>There is something about the city when everyone else is asleep. Why I do my best thinking after midnight.</p>
+                <div class="writing-preview-meta">
+                  <span>5 min read</span>
+                  <span>Life</span>
                 </div>
-              </article>
-              <article class="writing-card animate-on-scroll stagger-3">
-                <div class="writing-card-header" onclick="toggleWritingCard(this)">
-                  <span class="writing-number">03</span>
-                  <div class="writing-card-header-content">
-                    <h3>Building AI Agents for Real People</h3>
-                    <p>What I've learned moving from support to AI product work—where the hard parts aren't the models.</p>
-                  </div>
-                  <div class="writing-meta">
-                    <span class="writing-status">In Ideas</span>
-                    <div class="writing-card-toggle">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                      </svg>
-                    </div>
-                  </div>
+              </a>
+              <a href="writings.html" class="writing-preview-card animate-on-scroll stagger-3">
+                <div class="writing-preview-header">
+                  <span class="writing-preview-number">03</span>
+                  <span class="writing-preview-status">Published</span>
                 </div>
-                <div class="writing-card-body">
-                  <div class="writing-card-content">
-                    <p class="writing-card-excerpt"> After years in post-sales support and now working on AI products, I've learned that the technical challenges are rarely the hard part. The real difficulties are managing expectations, defining scope, and driving adoption. This is a personal reflection on transitioning from support to AI-heavy product work and the lessons that don't fit in a technical guide. </p>
-                    <div class="writing-card-info">
-                      <div class="writing-card-info-item">
-                        <div class="writing-card-info-label">Reading Time</div>
-                        <div class="writing-card-info-value">~6 min</div>
-                      </div>
-                      <div class="writing-card-info-item">
-                        <div class="writing-card-info-label">Category</div>
-                        <div class="writing-card-info-value">Career & Product</div>
-                      </div>
-                      <div class="writing-card-info-item">
-                        <div class="writing-card-info-label">Status</div>
-                        <div class="writing-card-info-value">Idea Stage</div>
-                      </div>
-                    </div>
-                    <div class="writing-card-sections">
-                      <h4>Themes I'll Explore</h4>
-                      <ul>
-                        <li>Why support experience is underrated in product roles</li>
-                        <li>Managing the gap between AI hype and reality</li>
-                        <li>How to scope AI projects that actually ship</li>
-                        <li>Getting users to trust (and use) AI features</li>
-                        <li>The soft skills that matter more than prompt engineering</li>
-                      </ul>
-                    </div>
-                    <div class="writing-card-tags">
-                      <span>Career</span>
-                      <span>Product Management</span>
-                      <span>AI Adoption</span>
-                      <span>Personal</span>
-                    </div>
-                  </div>
+                <h3>The Art of Saying "Out of Scope"</h3>
+                <p>The hardest skill is not technical. It is drawing boundaries without burning bridges.</p>
+                <div class="writing-preview-meta">
+                  <span>6 min read</span>
+                  <span>Work</span>
                 </div>
-              </article>
+              </a>
             </div>
             <div class="section-cta">
-              <a href="writings.html" class="section-cta-btn"> See All Writings <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
+              <a href="writings.html" class="section-cta-btn">
+                See All Writings
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </a>
             </div>
           </div>
         </section>
-        <!-- Projects Section -->
+
+        <!-- Projects Section - Preview -->
         <section id="projects">
           <div class="container">
             <div class="section-header">
-              <div class="section-label">
-                <span>◆</span> Projects
-              </div>
+              <div class="section-label"><span>◆</span> Projects</div>
               <h2 class="section-title">Things I'm Building</h2>
-              <p class="section-subtitle"> A mix of work projects and side experiments that keep me curious and learning. </p>
+              <p class="section-subtitle">A mix of work projects and side experiments that keep me curious and learning.</p>
             </div>
-            <div class="projects-grid">
-              <!-- LoadTest Pro -->
-              <article class="project-card animate-on-scroll stagger-1">
+            <div class="projects-preview-grid">
+              <a href="projects.html" class="project-card animate-on-scroll stagger-1">
                 <div class="project-visual">
                   <img src="logo.png" alt="LoadTest Pro Logo" class="project-logo" style="height: 120px; width: auto;">
                 </div>
                 <div class="project-info">
                   <span class="project-label">Side Project</span>
                   <h3>LoadTest Pro</h3>
-                  <p> Making it easier for teams to understand how services behave under real traffic and edge cases—without needing a dedicated performance engineer. </p>
-                  <a href="https://loadtest.pro" target="_blank" rel="noopener noreferrer" class="project-link"> Explore LoadTest Pro <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M5 12h14M12 5l7 7-7 7" />
+                  <p>Making it easier for teams to understand how services behave under real traffic and edge cases.</p>
+                  <span class="project-link">
+                    View Details
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
-                  </a>
+                  </span>
                 </div>
-              </article>
-              <!-- Autom Mate -->
-              <article class="project-card animate-on-scroll stagger-2">
+              </a>
+              <a href="projects.html" class="project-card animate-on-scroll stagger-2">
                 <div class="project-visual">
                   <img src="au2.png" alt="Autom Mate Logo" class="project-logo" style="height: 120px; width: auto;">
                 </div>
                 <div class="project-info">
                   <span class="project-label">At Work</span>
-                  <h3>Autom Mate</h3>
-                  <p> Contributing to ready-to-use AI Agents customers can plug into their environments—support flows, approvals, ticket analysis, and more. </p>
-                  <a href="https://autommate.com" target="_blank" rel="noopener noreferrer" class="project-link"> Explore Autom Mate <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M7 17L17 7M17 7H7M17 7v10" />
+                  <h3>Autom Mate AI Agents</h3>
+                  <p>Contributing to ready-to-use AI Agents customers can plug into their environments.</p>
+                  <span class="project-link">
+                    View Details
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
-                  </a>
+                  </span>
                 </div>
-              </article>
+              </a>
             </div>
             <div class="section-cta">
-              <a href="projects.html" class="section-cta-btn"> See All Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
+              <a href="projects.html" class="section-cta-btn">
+                See All Projects
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
               </a>
             </div>
           </div>
         </section>
+
         <!-- Contact Section -->
         <section class="contact-section" id="contact">
           <div class="container">
             <div class="contact-content">
               <div class="contact-text animate-on-scroll">
-                <h2>Let's build <span>something</span> together. </h2>
-                <p> I'm always open to conversations about AI Agents, workflow automation, or interesting product problems. Let's connect and explore possibilities. </p>
+                <h2>Let's build <span>something</span> together.</h2>
+                <p>I'm always open to conversations about AI Agents, workflow automation, or interesting product problems. Let's connect and explore possibilities.</p>
               </div>
               <div class="contact-actions animate-on-scroll stagger-1">
                 <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer" class="contact-btn">
@@ -1866,55 +1558,41 @@
           </div>
         </section>
       </main>
-      <!-- Footer -->
+
       <footer>
         <div class="container">
           <div class="footer-content">
-            <div class="footer-copy"> © <span id="year"></span> Yusuf Erdem Sakın · Türkiye 🇹🇷 </div>
+            <div class="footer-copy">© <span id="year"></span> Yusuf Erdem Sakın · Türkiye 🇹🇷</div>
             <div class="footer-links">
               <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="writings.html">Writings</a>
+              <a href="projects.html">Projects</a>
               <a href="https://www.loadtest.pro" target="_blank" rel="noopener noreferrer">LoadTest Pro</a>
               <a href="https://autommate.com" target="_blank" rel="noopener noreferrer">Autom Mate</a>
-              <a href="https://community.autommate.com" target="_blank" rel="noopener noreferrer">Autom Mate Community</a>
             </div>
           </div>
         </div>
       </footer>
     </div>
+
     <script>
-      // Update year
       document.getElementById('year').textContent = new Date().getFullYear();
-      // Work Accordion toggle function
+
       function toggleCard(header) {
-        const card = header.closest('.work-card');
-        const isActive = card.classList.contains('active');
-        // Close all work cards
-        document.querySelectorAll('.work-card').forEach(c => {
+        var card = header.closest('.work-card');
+        var isActive = card.classList.contains('active');
+        document.querySelectorAll('.work-card').forEach(function(c) {
           c.classList.remove('active');
         });
-        // Open clicked card if it wasn't already open
         if (!isActive) {
           card.classList.add('active');
         }
       }
-      // Writing Accordion toggle function
-      function toggleWritingCard(header) {
-        const card = header.closest('.writing-card');
-        const isActive = card.classList.contains('active');
-        // Close all writing cards
-        document.querySelectorAll('.writing-card').forEach(c => {
-          c.classList.remove('active');
-        });
-        // Open clicked card if it wasn't already open
-        if (!isActive) {
-          card.classList.add('active');
-        }
-      }
-      // Smooth scroll for navigation
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
+          var target = document.querySelector(this.getAttribute('href'));
           if (target) {
             target.scrollIntoView({
               behavior: 'smooth',
