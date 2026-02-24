@@ -5,734 +5,150 @@
   <title>Projects – Yusuf Erdem Sakın</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Projects and side experiments by Yusuf Erdem Sakın." />
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
   <style>
     :root {
-      --bg-primary: #0a0a0b;
-      --bg-secondary: #111113;
-      --bg-tertiary: #18181b;
-      --border: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.15);
-      --text-primary: #fafafa;
-      --text-secondary: #a1a1aa;
-      --text-muted: #71717a;
-      --accent-cyan: #22d3ee;
-      --accent-violet: #a78bfa;
-      --accent-pink: #f472b6;
-      --accent-amber: #fbbf24;
-      --accent-emerald: #34d399;
-      --accent-orange: #fb923c;
+      --bg-primary: #0a0a0b; --bg-secondary: #111113; --bg-tertiary: #18181b;
+      --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+      --text-primary: #fafafa; --text-secondary: #a1a1aa; --text-muted: #71717a;
+      --accent-cyan: #22d3ee; --accent-violet: #a78bfa; --accent-pink: #f472b6;
+      --accent-amber: #fbbf24; --accent-emerald: #34d399; --accent-orange: #fb923c;
       --gradient-main: linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #f472b6 100%);
-      --gradient-subtle: linear-gradient(135deg, rgba(34, 211, 238, 0.12) 0%, rgba(167, 139, 250, 0.12) 50%, rgba(244, 114, 182, 0.12) 100%);
-      --font-display: 'Syne', sans-serif;
-      --font-serif: 'Instrument Serif', Georgia, serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --font-body: 'Inter', sans-serif;
+      --gradient-subtle: linear-gradient(135deg, rgba(34,211,238,0.12), rgba(167,139,250,0.12), rgba(244,114,182,0.12));
+      --font-display: 'Syne', sans-serif; --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace; --font-body: 'Inter', sans-serif;
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font-display);
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    body.modal-open { overflow: hidden; }
-
-    .bg-gradient {
-      position: fixed;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(244, 114, 182, 0.12), transparent),
-        radial-gradient(ellipse 60% 40% at 90% 80%, rgba(34, 211, 238, 0.08), transparent),
-        radial-gradient(ellipse 50% 30% at 10% 60%, rgba(167, 139, 250, 0.06), transparent);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.3;
-      pointer-events: none;
-      z-index: -1;
-      animation: float 20s ease-in-out infinite;
-    }
-    .orb-1 { width: 350px; height: 350px; background: var(--accent-pink); top: 5%; right: -5%; }
-    .orb-2 { width: 280px; height: 280px; background: var(--accent-cyan); bottom: 15%; left: -5%; animation-delay: -7s; }
-    .orb-3 { width: 220px; height: 220px; background: var(--accent-violet); top: 50%; right: 20%; animation-delay: -14s; }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(20px, -20px) scale(1.05); }
-      50% { transform: translate(-15px, 15px) scale(0.95); }
-      75% { transform: translate(15px, 10px) scale(1.02); }
-    }
-
-    ::selection { background: var(--accent-cyan); color: var(--bg-primary); }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
-
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.25rem 0;
-      background: rgba(10, 10, 11, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .nav-back {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      transition: all 0.3s ease;
-    }
-    .nav-back:hover { color: var(--text-primary); }
-    .nav-back svg { transition: transform 0.3s ease; }
-    .nav-back:hover svg { transform: translateX(-4px); }
-
-    .nav-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      background: var(--gradient-main);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .page-header { padding: 9rem 0 3rem; text-align: center; }
-
-    .page-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      color: var(--accent-pink);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 1.5rem;
-      padding: 0.5rem 1rem;
-      background: rgba(244, 114, 182, 0.1);
-      border: 1px solid rgba(244, 114, 182, 0.2);
-      border-radius: 100px;
-    }
-
-    .page-title {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      margin-bottom: 1.25rem;
-      line-height: 1.1;
-    }
-    .page-title span {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      font-style: italic;
-      background: var(--gradient-main);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .page-subtitle {
-      font-size: 1.1rem;
-      font-family: var(--font-body);
-      color: var(--text-secondary);
-      max-width: 550px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    .stats-bar {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      margin: 2.5rem auto;
-      padding: 1.25rem 2rem;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      max-width: 550px;
-    }
-    .stat { text-align: center; }
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      font-family: var(--font-mono);
-      background: var(--gradient-main);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .stat-label {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 0.2rem;
-    }
-
-    .filter-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-    .filter-tab {
-      padding: 0.55rem 1.1rem;
-      font-size: 0.82rem;
-      font-weight: 500;
-      font-family: var(--font-body);
-      color: var(--text-muted);
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .filter-tab:hover {
-      color: var(--text-secondary);
-      border-color: var(--border-hover);
-      background: rgba(255, 255, 255, 0.02);
-    }
-    .filter-tab.active {
-      color: var(--bg-primary);
-      background: var(--text-primary);
-      border-color: var(--text-primary);
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-      padding-bottom: 6rem;
-    }
-
-    .project-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 0.4s var(--ease-out-expo);
-      position: relative;
-    }
-    .project-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-6px);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-    }
-    .project-card:hover .project-visual::before {
-      transform: translateX(100%);
-    }
-    .project-card:hover .project-arrow {
-      transform: translate(3px, -3px);
-      opacity: 1;
-    }
-
-    .project-card.featured {
-      grid-column: span 2;
-    }
-    .project-card.featured .project-visual {
-      height: 200px;
-    }
-
-    .project-visual {
-      height: 140px;
-      background: var(--gradient-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .project-visual::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.08) 50%, transparent 70%);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
-
-    .project-emoji {
-      font-size: 3rem;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
-    }
-
-    .project-info {
-      padding: 1.5rem;
-    }
-
-    .project-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.6rem;
-    }
-
-    .project-type {
-      font-size: 0.65rem;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      padding: 0.3rem 0.65rem;
-      border-radius: 100px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .project-type.side { background: rgba(244, 114, 182, 0.12); color: var(--accent-pink); }
-    .project-type.work { background: rgba(34, 211, 238, 0.12); color: var(--accent-cyan); }
-    .project-type.experiment { background: rgba(167, 139, 250, 0.12); color: var(--accent-violet); }
-    .project-type.oss { background: rgba(52, 211, 153, 0.12); color: var(--accent-emerald); }
-
-    .project-status {
-      font-size: 0.68rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-    }
-    .project-status.live { color: var(--accent-emerald); }
-    .project-status.dev { color: var(--accent-amber); }
-
-    .project-title {
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
-    }
-
-    .project-excerpt {
-      font-size: 0.88rem;
-      font-family: var(--font-body);
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 1rem;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .project-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      margin-bottom: 1rem;
-    }
-    .project-tech span {
-      font-size: 0.65rem;
-      font-family: var(--font-mono);
-      padding: 0.2rem 0.5rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      color: var(--text-muted);
-    }
-
-    .project-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 0.85rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .project-meta {
-      font-size: 0.7rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-    }
-
-    .project-arrow {
-      width: 28px; height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 6px;
-      color: var(--text-muted);
-      opacity: 0.4;
-      transition: all 0.3s ease;
-    }
-    .project-arrow svg { width: 14px; height: 14px; }
-
-    /* Modal */
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-    }
-    .modal-overlay.active { opacity: 1; visibility: visible; }
-
-    .modal-container {
-      position: fixed;
-      inset: 0;
-      z-index: 1001;
-      overflow-y: auto;
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-    }
-    .modal-container.active { opacity: 1; visibility: visible; }
-
-    .modal {
-      width: 100%;
-      max-width: 850px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      margin: auto;
-      position: relative;
-      transform: translateY(30px) scale(0.97);
-      transition: transform 0.5s var(--ease-out-expo);
-      overflow: hidden;
-    }
-    .modal-container.active .modal { transform: translateY(0) scale(1); }
-
-    .modal-close {
-      position: absolute;
-      top: 1.25rem; right: 1.25rem;
-      width: 36px; height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 10;
-    }
-    .modal-close:hover { background: rgba(0, 0, 0, 0.7); color: var(--text-primary); }
-
-    .modal-hero {
-      height: 180px;
-      background: var(--gradient-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .modal-hero-emoji {
-      font-size: 4.5rem;
-      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.4));
-    }
-
-    .modal-header {
-      padding: 2rem 2.5rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .modal-label {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-    }
-
-    .modal-title {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.25;
-      margin-bottom: 0.75rem;
-    }
-
-    .modal-tagline {
-      font-size: 1.05rem;
-      font-family: var(--font-body);
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    .modal-meta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1.5rem;
-      margin-top: 1.25rem;
-    }
-    .modal-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.8rem;
-      font-family: var(--font-body);
-      color: var(--text-secondary);
-    }
-    .modal-meta-item svg { width: 14px; height: 14px; opacity: 0.7; }
-
-    .modal-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 1.25rem;
-    }
-    .modal-tech span {
-      font-size: 0.72rem;
-      font-family: var(--font-mono);
-      padding: 0.35rem 0.7rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      color: var(--text-muted);
-    }
-
-    .modal-content {
-      padding: 2rem 2.5rem 2.5rem;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--text-secondary);
-    }
-    .modal-content h2 {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin: 2rem 0 0.75rem;
-      letter-spacing: -0.02em;
-    }
-    .modal-content h2:first-child { margin-top: 0; }
-    .modal-content p { margin-bottom: 1rem; }
-    .modal-content ul, .modal-content ol { margin: 1rem 0; padding-left: 1.5rem; }
-    .modal-content li { margin-bottom: 0.5rem; }
-
-    .modal-content .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-    .modal-content .feature-item {
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
-    .modal-content .feature-item h4 {
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .modal-content .feature-item p {
-      font-size: 0.85rem;
-      margin-bottom: 0;
-      color: var(--text-muted);
-    }
-
-    .modal-content .highlight {
-      margin: 1.5rem 0;
-      padding: 1.25rem;
-      background: linear-gradient(135deg, rgba(34, 211, 238, 0.06) 0%, rgba(167, 139, 250, 0.06) 100%);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
-    .modal-content .highlight-title {
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--accent-cyan);
-      margin-bottom: 0.5rem;
-    }
-    .modal-content .highlight p { margin-bottom: 0; font-size: 0.92rem; }
-
-    .modal-content .screenshot {
-      margin: 1.5rem 0;
-      padding: 2rem;
-      background: var(--bg-primary);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .modal-footer {
-      padding: 1.5rem 2.5rem;
-      border-top: 1px solid var(--border);
-      background: rgba(0, 0, 0, 0.2);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .modal-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.25rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      font-family: var(--font-body);
-      border-radius: 100px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-    .modal-btn.primary {
-      background: var(--text-primary);
-      color: var(--bg-primary);
-      border: none;
-    }
-    .modal-btn.primary:hover { transform: scale(1.03); }
-    .modal-btn.secondary {
-      background: transparent;
-      color: var(--text-secondary);
-      border: 1px solid var(--border);
-    }
-    .modal-btn.secondary:hover {
-      border-color: var(--border-hover);
-      color: var(--text-primary);
-    }
-
-    .modal-btn svg { width: 14px; height: 14px; }
-
-    footer {
-      padding: 2rem 0;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-    .footer-text { font-size: 0.85rem; color: var(--text-muted); }
-    .footer-text a { color: var(--text-secondary); transition: color 0.3s ease; }
-    .footer-text a:hover { color: var(--accent-cyan); }
-
-    @media (max-width: 768px) {
-      .projects-grid { grid-template-columns: 1fr; }
-      .project-card.featured { grid-column: span 1; }
-      .modal-content .feature-grid { grid-template-columns: 1fr; }
-      .modal-header, .modal-content, .modal-footer { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .modal-container { padding: 1rem; }
-      .modal-footer { flex-direction: column; }
-      .modal-btn { width: 100%; justify-content: center; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .project-card { animation: fadeIn 0.5s ease backwards; }
+    *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+    body{font-family:var(--font-display);background:var(--bg-primary);color:var(--text-primary);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+    body.modal-open{overflow:hidden}
+    .bg-gradient{position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(244,114,182,0.12),transparent),radial-gradient(ellipse 60% 40% at 90% 80%,rgba(34,211,238,0.08),transparent),radial-gradient(ellipse 50% 30% at 10% 60%,rgba(167,139,250,0.06),transparent);pointer-events:none;z-index:-1}
+    .orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:0.3;pointer-events:none;z-index:-1;animation:float 20s ease-in-out infinite}
+    .orb-1{width:350px;height:350px;background:var(--accent-pink);top:5%;right:-5%}
+    .orb-2{width:280px;height:280px;background:var(--accent-cyan);bottom:15%;left:-5%;animation-delay:-7s}
+    .orb-3{width:220px;height:220px;background:var(--accent-violet);top:50%;right:20%;animation-delay:-14s}
+    @keyframes float{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(20px,-20px) scale(1.05)}50%{transform:translate(-15px,15px) scale(0.95)}75%{transform:translate(15px,10px) scale(1.02)}}
+    ::selection{background:var(--accent-cyan);color:var(--bg-primary)} a{color:inherit;text-decoration:none}
+    .container{max-width:1000px;margin:0 auto;padding:0 2rem}
+    header{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 0;background:rgba(10,10,11,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;max-width:1000px;margin:0 auto;padding:0 2rem}
+    .nav-back{display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--text-secondary);transition:all 0.3s ease}
+    .nav-back:hover{color:var(--text-primary)} .nav-back svg{transition:transform 0.3s ease} .nav-back:hover svg{transform:translateX(-4px)}
+    .nav-title{font-weight:600;font-size:0.95rem;background:var(--gradient-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .page-header{padding:9rem 0 3rem;text-align:center}
+    .page-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:600;font-family:var(--font-mono);color:var(--accent-pink);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1.5rem;padding:0.5rem 1rem;background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);border-radius:100px}
+    .page-title{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;letter-spacing:-0.04em;margin-bottom:1.25rem;line-height:1.1}
+    .page-title span{font-family:var(--font-serif);font-weight:400;font-style:italic;background:var(--gradient-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .page-subtitle{font-size:1.1rem;font-family:var(--font-body);color:var(--text-secondary);max-width:550px;margin:0 auto;line-height:1.7}
+    .stats-bar{display:flex;justify-content:center;gap:3rem;margin:2.5rem auto;padding:1.25rem 2rem;background:var(--bg-secondary);border:1px solid var(--border);border-radius:16px;max-width:550px}
+    .stat{text-align:center} .stat-value{font-size:1.5rem;font-weight:800;font-family:var(--font-mono);background:var(--gradient-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .stat-label{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.2rem}
+    .filter-tabs{display:flex;justify-content:center;gap:0.5rem;margin-bottom:3rem;flex-wrap:wrap}
+    .filter-tab{padding:0.55rem 1.1rem;font-size:0.82rem;font-weight:500;font-family:var(--font-body);color:var(--text-muted);background:transparent;border:1px solid var(--border);border-radius:100px;cursor:pointer;transition:all 0.3s ease}
+    .filter-tab:hover{color:var(--text-secondary);border-color:var(--border-hover);background:rgba(255,255,255,0.02)}
+    .filter-tab.active{color:var(--bg-primary);background:var(--text-primary);border-color:var(--text-primary)}
+    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;padding-bottom:6rem}
+    .project-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.4s var(--ease-out-expo);position:relative}
+    .project-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:0 25px 50px rgba(0,0,0,0.25)}
+    .project-card:hover .project-visual::before{transform:translateX(100%)} .project-card:hover .project-arrow{transform:translate(3px,-3px);opacity:1}
+    .project-card.featured{grid-column:span 2} .project-card.featured .project-visual{height:200px}
+    .project-visual{height:140px;background:var(--gradient-subtle);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .project-visual::before{content:"";position:absolute;inset:0;background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,0.08) 50%,transparent 70%);transform:translateX(-100%);transition:transform 0.6s ease}
+    .project-emoji{font-size:3rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3))}
+    .project-info{padding:1.5rem} .project-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.6rem}
+    .project-type{font-size:0.65rem;font-weight:600;font-family:var(--font-mono);padding:0.3rem 0.65rem;border-radius:100px;text-transform:uppercase;letter-spacing:0.05em}
+    .project-type.side{background:rgba(244,114,182,0.12);color:var(--accent-pink)} .project-type.work{background:rgba(34,211,238,0.12);color:var(--accent-cyan)}
+    .project-type.experiment{background:rgba(167,139,250,0.12);color:var(--accent-violet)} .project-type.oss{background:rgba(52,211,153,0.12);color:var(--accent-emerald)}
+    .project-status{font-size:0.68rem;font-family:var(--font-mono);color:var(--text-muted)} .project-status.live{color:var(--accent-emerald)} .project-status.dev{color:var(--accent-amber)}
+    .project-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;line-height:1.3}
+    .project-excerpt{font-size:0.88rem;font-family:var(--font-body);color:var(--text-secondary);line-height:1.6;margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .project-tech{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1rem}
+    .project-tech span{font-size:0.65rem;font-family:var(--font-mono);padding:0.2rem 0.5rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:5px;color:var(--text-muted)}
+    .project-footer{display:flex;align-items:center;justify-content:space-between;padding-top:0.85rem;border-top:1px solid var(--border)}
+    .project-meta{font-size:0.7rem;font-family:var(--font-mono);color:var(--text-muted)}
+    .project-arrow{width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.04);border-radius:6px;color:var(--text-muted);opacity:0.4;transition:all 0.3s ease}
+    .project-arrow svg{width:14px;height:14px}
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:1000;opacity:0;visibility:hidden;transition:all 0.4s ease}
+    .modal-overlay.active{opacity:1;visibility:visible}
+    .modal-container{position:fixed;inset:0;z-index:1001;overflow-y:auto;padding:2rem;display:flex;justify-content:center;opacity:0;visibility:hidden;transition:all 0.4s ease}
+    .modal-container.active{opacity:1;visibility:visible}
+    .modal{width:100%;max-width:850px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:24px;margin:auto;position:relative;transform:translateY(30px) scale(0.97);transition:transform 0.5s var(--ease-out-expo);overflow:hidden}
+    .modal-container.active .modal{transform:translateY(0) scale(1)}
+    .modal-close{position:absolute;top:1.25rem;right:1.25rem;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:10px;color:var(--text-secondary);cursor:pointer;transition:all 0.3s ease;z-index:10}
+    .modal-close:hover{background:rgba(0,0,0,0.7);color:var(--text-primary)}
+    .modal-hero{height:180px;background:var(--gradient-subtle);display:flex;align-items:center;justify-content:center;position:relative}
+    .modal-hero-emoji{font-size:4.5rem;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.4))}
+    .modal-header{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid var(--border)}
+    .modal-label{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem}
+    .modal-title{font-size:clamp(1.5rem,4vw,2rem);font-weight:800;letter-spacing:-0.03em;line-height:1.25;margin-bottom:0.75rem}
+    .modal-tagline{font-size:1.05rem;font-family:var(--font-body);color:var(--text-secondary);line-height:1.6}
+    .modal-meta{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;margin-top:1.25rem}
+    .modal-meta-item{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-family:var(--font-body);color:var(--text-secondary)}
+    .modal-meta-item svg{width:14px;height:14px;opacity:0.7}
+    .modal-tech{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.25rem}
+    .modal-tech span{font-size:0.72rem;font-family:var(--font-mono);padding:0.35rem 0.7rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:6px;color:var(--text-muted)}
+    .modal-content{padding:2rem 2.5rem 2.5rem;font-family:var(--font-body);font-size:1rem;line-height:1.8;color:var(--text-secondary)}
+    .modal-content h2{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--text-primary);margin:2rem 0 0.75rem;letter-spacing:-0.02em}
+    .modal-content h2:first-child{margin-top:0} .modal-content p{margin-bottom:1rem}
+    .modal-content ul,.modal-content ol{margin:1rem 0;padding-left:1.5rem} .modal-content li{margin-bottom:0.5rem}
+    .modal-content .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0}
+    .modal-content .feature-item{padding:1rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px}
+    .modal-content .feature-item h4{font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:var(--text-primary);margin-bottom:0.4rem;display:flex;align-items:center;gap:0.5rem}
+    .modal-content .feature-item p{font-size:0.85rem;margin-bottom:0;color:var(--text-muted)}
+    .modal-content .highlight{margin:1.5rem 0;padding:1.25rem;background:linear-gradient(135deg,rgba(34,211,238,0.06),rgba(167,139,250,0.06));border:1px solid var(--border);border-radius:12px}
+    .modal-content .highlight-title{font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:var(--accent-cyan);margin-bottom:0.5rem}
+    .modal-content .highlight p{margin-bottom:0;font-size:0.92rem}
+    .modal-footer{padding:1.5rem 2.5rem;border-top:1px solid var(--border);background:rgba(0,0,0,0.2);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+    .modal-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.25rem;font-size:0.85rem;font-weight:600;font-family:var(--font-body);border-radius:100px;cursor:pointer;transition:all 0.3s ease;text-decoration:none}
+    .modal-btn.primary{background:var(--text-primary);color:var(--bg-primary);border:none} .modal-btn.primary:hover{transform:scale(1.03)}
+    .modal-btn.secondary{background:transparent;color:var(--text-secondary);border:1px solid var(--border)} .modal-btn.secondary:hover{border-color:var(--border-hover);color:var(--text-primary)}
+    .modal-btn svg{width:14px;height:14px}
+    footer{padding:2rem 0;border-top:1px solid var(--border);text-align:center}
+    .footer-text{font-size:0.85rem;color:var(--text-muted)} .footer-text a{color:var(--text-secondary);transition:color 0.3s ease} .footer-text a:hover{color:var(--accent-cyan)}
+    @media(max-width:768px){.projects-grid{grid-template-columns:1fr}.project-card.featured{grid-column:span 1}.modal-content .feature-grid{grid-template-columns:1fr}.modal-header,.modal-content,.modal-footer{padding-left:1.5rem;padding-right:1.5rem}.modal-container{padding:1rem}.modal-footer{flex-direction:column}.modal-btn{width:100%;justify-content:center}}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .project-card{animation:fadeIn 0.5s ease backwards}
   </style>
 </head>
 <body>
   <div class="bg-gradient"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-
-  <header>
-    <nav class="nav">
-      <a href="index.html" class="nav-back">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
-        Back to Home
-      </a>
-      <span class="nav-title">Projects</span>
-    </nav>
-  </header>
-
-  <main>
-    <div class="container">
-      <div class="page-header">
-        <div class="page-label">&#10022; Portfolio</div>
-        <h1 class="page-title">Things I'm <span>Building</span></h1>
-        <p class="page-subtitle">
-          A mix of work projects, side experiments, and ideas that keep me curious. Click any project to dive deeper.
-        </p>
-
-        <div class="stats-bar">
-          <div class="stat">
-            <div class="stat-value">6</div>
-            <div class="stat-label">Projects</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">2</div>
-            <div class="stat-label">Live</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">3</div>
-            <div class="stat-label">In Dev</div>
-          </div>
-        </div>
+  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+  <header><nav class="nav">
+    <a href="index.html" class="nav-back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to Home</a>
+    <span class="nav-title">Projects</span>
+  </nav></header>
+  <main><div class="container">
+    <div class="page-header">
+      <div class="page-label">&#10022; Portfolio</div>
+      <h1 class="page-title">Things I'm <span>Building</span></h1>
+      <p class="page-subtitle">A mix of work projects, side experiments, and ideas that keep me curious. Click any project to dive deeper.</p>
+      <div class="stats-bar">
+        <div class="stat"><div class="stat-value">6</div><div class="stat-label">Projects</div></div>
+        <div class="stat"><div class="stat-value">3</div><div class="stat-label">Live</div></div>
+        <div class="stat"><div class="stat-value">2</div><div class="stat-label">In Dev</div></div>
       </div>
-
-      <div class="filter-tabs">
-        <button class="filter-tab active" data-filter="all">All</button>
-        <button class="filter-tab" data-filter="side">Side Projects</button>
-        <button class="filter-tab" data-filter="work">Work</button>
-        <button class="filter-tab" data-filter="experiment">Experiments</button>
-      </div>
-
-      <div class="projects-grid" id="projects-grid"></div>
     </div>
-  </main>
-
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">All</button>
+      <button class="filter-tab" data-filter="side">Side Projects</button>
+      <button class="filter-tab" data-filter="work">Work</button>
+      <button class="filter-tab" data-filter="experiment">Experiments</button>
+    </div>
+    <div class="projects-grid" id="projects-grid"></div>
+  </div></main>
   <div class="modal-overlay" id="modal-overlay"></div>
-  
   <div class="modal-container" id="modal-container">
     <div class="modal" id="modal">
-      <button class="modal-close" id="modal-close">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 6L6 18M6 6l12 12"/>
-        </svg>
-      </button>
+      <button class="modal-close" id="modal-close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
       <div class="modal-hero" id="modal-hero"></div>
       <div class="modal-header" id="modal-header"></div>
       <div class="modal-content" id="modal-content"></div>
       <div class="modal-footer" id="modal-footer"></div>
     </div>
   </div>
-
-  <footer>
-    <div class="container">
-      <p class="footer-text">
-        &copy; <span id="year"></span> Yusuf Erdem Sakin &middot; <a href="index.html">Back to Home</a>
-      </p>
-    </div>
-  </footer>
-
+  <footer><div class="container"><p class="footer-text">&copy; <span id="year"></span> Yusuf Erdem Sakin &middot; <a href="index.html">Back to Home</a> &middot; <a href="https://comparemuffin.com" target="_blank">CompareMuffin</a></p></div></footer>
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -742,19 +158,19 @@
         featured: true,
         type: "side",
         typeLabel: "Side Project",
-        status: "dev",
-        statusLabel: "In Development",
-        emoji: "&#9889;",
-        title: "LoadTest Pro",
-        tagline: "The all-in-one platform that combines powerful load testing with real-time webhook inspection.",
-        excerpt: "Making it easier for teams to understand how their services behave under real traffic and weird edge cases.",
-        tech: ["Node.js", "WebSockets", "React", "PostgreSQL", "Docker", "Redis"],
-        year: "2024-Present",
+        status: "live",
+        statusLabel: "Live",
+        emoji: "&#9878;&#65039;",
+        title: "CompareMuffin",
+        tagline: "AI-powered comparison tool that lets you compare anything — products, tools, ideas, career paths — and get structured analysis with scoring and real reasoning.",
+        excerpt: "Compare anything you need to and generate extensive AI-powered reports about your options in seconds.",
+        tech: ["AI", "Next.js", "React", "API", "Anthropic", "Tailwind"],
+        year: "2025-Present",
         links: {
-          live: "https://www.loadtest.pro",
+          live: "https://comparemuffin.com",
           github: null
         },
-        content: "<h2>The Problem</h2><p>Every developer has been there: you build an API, it works great in development, and then it falls over the moment real traffic hits it. Load testing tools exist, but they are either too complex (JMeter, Gatling) or too simple (basic curl loops).</p><p>And then there is the webhook problem. You are integrating with a third-party service that sends webhooks, but you have no idea what payload they are actually sending. You set up ngrok, tail some logs, and hope for the best.</p><h2>The Solution</h2><p>LoadTest Pro combines both problems into one clean interface:</p><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#128640; Load Testing</h4><p>Define scenarios visually, run distributed tests, get real-time metrics</p></div><div class=\"feature-item\"><h4>&#128269; Webhook Inspector</h4><p>Unique endpoints for each integration, full request logging, replay capability</p></div><div class=\"feature-item\"><h4>&#128200; Real-time Analytics</h4><p>Live charts showing response times, error rates, and throughput as tests run</p></div><div class=\"feature-item\"><h4>&#129302; Smart Assertions</h4><p>Define expected behaviors and get alerted when things break</p></div></div><h2>Technical Architecture</h2><p>The platform is built for scale from day one:</p><ul><li><strong>Distributed Workers:</strong> Load generation happens across multiple nodes to simulate realistic traffic patterns</li><li><strong>WebSocket Streaming:</strong> Results stream to the dashboard in real-time, no polling required</li><li><strong>PostgreSQL + TimescaleDB:</strong> Time-series data for metrics, regular Postgres for everything else</li><li><strong>Redis Pub/Sub:</strong> Coordinates workers and handles real-time event distribution</li></ul><div class=\"highlight\"><div class=\"highlight-title\">Current Status</div><p>Core load testing is functional. Currently building the webhook inspection features and polishing the UI. Beta launch planned for early 2025.</p></div><h2>Lessons Learned</h2><p>Building a load testing tool that is itself performant is a fun challenge. Early versions had the ironic problem of the dashboard becoming slow under heavy test loads. Fixed that with virtualized lists and smarter data aggregation.</p>"
+        content: "<h2>The Problem</h2><p>Every day we face decisions: which tool to use, which career path to take, which product to buy. We spend hours reading reviews, comparing specs, and still feel uncertain. Most comparison sites are either biased, incomplete, or only cover specific product categories.</p><h2>The Solution</h2><p>CompareMuffin lets you drop in any two options and get a structured AI analysis instantly:</p><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#9878;&#65039; Compare Anything</h4><p>Products, tools, ideas, career paths, decisions &mdash; no category limits</p></div><div class=\"feature-item\"><h4>&#127919; Smart Verdicts</h4><p>AI-powered winner selection with confidence scoring and reasoning</p></div><div class=\"feature-item\"><h4>&#128200; Scoring Matrix</h4><p>Detailed breakdown across multiple dimensions with HIGH/MED/LOW ratings</p></div><div class=\"feature-item\"><h4>&#128274; Full Reports</h4><p>Comprehensive pros/cons, key differences, and actionable insights</p></div></div><h2>How It Works</h2><ul><li><strong>Drop two options:</strong> Type in anything you want to compare</li><li><strong>AI analyzes:</strong> Structured reasoning across multiple dimensions</li><li><strong>Get your verdict:</strong> Clear winner with confidence level and category tags</li><li><strong>Dive deeper:</strong> Unlock full scoring matrix and detailed reasoning</li></ul><div class=\"highlight\"><div class=\"highlight-title\">Current Status</div><p>CompareMuffin is live and free to use! No signup required to try it. Google sign-in available to save your comparisons.</p></div><h2>Why I Built This</h2><p>I found myself constantly asking AI chatbots to compare things for me, but the responses were always unstructured walls of text. CompareMuffin takes that same AI power and wraps it in a clean, structured format that actually helps you decide.</p>"
       },
       {
         id: 2,
@@ -773,7 +189,7 @@
           live: "https://autommate.com",
           github: null
         },
-        content: "<h2>What We Build</h2><p>At Autom Mate, I work on the AI Agent capabilities that help IT teams automate their workflows. These are not chatbots that answer questions. They are agents that actually do things.</p><h2>Agent Types</h2><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#127919; Ticket Triage Agent</h4><p>Automatically classifies, prioritizes, and routes incoming tickets</p></div><div class=\"feature-item\"><h4>&#128218; Knowledge Agent</h4><p>Searches internal docs and past tickets to suggest solutions</p></div><div class=\"feature-item\"><h4>&#9989; Approval Agent</h4><p>Handles change management workflows and collects approvals</p></div><div class=\"feature-item\"><h4>&#128202; Analytics Agent</h4><p>Generates insights from ticket patterns and team performance</p></div></div><h2>My Contributions</h2><p>I focus on the integration layer, specifically how these agents connect to existing ITSM platforms without requiring customers to change their workflows:</p><ul><li>Designing the ServiceNow and Xurrent connectors</li><li>Building the orchestration logic that coordinates multiple agents</li><li>Creating the confidence scoring system that knows when to escalate to humans</li><li>Working with customers to understand real-world edge cases</li></ul><div class=\"highlight\"><div class=\"highlight-title\">Philosophy</div><p>The best AI agents are invisible. Users should not have to think about \"using AI.\" They should just notice that tickets get resolved faster and less manual work is required.</p></div><h2>What I Have Learned</h2><p>Enterprise AI is 20% model work and 80% integration work. The LLM is the easy part. Getting data in and out of legacy systems, handling authentication, managing rate limits, dealing with inconsistent data, that is where the real challenges live.</p>"
+        content: "<h2>What We Build</h2><p>At Autom Mate, I work on the AI Agent capabilities that help IT teams automate their workflows. These are not chatbots that answer questions. They are agents that actually do things.</p><h2>Agent Types</h2><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#127919; Ticket Triage Agent</h4><p>Automatically classifies, prioritizes, and routes incoming tickets</p></div><div class=\"feature-item\"><h4>&#128218; Knowledge Agent</h4><p>Searches internal docs and past tickets to suggest solutions</p></div><div class=\"feature-item\"><h4>&#9989; Approval Agent</h4><p>Handles change management workflows and collects approvals</p></div><div class=\"feature-item\"><h4>&#128202; Analytics Agent</h4><p>Generates insights from ticket patterns and team performance</p></div></div><h2>My Contributions</h2><p>I focus on the integration layer, specifically how these agents connect to existing ITSM platforms without requiring customers to change their workflows:</p><ul><li>Designing the ServiceNow and Xurrent connectors</li><li>Building the orchestration logic that coordinates multiple agents</li><li>Creating the confidence scoring system that knows when to escalate to humans</li><li>Working with customers to understand real-world edge cases</li></ul><div class=\"highlight\"><div class=\"highlight-title\">Philosophy</div><p>The best AI agents are invisible. Users should not have to think about using AI. They should just notice that tickets get resolved faster and less manual work is required.</p></div><h2>What I Have Learned</h2><p>Enterprise AI is 20% model work and 80% integration work. The LLM is the easy part. Getting data in and out of legacy systems, handling authentication, managing rate limits, dealing with inconsistent data, that is where the real challenges live.</p>"
       },
       {
         id: 3,
@@ -792,7 +208,7 @@
           live: null,
           github: null
         },
-        content: "<h2>Why Build From Scratch?</h2><p>I could have used Next.js, Astro, or any of the dozen static site generators out there. Instead, I wrote vanilla HTML, CSS, and JavaScript.</p><p>Why? A few reasons:</p><ul><li><strong>Performance:</strong> Zero JavaScript framework overhead. The page loads instantly.</li><li><strong>Simplicity:</strong> No build step. Edit a file, refresh the browser. Done.</li><li><strong>Learning:</strong> It is easy to forget the fundamentals when you always reach for frameworks.</li><li><strong>Control:</strong> Every line of code is mine. No fighting with framework opinions.</li></ul><h2>Design Decisions</h2><p>The visual design went through several iterations:</p><ul><li><strong>Dark theme:</strong> Easier on the eyes, especially for a developer-focused site</li><li><strong>Gradient accents:</strong> Adds visual interest without being overwhelming</li><li><strong>Typography:</strong> Syne for headings (bold, distinctive), Instrument Serif for accent text (elegant contrast)</li><li><strong>Subtle animations:</strong> Floating orbs and smooth transitions that do not distract</li></ul><div class=\"highlight\"><div class=\"highlight-title\">No Dependencies</div><p>The entire site has zero npm packages, zero build tools, and zero JavaScript frameworks. Just files served by a static host. Refreshingly simple.</p></div><h2>What Is Next</h2><p>Planning to add a few more features:</p><ul><li>RSS feed for the blog</li><li>Dark/light theme toggle</li><li>Search functionality across writings</li><li>Maybe some interactive demos for projects</li></ul>"
+        content: "<h2>Why Build From Scratch?</h2><p>I could have used Next.js, Astro, or any of the dozen static site generators out there. Instead, I wrote vanilla HTML, CSS, and JavaScript.</p><p>Why? A few reasons:</p><ul><li><strong>Performance:</strong> Zero JavaScript framework overhead. The page loads instantly.</li><li><strong>Simplicity:</strong> No build step. Edit a file, refresh the browser. Done.</li><li><strong>Learning:</strong> It is easy to forget the fundamentals when you always reach for frameworks.</li><li><strong>Control:</strong> Every line of code is mine. No fighting with framework opinions.</li></ul><div class=\"highlight\"><div class=\"highlight-title\">No Dependencies</div><p>The entire site has zero npm packages, zero build tools, and zero JavaScript frameworks. Just files served by a static host.</p></div>"
       },
       {
         id: 4,
@@ -811,7 +227,7 @@
           live: null,
           github: null
         },
-        content: "<h2>The Motivation</h2><p>After building dozens of AI features, I noticed I was solving the same problems over and over. How do you get consistent JSON output? How do you handle multi-step reasoning? How do you make the AI admit when it does not know something?</p><p>This library is my attempt to document what actually works.</p><h2>Categories</h2><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#127919; Classification</h4><p>Patterns for categorizing text, intent detection, sentiment analysis</p></div><div class=\"feature-item\"><h4>&#128221; Extraction</h4><p>Pulling structured data from unstructured text reliably</p></div><div class=\"feature-item\"><h4>&#129504; Reasoning</h4><p>Chain-of-thought, self-critique, and multi-step problem solving</p></div><div class=\"feature-item\"><h4>&#128172; Conversation</h4><p>Context management, persona consistency, graceful topic switching</p></div></div><h2>Sample Pattern: Confident Uncertainty</h2><p>One of my favorite patterns is teaching the AI to be confidently uncertain:</p><div class=\"highlight\"><div class=\"highlight-title\">The Pattern</div><p>\"If you are not at least 80% confident in your answer, explicitly state your uncertainty and explain what additional information would help you give a better answer.\"</p></div><p>This simple addition dramatically reduces hallucinations because the model has an explicit escape hatch.</p><h2>Status</h2><p>Currently a private Notion database. Considering turning it into a public resource once I have enough patterns documented and tested.</p>"
+        content: "<h2>The Motivation</h2><p>After building dozens of AI features, I noticed I was solving the same problems over and over. This library is my attempt to document what actually works.</p><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#127919; Classification</h4><p>Patterns for categorizing text, intent detection, sentiment analysis</p></div><div class=\"feature-item\"><h4>&#128221; Extraction</h4><p>Pulling structured data from unstructured text reliably</p></div><div class=\"feature-item\"><h4>&#129504; Reasoning</h4><p>Chain-of-thought, self-critique, and multi-step problem solving</p></div><div class=\"feature-item\"><h4>&#128172; Conversation</h4><p>Context management, persona consistency, graceful topic switching</p></div></div><h2>Status</h2><p>Currently a private Notion database. Considering turning it into a public resource once I have enough patterns documented and tested.</p>"
       },
       {
         id: 5,
@@ -830,7 +246,7 @@
           live: null,
           github: null
         },
-        content: "<h2>The Problem</h2><p>Enterprise IT teams often use multiple ITSM tools. Maybe ServiceNow for incidents, Jira for development work, and a separate tool for change management. Getting a unified view of IT health requires logging into three different dashboards and mentally combining the data.</p><h2>The Vision</h2><p>A single dashboard that pulls from all your ITSM tools and shows:</p><ul><li><strong>Incident velocity:</strong> Are things getting better or worse over time?</li><li><strong>Resolution times:</strong> How long do different ticket types actually take?</li><li><strong>Team workload:</strong> Who is overloaded? Who has capacity?</li><li><strong>SLA compliance:</strong> Are we meeting our commitments?</li><li><strong>Patterns:</strong> What breaks most often? When do outages cluster?</li></ul><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#128279; Multi-Source</h4><p>Connect ServiceNow, Jira, Xurrent, Freshservice, and more</p></div><div class=\"feature-item\"><h4>&#128337; Real-time</h4><p>Live updates as tickets flow through your systems</p></div><div class=\"feature-item\"><h4>&#127775; AI Insights</h4><p>Anomaly detection and trend predictions</p></div><div class=\"feature-item\"><h4>&#128271; Role-based</h4><p>Different views for agents, managers, and executives</p></div></div><h2>Current Status</h2><p>Still in the idea phase. I have sketched some wireframes and identified the core technical challenges (API rate limits, data normalization across platforms, real-time sync). Need to validate whether this is a real pain point or just something I think would be cool.</p><div class=\"highlight\"><div class=\"highlight-title\">Looking for Feedback</div><p>If you work in IT operations and this sounds useful (or useless), I would love to hear your thoughts. What metrics actually matter to you?</p></div>"
+        content: "<h2>The Problem</h2><p>Enterprise IT teams often use multiple ITSM tools. Getting a unified view of IT health requires logging into three different dashboards and mentally combining the data.</p><h2>The Vision</h2><p>A single dashboard that pulls from all your ITSM tools and shows incident velocity, resolution times, team workload, SLA compliance, and patterns.</p><div class=\"highlight\"><div class=\"highlight-title\">Looking for Feedback</div><p>If you work in IT operations and this sounds useful (or useless), I would love to hear your thoughts.</p></div>"
       },
       {
         id: 6,
@@ -849,150 +265,60 @@
           live: null,
           github: null
         },
-        content: "<h2>The Setup</h2><p>What started as \"I just want to control one light\" has evolved into a full home automation obsession. Here is the current state:</p><ul><li><strong>Hub:</strong> Home Assistant on a Raspberry Pi 4</li><li><strong>Protocol:</strong> Zigbee via Sonoff dongle (goodbye, WiFi congestion)</li><li><strong>Sensors:</strong> Aqara motion, door, temperature, and humidity sensors</li><li><strong>Lights:</strong> Mix of IKEA Tradfri and Philips Hue bulbs</li><li><strong>Voice:</strong> Local voice processing (no cloud required)</li></ul><h2>Favorite Automations</h2><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#127769; Sleep Mode</h4><p>Lights gradually dim starting at 9 PM to signal bedtime</p></div><div class=\"feature-item\"><h4>&#9749; Morning Coffee</h4><p>Coffee maker starts when my morning alarm is dismissed</p></div><div class=\"feature-item\"><h4>&#128682; Away Mode</h4><p>Leaving home routine checks all doors and turns everything off</p></div><div class=\"feature-item\"><h4>&#127908; Meeting Mode</h4><p>Mutes notifications and adjusts lighting when calendar shows a meeting</p></div></div><h2>Lessons Learned</h2><p>The biggest lesson: automate things you do repeatedly, not things that sound cool. Half my initial automations were impressive demos that I never actually used in practice.</p><p>Also: start with Zigbee from day one. WiFi smart home devices are convenient initially but they clog your network and usually require cloud connectivity to function.</p><div class=\"highlight\"><div class=\"highlight-title\">Why Document This?</div><p>Smart home stuff is a great playground for learning about event-driven architecture, state machines, and distributed systems, concepts that transfer directly to professional software work.</p></div>"
+        content: "<h2>The Setup</h2><p>What started as \"I just want to control one light\" has evolved into a full home automation obsession.</p><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#127769; Sleep Mode</h4><p>Lights gradually dim starting at 9 PM</p></div><div class=\"feature-item\"><h4>&#9749; Morning Coffee</h4><p>Coffee maker starts when my alarm is dismissed</p></div><div class=\"feature-item\"><h4>&#128682; Away Mode</h4><p>Leaving home checks all doors and turns everything off</p></div><div class=\"feature-item\"><h4>&#127908; Meeting Mode</h4><p>Mutes notifications and adjusts lighting during meetings</p></div></div><div class=\"highlight\"><div class=\"highlight-title\">Why Document This?</div><p>Smart home stuff is a great playground for learning about event-driven architecture and state machines.</p></div>"
       }
     ];
 
     var projectsGrid = document.getElementById("projects-grid");
-    
     function renderProjects(filter) {
       filter = filter || "all";
       projectsGrid.innerHTML = "";
-      
-      var filtered = filter === "all" 
-        ? projects 
-        : projects.filter(function(p) { return p.type === filter; });
-      
+      var filtered = filter === "all" ? projects : projects.filter(function(p) { return p.type === filter; });
       filtered.forEach(function(project, index) {
         var card = document.createElement("article");
         card.className = "project-card" + (project.featured ? " featured" : "");
-        card.dataset.type = project.type;
-        card.dataset.id = project.id;
+        card.dataset.type = project.type; card.dataset.id = project.id;
         card.style.animationDelay = (0.05 + index * 0.05) + "s";
-        
         var statusClass = project.status === "live" ? " live" : (project.status === "dev" ? " dev" : "");
-        
-        card.innerHTML = 
-          "<div class=\"project-visual\">" +
-            "<div class=\"project-emoji\">" + project.emoji + "</div>" +
-          "</div>" +
+        card.innerHTML =
+          "<div class=\"project-visual\"><div class=\"project-emoji\">" + project.emoji + "</div></div>" +
           "<div class=\"project-info\">" +
-            "<div class=\"project-header\">" +
-              "<span class=\"project-type " + project.type + "\">" + project.typeLabel + "</span>" +
-              "<span class=\"project-status" + statusClass + "\">" + project.statusLabel + "</span>" +
-            "</div>" +
+            "<div class=\"project-header\"><span class=\"project-type " + project.type + "\">" + project.typeLabel + "</span><span class=\"project-status" + statusClass + "\">" + project.statusLabel + "</span></div>" +
             "<h3 class=\"project-title\">" + project.title + "</h3>" +
             "<p class=\"project-excerpt\">" + project.excerpt + "</p>" +
-            "<div class=\"project-tech\">" +
-              project.tech.slice(0, 4).map(function(t) { return "<span>" + t + "</span>"; }).join("") +
-            "</div>" +
-            "<div class=\"project-footer\">" +
-              "<span class=\"project-meta\">" + project.year + "</span>" +
-              "<div class=\"project-arrow\">" +
-                "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">" +
-                  "<line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line>" +
-                  "<polyline points=\"7 7 17 7 17 17\"></polyline>" +
-                "</svg>" +
-              "</div>" +
-            "</div>" +
-          "</div>";
-        
+            "<div class=\"project-tech\">" + project.tech.slice(0,4).map(function(t){return "<span>"+t+"</span>"}).join("") + "</div>" +
+            "<div class=\"project-footer\"><span class=\"project-meta\">" + project.year + "</span>" +
+              "<div class=\"project-arrow\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></div>" +
+            "</div></div>";
         card.addEventListener("click", function() { openModal(project); });
         projectsGrid.appendChild(card);
       });
     }
-
     renderProjects();
-
     var filterTabs = document.querySelectorAll(".filter-tab");
-    
     filterTabs.forEach(function(tab) {
       tab.addEventListener("click", function() {
-        filterTabs.forEach(function(t) { t.classList.remove("active"); });
-        tab.classList.add("active");
+        filterTabs.forEach(function(t){t.classList.remove("active")}); tab.classList.add("active");
         renderProjects(tab.dataset.filter);
       });
     });
-
-    var modalOverlay = document.getElementById("modal-overlay");
-    var modalContainer = document.getElementById("modal-container");
-    var modalHero = document.getElementById("modal-hero");
-    var modalHeader = document.getElementById("modal-header");
-    var modalContent = document.getElementById("modal-content");
-    var modalFooter = document.getElementById("modal-footer");
-    var modalClose = document.getElementById("modal-close");
-
+    var modalOverlay=document.getElementById("modal-overlay"),modalContainer=document.getElementById("modal-container"),modalHero=document.getElementById("modal-hero"),modalHeader=document.getElementById("modal-header"),modalContent=document.getElementById("modal-content"),modalFooter=document.getElementById("modal-footer"),modalClose=document.getElementById("modal-close");
     function openModal(project) {
-      var statusClass = project.status === "live" ? " live" : (project.status === "dev" ? " dev" : "");
-      
-      modalHero.innerHTML = "<div class=\"modal-hero-emoji\">" + project.emoji + "</div>";
-      
-      modalHeader.innerHTML = 
-        "<div class=\"modal-label\">" +
-          "<span class=\"project-type " + project.type + "\">" + project.typeLabel + "</span>" +
-          "<span class=\"project-status" + statusClass + "\">" + project.statusLabel + "</span>" +
-        "</div>" +
-        "<h1 class=\"modal-title\">" + project.title + "</h1>" +
-        "<p class=\"modal-tagline\">" + project.tagline + "</p>" +
-        "<div class=\"modal-meta\">" +
-          "<div class=\"modal-meta-item\">" +
-            "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">" +
-              "<rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"></rect>" +
-              "<line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"></line>" +
-              "<line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"></line>" +
-              "<line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"></line>" +
-            "</svg>" +
-            project.year +
-          "</div>" +
-        "</div>" +
-        "<div class=\"modal-tech\">" +
-          project.tech.map(function(t) { return "<span>" + t + "</span>"; }).join("") +
-        "</div>";
-      
-      modalContent.innerHTML = project.content;
-      
-      var footerHtml = "";
-      if (project.links.live) {
-        footerHtml += "<a href=\"" + project.links.live + "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"modal-btn primary\">" +
-          "Visit Live Site" +
-          "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">" +
-            "<path d=\"M7 17L17 7M17 7H7M17 7v10\"/>" +
-          "</svg>" +
-        "</a>";
-      }
-      if (project.links.github) {
-        footerHtml += "<a href=\"" + project.links.github + "\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"modal-btn secondary\">" +
-          "View on GitHub" +
-          "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">" +
-            "<path d=\"M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22\"/>" +
-          "</svg>" +
-        "</a>";
-      }
-      if (!project.links.live && !project.links.github) {
-        footerHtml = "<span class=\"modal-btn secondary\" style=\"cursor: default; opacity: 0.6;\">Links coming soon</span>";
-      }
-      modalFooter.innerHTML = footerHtml;
-      
-      document.body.classList.add("modal-open");
-      modalOverlay.classList.add("active");
-      modalContainer.classList.add("active");
+      var statusClass = project.status==="live"?" live":(project.status==="dev"?" dev":"");
+      modalHero.innerHTML="<div class=\"modal-hero-emoji\">"+project.emoji+"</div>";
+      modalHeader.innerHTML="<div class=\"modal-label\"><span class=\"project-type "+project.type+"\">"+project.typeLabel+"</span><span class=\"project-status"+statusClass+"\">"+project.statusLabel+"</span></div><h1 class=\"modal-title\">"+project.title+"</h1><p class=\"modal-tagline\">"+project.tagline+"</p><div class=\"modal-meta\"><div class=\"modal-meta-item\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"></rect><line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"></line><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"></line><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"></line></svg>"+project.year+"</div></div><div class=\"modal-tech\">"+project.tech.map(function(t){return"<span>"+t+"</span>"}).join("")+"</div>";
+      modalContent.innerHTML=project.content;
+      var footerHtml="";
+      if(project.links.live){footerHtml+="<a href=\""+project.links.live+"\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"modal-btn primary\">Visit Live Site <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 17L17 7M17 7H7M17 7v10\"/></svg></a>";}
+      if(project.links.github){footerHtml+="<a href=\""+project.links.github+"\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"modal-btn secondary\">View on GitHub</a>";}
+      if(!project.links.live&&!project.links.github){footerHtml="<span class=\"modal-btn secondary\" style=\"cursor:default;opacity:0.6\">Links coming soon</span>";}
+      modalFooter.innerHTML=footerHtml;
+      document.body.classList.add("modal-open"); modalOverlay.classList.add("active"); modalContainer.classList.add("active");
     }
-
-    function closeModal() {
-      document.body.classList.remove("modal-open");
-      modalOverlay.classList.remove("active");
-      modalContainer.classList.remove("active");
-    }
-
-    modalOverlay.addEventListener("click", closeModal);
-    modalClose.addEventListener("click", closeModal);
-    modalContainer.addEventListener("click", function(e) {
-      if (e.target === modalContainer) closeModal();
-    });
-
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape") closeModal();
-    });
+    function closeModal(){document.body.classList.remove("modal-open");modalOverlay.classList.remove("active");modalContainer.classList.remove("active")}
+    modalOverlay.addEventListener("click",closeModal); modalClose.addEventListener("click",closeModal);
+    modalContainer.addEventListener("click",function(e){if(e.target===modalContainer)closeModal()});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});
   </script>
 </body>
 </html>
