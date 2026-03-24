@@ -553,106 +553,35 @@
       || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
     function createWhatsAppButton() {
-      // Create button via JS — fully outside any existing DOM tree
-      var btn = document.createElement('a');
-      btn.href = 'https://wa.me/905541426422?text=Hello%2C%20I%20would%20like%20to%20get%20information%20about%20Autom%20Mate.';
-      btn.target = '_blank';
-      btn.rel = 'noopener noreferrer';
-      btn.setAttribute('aria-label', 'Chat on WhatsApp');
-      btn.innerHTML = '<svg width="32" height="32" viewBox="0 0 31 30" fill="none"><path d="M15.565 0C7.057 0 .133 6.669.13 14.865c-.002 2.621.71 5.179 2.06 7.432L0 30l8.183-2.067a15.89 15.89 0 007.376 1.81h.006c8.508 0 15.432-6.67 15.435-14.866.002-3.97-1.602-7.707-4.517-10.516C23.569 1.551 19.694.001 15.565 0zm0 27.232h-.005c-2.302 0-4.56-.596-6.53-1.722l-.47-.268-4.854 1.226 1.296-4.56-.305-.467a11.983 11.983 0 01-1.962-6.576C2.738 8.052 8.494 2.511 15.57 2.511c3.426.001 6.647 1.288 9.07 3.623s3.756 5.44 3.754 8.742c-.003 6.813-5.758 12.356-12.83 12.356zm7.037-9.255c-.386-.185-2.282-1.084-2.636-1.209-.353-.123-.61-.187-.867.185-.256.372-.996 1.209-1.22 1.456-.226.248-.451.278-.837.093-.386-.186-1.629-.578-3.101-1.844-1.147-.984-1.921-2.2-2.146-2.573-.225-.371-.024-.572.169-.757.173-.165.386-.433.578-.65.192-.217.256-.372.386-.62.128-.247.064-.465-.033-.65-.097-.187-.867-2.015-1.19-2.758-.312-.724-.63-.627-.867-.639-.225-.01-.481-.013-.74-.013-.255 0-.674.093-1.028.465-.353.372-1.35 1.27-1.35 3.098 0 1.829 1.382 3.595 1.575 3.843.193.247 2.72 4 6.589 5.61.92.381 1.638.61 2.199.782.924.283 1.765.242 2.429.147.74-.107 2.282-.898 2.602-1.765.322-.867.322-1.611.226-1.766-.094-.155-.352-.248-.738-.435z" fill="white"/></svg>';
+      var iframe = document.createElement('iframe');
+      iframe.style.cssText = 'position:fixed !important; bottom:20px !important; right:20px !important; width:60px !important; height:60px !important; border:none !important; z-index:2147483647 !important; background:transparent !important; overflow:hidden !important; pointer-events:auto !important;';
+      iframe.setAttribute('allowtransparency', 'true');
+      iframe.title = 'WhatsApp Chat';
 
-      // Try position:fixed first, then detect if it's broken
-      btn.style.cssText = [
-        'position:fixed',
-        'right:20px',
-        'bottom:20px',
-        'width:60px',
-        'height:60px',
-        'border-radius:50%',
-        'background:#25D366',
-        'display:flex',
-        'align-items:center',
-        'justify-content:center',
-        'box-shadow:0 4px 12px rgba(0,0,0,0.25)',
-        'z-index:2147483647',
-        'text-decoration:none',
-        'cursor:pointer'
-      ].join(' !important;') + ' !important;';
+      document.body.appendChild(iframe);
 
-      document.body.appendChild(btn);
+      var doc = iframe.contentDocument || iframe.contentWindow.document;
+      doc.open();
+      doc.write(
+        '<!DOCTYPE html>' +
+        '<html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>' +
+        'html,body{margin:0;padding:0;background:transparent;overflow:hidden}' +
+        'a{display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 12px rgba(0,0,0,0.25);text-decoration:none}' +
+        '</style></head><body>' +
+        '<a href="https://wa.me/905541426422?text=Hello%2C%20I%20would%20like%20to%20get%20information%20about%20Autom%20Mate." target="_blank" rel="noopener noreferrer">' +
+        '<svg width="32" height="32" viewBox="0 0 31 30" fill="none"><path d="M15.565 0C7.057 0 .133 6.669.13 14.865c-.002 2.621.71 5.179 2.06 7.432L0 30l8.183-2.067a15.89 15.89 0 007.376 1.81h.006c8.508 0 15.432-6.67 15.435-14.866.002-3.97-1.602-7.707-4.517-10.516C23.569 1.551 19.694.001 15.565 0zm0 27.232h-.005c-2.302 0-4.56-.596-6.53-1.722l-.47-.268-4.854 1.226 1.296-4.56-.305-.467a11.983 11.983 0 01-1.962-6.576C2.738 8.052 8.494 2.511 15.57 2.511c3.426.001 6.647 1.288 9.07 3.623s3.756 5.44 3.754 8.742c-.003 6.813-5.758 12.356-12.83 12.356zm7.037-9.255c-.386-.185-2.282-1.084-2.636-1.209-.353-.123-.61-.187-.867.185-.256.372-.996 1.209-1.22 1.456-.226.248-.451.278-.837.093-.386-.186-1.629-.578-3.101-1.844-1.147-.984-1.921-2.2-2.146-2.573-.225-.371-.024-.572.169-.757.173-.165.386-.433.578-.65.192-.217.256-.372.386-.62.128-.247.064-.465-.033-.65-.097-.187-.867-2.015-1.19-2.758-.312-.724-.63-.627-.867-.639-.225-.01-.481-.013-.74-.013-.255 0-.674.093-1.028.465-.353.372-1.35 1.27-1.35 3.098 0 1.829 1.382 3.595 1.575 3.843.193.247 2.72 4 6.589 5.61.92.381 1.638.61 2.199.782.924.283 1.765.242 2.429.147.74-.107 2.282-.898 2.602-1.765.322-.867.322-1.611.226-1.766-.094-.155-.352-.248-.738-.435z" fill="white"/></svg>' +
+        '</a></body></html>'
+      );
+      doc.close();
 
-      // Detection: check if fixed actually works
-      // If the button's getBoundingClientRect().bottom is NOT near the viewport bottom, fixed is broken
-      requestAnimationFrame(function () {
-        var rect = btn.getBoundingClientRect();
-        var viewH = window.innerHeight;
-        var expectedBottom = viewH - 20; // should be ~20px from bottom
-        var actualBottom = rect.bottom;
-
-        // If off by more than 100px, fixed is broken — fall back to JS repositioning
-        if (Math.abs(actualBottom - expectedBottom) > 100) {
-          fallbackToAbsolute(btn);
-        }
-
-        // Also re-check after scroll in case it only breaks during scroll
-        var scrollCheckDone = false;
-        window.addEventListener('scroll', function () {
-          if (scrollCheckDone) return;
-          scrollCheckDone = true;
-          requestAnimationFrame(function () {
-            var r = btn.getBoundingClientRect();
-            var expected = window.innerHeight - 20;
-            if (Math.abs(r.bottom - expected) > 100) {
-              fallbackToAbsolute(btn);
-            }
-          });
-        }, { passive: true });
-      });
-    }
-
-    function fallbackToAbsolute(btn) {
-      btn.style.position = 'absolute';
-
-      function reposition() {
-        var scrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
-        var scrollX = window.pageXOffset || document.documentElement.scrollLeft || 0;
-        var viewW = window.innerWidth;
-        var viewH = window.innerHeight;
-        btn.style.top = (scrollY + viewH - 80) + 'px';
-        btn.style.left = (scrollX + viewW - 80) + 'px';
-        btn.style.right = 'auto';
-        btn.style.bottom = 'auto';
-      }
-
-      reposition();
-
-      // Covers all browsers: scroll, resize, orientation, touch
-      var events = ['scroll', 'resize', 'orientationchange'];
-      events.forEach(function (evt) {
-        window.addEventListener(evt, reposition, { passive: true });
-      });
-
-      // Smooth tracking during touch on iOS/Android
-      document.addEventListener('touchmove', reposition, { passive: true });
-      document.addEventListener('touchend', function () {
-        // Catch momentum scroll settling
-        var intervals = [0, 50, 100, 200, 400, 800];
-        intervals.forEach(function (ms) {
-          setTimeout(reposition, ms);
+      // Make link open in parent window, not inside iframe
+      var link = doc.querySelector('a');
+      if (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.open(this.href, '_blank');
         });
-      }, { passive: true });
-
-      // Use requestAnimationFrame loop as final safety net
-      var lastY = -1;
-      function rafLoop() {
-        var y = window.pageYOffset;
-        if (y !== lastY) {
-          lastY = y;
-          reposition();
-        }
-        requestAnimationFrame(rafLoop);
       }
-      rafLoop();
     }
 
     function showWhatsApp() {
