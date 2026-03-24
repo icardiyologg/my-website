@@ -550,8 +550,8 @@
 <style>
   #wa-float-btn {
     position: fixed !important;
-    right: 20px;
-    bottom: 20px;
+    right: 20px !important;
+    bottom: 20px !important;
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -560,7 +560,7 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    z-index: 999999;
+    z-index: 2147483647;
     text-decoration: none;
     color: white;
   }
@@ -584,6 +584,8 @@
     function showWhatsApp() {
       var waBtn = document.getElementById('wa-float-btn');
       if (waBtn) {
+        // Move to body so fixed positioning works regardless of parent containers
+        document.body.appendChild(waBtn);
         waBtn.style.display = 'flex';
       }
     }
