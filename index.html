@@ -2,559 +2,560 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Yusuf Erdem Sakın – AI Product Designer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Personal website of Yusuf Erdem Sakın – Product Manager at Autom Mate, working on AI Agents and workflow automation." />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Yusuf Erdem Sakın — Product Manager, AI agents</title>
+    <meta name="description" content="Yusuf Erdem Sakın — Product Manager at Autom Mate. I design AI agents for IT and support teams: discovery, solution design, demos and the docs that make them repeatable." />
+    <meta name="author" content="Yusuf Erdem Sakın" />
+    <link rel="canonical" href="https://erdemsakin.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://erdemsakin.com/" />
+    <meta property="og:title" content="Yusuf Erdem Sakın — Product Manager, AI agents" />
+    <meta property="og:description" content="I design AI agents that survive contact with a real support desk. Product Manager at Autom Mate." />
+    <meta property="og:image" content="https://erdemsakin.com/logo.png" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="site.css" />
+
     <style>
-      :root {
-        --bg-primary: #0a0a0b;
-        --bg-secondary: #111113;
-        --bg-tertiary: #18181b;
-        --bg-card: rgba(24, 24, 27, 0.6);
-        --border: rgba(255, 255, 255, 0.08);
-        --border-hover: rgba(255, 255, 255, 0.15);
-        --text-primary: #fafafa;
-        --text-secondary: #a1a1aa;
-        --text-muted: #71717a;
-        --accent-primary: #22d3ee;
-        --accent-secondary: #a78bfa;
-        --accent-tertiary: #f472b6;
-        --gradient-main: linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #f472b6 100%);
-        --gradient-subtle: linear-gradient(135deg, rgba(34, 211, 238, 0.15) 0%, rgba(167, 139, 250, 0.15) 50%, rgba(244, 114, 182, 0.15) 100%);
-        --font-display: 'Syne', sans-serif;
-        --font-serif: 'Instrument Serif', Georgia, serif;
-        --font-mono: 'JetBrains Mono', monospace;
-        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-        --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; }
-      body {
-        font-family: var(--font-display); background: var(--bg-primary); color: var(--text-primary);
-        -webkit-font-smoothing: antialiased; line-height: 1.6; overflow-x: hidden; transform: translateZ(0);
-      }
-      ::selection { background: var(--accent-primary); color: var(--bg-primary); }
-      a { color: inherit; text-decoration: none; }
-      .bg-gradient {
-        position: fixed; inset: 0; pointer-events: none; z-index: -1;
-        background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34,211,238,0.12), transparent),
-          radial-gradient(ellipse 60% 40% at 90% 80%, rgba(167,139,250,0.08), transparent),
-          radial-gradient(ellipse 50% 30% at 10% 60%, rgba(244,114,182,0.06), transparent);
-      }
-      .page { position: relative; min-height: 100vh; }
-      .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+      /* ---------- hero ---------- */
+      .hero { padding: 5.25rem 0 4rem; }
+      .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr); gap: 4.5rem; align-items: start; }
 
-      /* ANNOUNCEMENT BANNER */
-      .announcement-bar {
-        position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 10px 2rem;
-        background: linear-gradient(135deg, rgba(34,211,238,0.12), rgba(167,139,250,0.12), rgba(244,114,182,0.12));
-        border-bottom: 1px solid var(--border); backdrop-filter: blur(20px); overflow: hidden;
-      }
-      .announcement-bar::before {
-        content: ''; position: absolute; top: 0; left: -100%; width: 300%; height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(34,211,238,0.06), transparent);
-        animation: shimmer 3s ease-in-out infinite;
-      }
-      @keyframes shimmer { 0%{transform:translateX(-33%)} 100%{transform:translateX(33%)} }
-      .announcement-inner {
-        position: relative; z-index: 1; display: flex; align-items: center;
-        justify-content: center; gap: 12px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto;
-      }
-      .announcement-badge {
-        background: var(--gradient-main); color: var(--bg-primary); padding: 3px 12px;
-        border-radius: 100px; font-size: 0.65rem; font-weight: 700; font-family: var(--font-mono);
-        text-transform: uppercase; letter-spacing: 1px; animation: badgePulse 2s ease-in-out infinite;
-      }
-      @keyframes badgePulse {
-        0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,0.4)} 50%{box-shadow:0 0 0 6px rgba(34,211,238,0)}
-      }
-      .announcement-text { font-size: 0.82rem; color: var(--text-secondary); }
-      .announcement-text strong {
-        background: var(--gradient-main); -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700;
-      }
-      .announcement-link {
-        display: inline-flex; align-items: center; gap: 5px; padding: 4px 14px;
-        border: 1px solid rgba(34,211,238,0.3); border-radius: 100px;
-        font-size: 0.75rem; font-weight: 600; color: var(--accent-primary); transition: all 0.3s ease;
-      }
-      .announcement-link:hover {
-        background: var(--accent-primary); color: var(--bg-primary);
-        border-color: var(--accent-primary); transform: scale(1.05);
-      }
-      .announcement-link svg { transition: transform 0.3s ease; }
-      .announcement-link:hover svg { transform: translateX(3px); }
+      .status { display: inline-flex; align-items: center; gap: 0.55rem; margin-bottom: 1.75rem; }
+      .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+      .status span { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--ink-2); }
 
-      header {
-        position: fixed; top: 40px; left: 0; right: 0; z-index: 100; padding: 1.5rem 0;
-        background: rgba(10,10,11,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+      h1 { font-size: clamp(2.35rem, 5.1vw, 3.85rem); font-weight: 600; letter-spacing: -0.032em; line-height: 1.06; max-width: 15ch; }
+      .lede { margin-top: 1.6rem; font-size: 1.075rem; line-height: 1.7; color: var(--ink-2); max-width: 52ch; }
+      .lede strong { color: var(--ink); font-weight: 500; }
+      .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2.25rem; }
+
+      .panel { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow: hidden; }
+      .panel-head { padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--line-soft); }
+      .panel-row { display: grid; gap: 0.2rem; padding: 1.1rem 1.25rem; border-bottom: 1px solid var(--line-soft); }
+      .panel-row:last-child { border-bottom: 0; }
+      .panel-row dt { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-3); }
+      .panel-row dd { font-size: 0.92rem; color: var(--ink); }
+      .panel-row dd span { color: var(--ink-2); }
+      .panel-foot { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 1.1rem 1.25rem; background: rgba(255, 255, 255, 0.015); }
+      .chip { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.03em; padding: 0.28rem 0.6rem; border: 1px solid var(--line); border-radius: 6px; color: var(--ink-2); }
+
+      /* ---------- work accordion ---------- */
+      .work { border-top: 1px solid var(--line-soft); }
+      .item { border-bottom: 1px solid var(--line-soft); }
+      .item-btn {
+        width: 100%; display: grid; grid-template-columns: 3.25rem 1fr auto; align-items: center; gap: 1rem;
+        padding: 1.5rem 0.25rem; background: none; border: 0; cursor: pointer; text-align: left;
+        font-family: inherit; color: inherit;
       }
-      .nav { display: flex; align-items: center; justify-content: space-between; }
-      .logo { display: flex; align-items: center; gap: 1rem; }
-      .logo-mark { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; transition: transform 0.4s var(--ease-out-back); }
-      .logo:hover .logo-mark { transform: rotate(-10deg) scale(1.05); }
-      .logo-text { display: flex; flex-direction: column; gap: 0.1rem; }
-      .logo-name { font-weight: 700; font-size: 0.95rem; letter-spacing: 0.02em; }
-      .logo-title { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
-      .nav-links { display: flex; align-items: center; gap: 0.5rem; }
-      .nav-link {
-        padding: 0.6rem 1.1rem; font-size: 0.85rem; font-weight: 500; color: var(--text-secondary);
-        border-radius: 100px; transition: all 0.3s var(--ease-out-expo); position: relative;
+      .item-btn:hover .item-title { color: var(--accent); }
+      .item-num { font-family: var(--mono); font-size: 0.75rem; color: var(--ink-3); letter-spacing: 0.06em; }
+      .item-title { font-family: var(--display); font-size: 1.15rem; font-weight: 600; letter-spacing: -0.015em; transition: color 0.22s ease; }
+      .item-kicker { display: block; font-family: var(--mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-3); margin-bottom: 0.35rem; }
+      .item-sign { width: 26px; height: 26px; position: relative; flex-shrink: 0; }
+      .item-sign::before, .item-sign::after {
+        content: ''; position: absolute; left: 50%; top: 50%; width: 11px; height: 1.5px;
+        background: var(--ink-2); transform: translate(-50%, -50%); transition: transform 0.35s var(--ease), background 0.22s ease;
       }
-      .nav-link:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
-      .nav-link-cta { background: var(--text-primary); color: var(--bg-primary); font-weight: 600; }
-      .nav-link-cta:hover { background: var(--accent-primary); color: var(--bg-primary); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(34,211,238,0.3); }
-      .nav-link-new { position: relative; }
-      .nav-link-new::before {
-        content: '\2726'; position: absolute; top: -2px; right: 4px; font-size: 0.5rem;
-        color: var(--accent-primary); animation: sparkle 1.5s ease-in-out infinite;
+      .item-sign::after { transform: translate(-50%, -50%) rotate(90deg); }
+      .item[data-open='true'] .item-sign::after { transform: translate(-50%, -50%) rotate(0deg); }
+      .item[data-open='true'] .item-sign::before, .item[data-open='true'] .item-sign::after { background: var(--accent); }
+      .item[data-open='true'] .item-title { color: var(--accent); }
+
+      .item-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s var(--ease); }
+      .item[data-open='true'] .item-panel { grid-template-rows: 1fr; }
+      .item-panel > div { overflow: hidden; }
+      .item-body { padding: 0 0 2.25rem 4.25rem; max-width: 78ch; }
+      .item-body p { color: var(--ink-2); font-size: 0.97rem; line-height: 1.75; }
+      .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 2.5rem; margin: 1.75rem 0 0; }
+      .facts div { padding: 0.85rem 0; border-top: 1px solid var(--line-soft); }
+      .facts dt { font-family: var(--mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-3); margin-bottom: 0.25rem; }
+      .facts dd { font-size: 0.9rem; color: var(--ink); }
+      .points { list-style: none; margin-top: 1.75rem; display: grid; gap: 0.6rem; }
+      .points li { position: relative; padding-left: 1.4rem; font-size: 0.92rem; color: var(--ink-2); }
+      .points li::before { content: ''; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: var(--accent); }
+
+      /* ---------- writing previews ---------- */
+      .cards-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+      .note {
+        display: flex; flex-direction: column; padding: 1.5rem;
+        border: 1px solid var(--line); border-radius: 13px; background: var(--surface);
+        transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s var(--ease);
       }
-      @keyframes sparkle { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
+      .note:hover { border-color: var(--line-hard); background: var(--raised); transform: translateY(-2px); }
+      .note-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.1rem; }
+      .note h3 { font-size: 1.02rem; font-weight: 600; line-height: 1.35; margin-bottom: 0.55rem; }
+      .note p { font-size: 0.89rem; color: var(--ink-2); line-height: 1.6; }
+      .note-meta { display: flex; gap: 1rem; margin-top: auto; padding-top: 1.25rem; }
+      .note-meta span { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-3); letter-spacing: 0.04em; }
 
-      .hero { min-height: 100vh; display: flex; align-items: center; padding: 10rem 0 6rem; position: relative; }
-      .hero-content { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; align-items: center; }
-      .hero-badge {
-        display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.5rem 1rem 0.5rem 0.5rem;
-        background: rgba(24,24,27,0.95); border: 1px solid var(--border); border-radius: 100px;
-        font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1.5rem;
-        animation: slideUp 0.8s var(--ease-out-expo) 0.1s both;
+      /* ---------- project previews ---------- */
+      .cards-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+      .proj {
+        display: flex; flex-direction: column; overflow: hidden;
+        border: 1px solid var(--line); border-radius: 15px; background: var(--surface);
+        transition: border-color 0.25s ease, transform 0.25s var(--ease);
       }
-      .hero-badge-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 2s ease-in-out infinite; box-shadow: 0 0 10px #22c55e; }
-      @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-      .hero-title { font-size: clamp(3rem,6vw,4.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; animation: slideUp 0.8s var(--ease-out-expo) 0.2s both; }
-      .hero-title-line { display: block; }
-      .hero-title-gradient { background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-      .hero-title-serif { font-family: var(--font-serif); font-weight: 400; font-style: italic; }
-      .hero-subtitle { font-size: 1.15rem; color: var(--text-secondary); max-width: 480px; margin-bottom: 2rem; line-height: 1.7; animation: slideUp 0.8s var(--ease-out-expo) 0.3s both; }
-      .hero-cta { display: flex; gap: 1rem; animation: slideUp 0.8s var(--ease-out-expo) 0.4s both; }
-      .btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 1rem 1.8rem; font-size: 0.95rem; font-weight: 600; font-family: var(--font-display); border-radius: 100px; border: none; cursor: pointer; transition: all 0.4s var(--ease-out-expo); }
-      .btn-primary { background: var(--text-primary); color: var(--bg-primary); }
-      .btn-primary:hover { background: var(--accent-primary); transform: translateY(-3px); box-shadow: 0 20px 40px rgba(34,211,238,0.25); }
-      .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
-      .btn-secondary:hover { border-color: var(--text-primary); background: rgba(255,255,255,0.05); }
-      .btn-icon { transition: transform 0.3s var(--ease-out-expo); }
-      .btn:hover .btn-icon { transform: translateX(4px); }
-
-      .hero-card { position: relative; animation: slideUp 0.8s var(--ease-out-expo) 0.5s both; }
-      .hero-card-inner { background: rgba(24,24,27,0.95); border: 1px solid var(--border); border-radius: 24px; padding: 2rem; position: relative; overflow: hidden; }
-      .hero-card-inner::before { content: ''; position: absolute; inset: 0; background: var(--gradient-subtle); opacity: 0; transition: opacity 0.4s ease; }
-      .hero-card:hover .hero-card-inner::before { opacity: 1; }
-      .hero-card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; position: relative; z-index: 1; }
-      .hero-card-avatar { width: 56px; height: 56px; border-radius: 16px; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
-      .hero-card-info h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.2rem; }
-      .hero-card-info p { font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono); }
-      .hero-card-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 1.5rem; position: relative; z-index: 1; }
-      .stat { text-align: center; padding: 1rem; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border); }
-      .stat-value { font-size: 1.5rem; font-weight: 700; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-      .stat-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3rem; font-family: var(--font-mono); }
-      .hero-card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; position: relative; z-index: 1; }
-      .tag { padding: 0.4rem 0.9rem; font-size: 0.75rem; font-weight: 500; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 100px; color: var(--text-secondary); transition: all 0.3s ease; }
-      .tag:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
-      .floating-element { position: absolute; pointer-events: none; }
-      .floating-code { top: -20px; right: -30px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem 1rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-primary); animation: float 6s ease-in-out infinite; }
-      .floating-emoji { bottom: 30px; left: -40px; width: 60px; height: 60px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; animation: float 5s ease-in-out infinite reverse; }
-      @keyframes float { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-15px) rotate(3deg)} }
-
-      section { padding: 6rem 0; position: relative; }
-      .section-header { text-align: center; margin-bottom: 4rem; }
-      .section-label { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 600; font-family: var(--font-mono); color: var(--accent-primary); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 1rem; }
-      .section-title { font-size: clamp(2rem,4vw,3rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; }
-      .section-subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-
-      .work-grid { display: flex; flex-direction: column; gap: 1rem; }
-      .work-card { background: rgba(24,24,27,0.95); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: border-color 0.3s ease; }
-      .work-card:hover { border-color: var(--border-hover); }
-      .work-card.active { border-color: var(--accent-primary); }
-      .work-card-header { display: flex; align-items: center; gap: 1.25rem; padding: 1.5rem 2rem; cursor: pointer; transition: background 0.3s ease; }
-      .work-card-header:hover { background: rgba(255,255,255,0.02); }
-      .work-card-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-      .work-card-header-content { flex: 1; min-width: 0; }
-      .work-card-label { display: inline-block; font-size: 0.7rem; font-weight: 600; font-family: var(--font-mono); padding: 0.25rem 0.6rem; background: rgba(34,211,238,0.1); color: var(--accent-primary); border-radius: 100px; margin-bottom: 0.4rem; }
-      .work-card-header h3 { font-size: 1.15rem; font-weight: 600; margin: 0; }
-      .work-card-toggle { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.4s var(--ease-out-expo); }
-      .work-card-toggle svg { width: 18px; height: 18px; color: var(--text-muted); transition: transform 0.4s var(--ease-out-expo), color 0.3s ease; }
-      .work-card.active .work-card-toggle { background: var(--accent-primary); border-color: var(--accent-primary); }
-      .work-card.active .work-card-toggle svg { transform: rotate(180deg); color: var(--bg-primary); }
-      .work-card-body { max-height: 0; overflow: hidden; transition: max-height 0.5s var(--ease-out-expo); }
-      .work-card.active .work-card-body { max-height: 600px; }
-      .work-card-content { padding: 0 2rem 2rem; border-top: 1px solid var(--border); }
-      .work-card-description { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.8; margin: 1.5rem 0; }
-      .work-card-details { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin-bottom: 1.5rem; }
-      .work-card-detail { background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }
-      .work-card-detail-label { font-size: 0.7rem; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
-      .work-card-detail-value { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; }
-      .work-card-highlights { margin-bottom: 1.5rem; }
-      .work-card-highlights h4 { font-size: 0.8rem; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
-      .work-card-highlights ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-      .work-card-highlights li { font-size: 0.9rem; color: var(--text-secondary); padding-left: 1.25rem; position: relative; }
-      .work-card-highlights li::before { content: '\2192'; position: absolute; left: 0; color: var(--accent-primary); }
-      .work-card-meta { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-      .work-card-meta span { font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-muted); padding: 0.35rem 0.75rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 6px; }
-
-      .writing-preview-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
-      .writing-preview-card { background: rgba(24,24,27,0.95); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: all 0.3s var(--ease-out-expo); cursor: pointer; display: block; }
-      .writing-preview-card:hover { border-color: var(--accent-secondary); transform: translateY(-4px); }
-      .writing-preview-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
-      .writing-preview-number { font-size: 1.25rem; font-weight: 800; font-family: var(--font-mono); background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.6; }
-      .writing-preview-status { font-size: 0.65rem; font-family: var(--font-mono); padding: 0.3rem 0.7rem; border-radius: 100px; background: rgba(167,139,250,0.1); color: var(--accent-secondary); text-transform: uppercase; }
-      .writing-preview-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.4; }
-      .writing-preview-card p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      .writing-preview-meta { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
-      .writing-preview-meta span { font-size: 0.7rem; font-family: var(--font-mono); color: var(--text-muted); }
-
-      .projects-preview-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
-      .project-card { background: rgba(24,24,27,0.95); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: border-color 0.3s ease, transform 0.3s ease; cursor: pointer; position: relative; }
-      .project-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
-      .project-visual { height: 180px; background: var(--gradient-subtle); display: flex; align-items: center; justify-content: center; }
-      .project-visual-content { font-size: 3rem; }
-      .project-info { padding: 1.5rem; }
-      .project-label { display: inline-block; font-size: 0.7rem; font-weight: 600; font-family: var(--font-mono); padding: 0.3rem 0.7rem; border-radius: 100px; margin-bottom: 0.8rem; }
-      .project-label-work { background: rgba(244,114,182,0.1); color: var(--accent-tertiary); }
-      .project-label-new { background: rgba(34,211,238,0.1); color: var(--accent-primary); }
-      .project-info h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.6rem; }
-      .project-info p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem; }
-      .project-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; font-weight: 500; color: var(--accent-primary); transition: gap 0.3s ease; }
-      .project-link:hover { gap: 0.8rem; }
-      .project-new-badge { position: absolute; top: 12px; right: 12px; background: var(--gradient-main); color: var(--bg-primary); padding: 4px 10px; border-radius: 100px; font-size: 0.6rem; font-weight: 700; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 1px; z-index: 2; animation: badgePulse 2s ease-in-out infinite; }
-
-      .section-cta { display: flex; justify-content: center; margin-top: 2.5rem; }
-      .section-cta-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 1.8rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 100px; font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); transition: all 0.3s var(--ease-out-expo); }
-      .section-cta-btn:hover { background: rgba(255,255,255,0.06); border-color: var(--border-hover); color: var(--text-primary); transform: translateY(-2px); }
-      .section-cta-btn svg { transition: transform 0.3s ease; }
-      .section-cta-btn:hover svg { transform: translateX(4px); }
-
-      .contact-section { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-      .contact-content { display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; }
-      .contact-text h2 { font-size: clamp(2rem,4vw,3rem); font-weight: 700; margin-bottom: 1rem; }
-      .contact-text h2 span { font-family: var(--font-serif); font-style: italic; font-weight: 400; }
-      .contact-text p { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; }
-      .contact-actions { display: flex; flex-direction: column; gap: 1rem; }
-      .contact-btn { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; transition: all 0.3s var(--ease-out-expo); }
-      .contact-btn:hover { border-color: var(--accent-primary); transform: translateX(10px); }
-      .contact-btn-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--gradient-main); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-      .contact-btn-icon-image { width: 48px; height: 48px; background: transparent; padding: 0; }
-      .contact-logo { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; display: block; }
-      .contact-btn-text { flex: 1; }
-      .contact-btn-text strong { display: block; font-weight: 600; margin-bottom: 0.2rem; }
-      .contact-btn-text span { font-size: 0.85rem; color: var(--text-muted); }
-      .contact-btn-arrow { color: var(--text-muted); transition: transform 0.3s ease; }
-      .contact-btn:hover .contact-btn-arrow { transform: translateX(5px); color: var(--accent-primary); }
-
-      footer { padding: 3rem 0; border-top: 1px solid var(--border); }
-      .footer-content { display: flex; justify-content: space-between; align-items: center; }
-      .footer-copy { font-size: 0.85rem; color: var(--text-muted); }
-      .footer-links { display: flex; gap: 1.5rem; }
-      .footer-links a { font-size: 0.85rem; color: var(--text-muted); transition: color 0.3s ease; }
-      .footer-links a:hover { color: var(--accent-primary); }
-
-      @keyframes slideUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-      .animate-on-scroll { opacity: 1; }
-
-      @media (max-width: 900px) {
-        .hero-content,.projects-preview-grid { grid-template-columns: 1fr; }
-        .writing-preview-grid { grid-template-columns: 1fr; }
-        .contact-content { grid-template-columns: 1fr; gap: 2rem; }
-        .nav-links { display: none; }
-        .floating-element { display: none; }
+      .proj:hover { border-color: var(--line-hard); transform: translateY(-2px); }
+      .proj-visual {
+        height: 180px; display: flex; align-items: center; justify-content: center;
+        border-bottom: 1px solid var(--line-soft);
+        background: radial-gradient(120% 100% at 50% 0%, rgba(255, 255, 255, 0.035), transparent 70%), var(--raised);
       }
-      @media (max-width: 600px) {
-        .hero { padding: 9rem 0 4rem; }
-        .hero-cta { flex-direction: column; }
-        .btn { justify-content: center; }
-        .footer-content { flex-direction: column; gap: 1rem; text-align: center; }
-        .work-card-details { grid-template-columns: 1fr; }
+      .plate {
+        width: 106px; height: 106px; border-radius: 24px; background: #f7f7f8;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.38); transition: transform 0.4s var(--ease);
       }
-      .stagger-1{transition-delay:0.1s} .stagger-2{transition-delay:0.2s} .stagger-3{transition-delay:0.3s} .stagger-4{transition-delay:0.4s}
+      .plate img { width: 68px; height: 68px; object-fit: contain; }
+      .proj:hover .plate { transform: translateY(-3px) scale(1.02); }
+      .proj-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+      .proj-body h3 { font-size: 1.15rem; font-weight: 600; margin: 0.7rem 0 0.55rem; }
+      .proj-body p { font-size: 0.91rem; color: var(--ink-2); line-height: 1.65; }
+      .proj-go { display: inline-flex; align-items: center; gap: 0.45rem; margin-top: 1.25rem; font-size: 0.86rem; font-weight: 500; color: var(--accent); }
+      .proj:hover .proj-go .arrow { transform: translateX(3px); }
+
+      .more { display: flex; justify-content: center; margin-top: 1.75rem; }
+      .more a {
+        display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.15rem;
+        font-size: 0.87rem; color: var(--ink-2); border: 1px solid var(--line); border-radius: 8px;
+        transition: color 0.22s ease, border-color 0.22s ease;
+      }
+      .more a:hover { color: var(--ink); border-color: var(--line-hard); }
+
+      /* ---------- contact ---------- */
+      .contact { border-top: 1px solid var(--line-soft); background: var(--surface); }
+      .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 380px); gap: 4rem; align-items: center; }
+      .contact h2 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); font-weight: 600; }
+      .contact p { margin-top: 1rem; font-size: 1.02rem; color: var(--ink-2); max-width: 46ch; }
+      .contact-list { display: grid; gap: 0.7rem; }
+      .contact-row {
+        display: flex; align-items: center; gap: 1rem; padding: 1rem 1.15rem;
+        border: 1px solid var(--line); border-radius: 12px; background: var(--bg);
+        transition: border-color 0.25s ease, transform 0.25s var(--ease);
+      }
+      .contact-row:hover { border-color: var(--accent); transform: translateX(4px); }
+      .contact-icon {
+        width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        border: 1px solid var(--line); background: var(--raised); overflow: hidden;
+      }
+      .contact-icon img { width: 20px; height: 20px; }
+      .contact-icon svg { width: 18px; height: 18px; color: var(--ink-2); }
+      .contact-text strong { display: block; font-family: var(--display); font-size: 0.95rem; font-weight: 600; }
+      .contact-text span { font-size: 0.82rem; color: var(--ink-3); }
+      .contact-row .arrow { margin-left: auto; color: var(--ink-3); }
+      .contact-row:hover .arrow { transform: translateX(3px); color: var(--accent); }
+
+      /* ---------- responsive ---------- */
+      @media (max-width: 980px) {
+        .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+        h1 { max-width: 18ch; }
+        .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        .cards-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 640px) {
+        .hero { padding: 4rem 0 3.5rem; }
+        .cards-3, .cards-2 { grid-template-columns: 1fr; }
+        .facts { grid-template-columns: 1fr; gap: 0; }
+        .item-btn { grid-template-columns: 2.5rem 1fr auto; gap: 0.75rem; padding: 1.25rem 0.15rem; }
+        .item-body { padding-left: 0; }
+        .actions .btn { flex: 1 1 100%; justify-content: center; }
+      }
     </style>
   </head>
+
   <body>
-    <div class="bg-gradient"></div>
-    <div class="page">
-      <div class="announcement-bar">
-        <div class="announcement-inner">
-          <span class="announcement-badge">&#127881; New Launch</span>
-          <span class="announcement-text"><strong>CompareMuffin</strong> is live &mdash; Compare anything, decide faster with AI-powered analysis!</span>
-          <a href="https://comparemuffin.com" target="_blank" class="announcement-link">Try it free <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <script>
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js');
+      }
+    </script>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap">
+        <nav class="nav" aria-label="Primary">
+          <a href="#top" class="brand">
+            <span class="brand-mark" aria-hidden="true">YE</span>
+            <span>
+              <span class="brand-name">Yusuf Erdem Sakın</span>
+              <span class="brand-role">Product Manager</span>
+            </span>
+          </a>
+          <div class="nav-links">
+            <a href="#work" class="nav-link">Work</a>
+            <a href="writings.html" class="nav-link">Writing</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="https://stackmuffin.com" target="_blank" rel="noopener" class="nav-link">StackMuffin<span class="ext" aria-hidden="true">↗</span></a>
+            <a href="#contact" class="nav-cta">Get in touch</a>
+          </div>
+          <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+            <span aria-hidden="true"></span>
+          </button>
+        </nav>
+        <div class="mobile-nav" id="mobile-nav">
+          <a href="#work">Work</a>
+          <a href="writings.html">Writing</a>
+          <a href="projects.html">Projects</a>
+          <a href="https://stackmuffin.com" target="_blank" rel="noopener">StackMuffin ↗</a>
+          <a href="#contact">Get in touch</a>
         </div>
       </div>
-      <header>
-        <div class="container">
-          <nav class="nav">
-            <a href="#" class="logo">
-              <img src="favicon.png" alt="YE" class="logo-mark">
-              <div class="logo-text"><div class="logo-name">Yusuf Erdem Sak&#305;n</div><div class="logo-title">Product Manager</div></div>
-            </a>
-            <div class="nav-links">
-              <a href="#about" class="nav-link">About</a>
-              <a href="#work" class="nav-link">Work</a>
-              <a href="writings.html" class="nav-link">Writings</a>
-              <a href="projects.html" class="nav-link">Projects</a>
-              <a href="https://comparemuffin.com" target="_blank" class="nav-link nav-link-new">CompareMuffin</a>
-              <a href="#contact" class="nav-link nav-link-cta">Let's Talk</a>
+    </header>
+
+    <main id="main">
+      <div id="top"></div>
+
+      <section class="hero">
+        <div class="wrap">
+          <div class="hero-grid">
+            <div>
+              <p class="status"><span class="status-dot" aria-hidden="true"></span><span>Open to consulting conversations</span></p>
+
+              <h1>I design AI agents that survive contact with a <span class="serif">real</span> support desk.</h1>
+
+              <p class="lede">
+                Product manager at <strong>Autom Mate</strong>. I sit between a customer's messy workflow and the
+                engineers building the agent — discovery, solution design, the demo that proves it, and the
+                documentation that makes it repeatable.
+              </p>
+
+              <div class="actions">
+                <a href="#contact" class="btn btn-solid">
+                  Get in touch
+                  <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="https://stackmuffin.com" target="_blank" rel="noopener" class="btn btn-ghost">
+                  <img src="muffin.png" alt="" class="btn-logo" width="20" height="20" />
+                  StackMuffin
+                  <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                </a>
+              </div>
             </div>
-          </nav>
+
+            <aside class="panel" aria-label="Currently">
+              <div class="panel-head"><span class="mono">Currently</span></div>
+              <dl>
+                <div class="panel-row">
+                  <dt>Day job</dt>
+                  <dd>Autom Mate — <span>AI agents, solution design, pre-sales</span></dd>
+                </div>
+                <div class="panel-row">
+                  <dt>Own time</dt>
+                  <dd>StackMuffin — <span>small tools; first one shipped is CompareMuffin</span></dd>
+                </div>
+                <div class="panel-row">
+                  <dt>Based in</dt>
+                  <dd>Çanakkale, Türkiye — <span>remote, GMT+3</span></dd>
+                </div>
+                <div class="panel-row">
+                  <dt>Before this</dt>
+                  <dd>4+ years <span>implementing ITSM platforms</span></dd>
+                </div>
+              </dl>
+              <div class="panel-foot">
+                <span class="chip">AI agents</span>
+                <span class="chip">Orchestration</span>
+                <span class="chip">ITSM</span>
+                <span class="chip">Pre-sales</span>
+                <span class="chip">Automation</span>
+              </div>
+            </aside>
+          </div>
         </div>
-      </header>
-      <main>
-        <section class="hero" id="about">
-          <div class="container"><div class="hero-content">
-            <div class="hero-text">
-              <div class="hero-badge"><span class="hero-badge-dot"></span> Available for AI consulting</div>
-              <h1 class="hero-title">
-                <span class="hero-title-line">I design</span>
-                <span class="hero-title-line hero-title-gradient">AI workflows</span>
-                <span class="hero-title-line">that <span class="hero-title-serif">actually</span> work.</span>
-              </h1>
-              <p class="hero-subtitle">Product Manager at Autom Mate, building AI Agents that transform how support teams operate. Four years turning complex business problems into elegant automation solutions.</p>
-              <div class="hero-cta">
-                <a href="#contact" class="btn btn-primary">Start a Conversation <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-                <a href="https://comparemuffin.com" target="_blank" class="btn btn-secondary">&#9878;&#65039; CompareMuffin</a>
+      </section>
+
+      <section id="work">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <h2>Work</h2>
+            <p>What I actually do, in the order people usually ask about it.</p>
+          </div>
+
+          <div class="work">
+            <article class="item reveal" data-open="false">
+              <button class="item-btn" aria-expanded="false" aria-controls="w1">
+                <span class="item-num">01</span>
+                <span>
+                  <span class="item-kicker">Now</span>
+                  <span class="item-title">Autom Mate — product &amp; pre-sales</span>
+                </span>
+                <span class="item-sign" aria-hidden="true"></span>
+              </button>
+              <div class="item-panel" id="w1" role="region"><div><div class="item-body">
+                <p>
+                  A prospect describes a mess — four hundred tickets a week, three systems that don't talk to each other,
+                  a team that spends its mornings resetting passwords. My job is working out which parts of that an agent
+                  can genuinely take over, which parts it shouldn't touch, and then building the demo that settles the argument.
+                </p>
+                <dl class="facts">
+                  <div><dt>Role</dt><dd>Product Manager</dd></div>
+                  <div><dt>Focus</dt><dd>Enterprise AI agents, pre-sales</dd></div>
+                  <div><dt>Integrations</dt><dd>ServiceNow, Atlassian, Freshdesk, Microsoft</dd></div>
+                  <div><dt>Models</dt><dd>OpenAI, Gemini, Copilot, local LLMs</dd></div>
+                </dl>
+                <ul class="points">
+                  <li>Designing multi-step agents for ticket triage, knowledge search and approvals</li>
+                  <li>Building POCs against the prospect's own data, not a sanitised sample</li>
+                  <li>Working with engineering on what the agent can and can't be trusted to decide</li>
+                  <li>Writing the blueprints and docs that let someone else run it next time</li>
+                </ul>
+              </div></div></div>
+            </article>
+
+            <article class="item reveal" data-open="false">
+              <button class="item-btn" aria-expanded="false" aria-controls="w2">
+                <span class="item-num">02</span>
+                <span>
+                  <span class="item-kicker">Method</span>
+                  <span class="item-title">How I work</span>
+                </span>
+                <span class="item-sign" aria-hidden="true"></span>
+              </button>
+              <div class="item-panel" id="w2" role="region"><div><div class="item-body">
+                <p>
+                  Most AI projects fail on the boring parts: nobody owns the process, the data lives somewhere else,
+                  and nobody defined what "better" would look like. So I start there. The prompt is the last thing
+                  I write, not the first.
+                </p>
+                <dl class="facts">
+                  <div><dt>Starting point</dt><dd>The workflow as it really runs</dd></div>
+                  <div><dt>Sequence</dt><dd>Discovery → design → validate</dd></div>
+                  <div><dt>Who I talk to</dt><dd>IT ops, support leads, the budget holder</dd></div>
+                  <div><dt>Counts as success</dt><dd>Time saved, errors avoided, fewer escalations</dd></div>
+                </dl>
+                <ul class="points">
+                  <li>Map the process as people do it, not as the org chart claims</li>
+                  <li>Find the 20% of tickets causing 80% of the pain and start there</li>
+                  <li>Ship the small, low-risk case first — trust is earned one use case at a time</li>
+                  <li>Measure the baseline before, or you'll never prove the after</li>
+                </ul>
+              </div></div></div>
+            </article>
+
+            <article class="item reveal" data-open="false">
+              <button class="item-btn" aria-expanded="false" aria-controls="w3">
+                <span class="item-num">03</span>
+                <span>
+                  <span class="item-kicker">Before this</span>
+                  <span class="item-title">From implementation to product</span>
+                </span>
+                <span class="item-sign" aria-hidden="true"></span>
+              </button>
+              <div class="item-panel" id="w3" role="region"><div><div class="item-body">
+                <p>
+                  Industrial engineering first, then four years on the implementation side for ITSM vendors.
+                  I spent that time watching enterprise software meet real teams — which is most of what I know
+                  about why automation either sticks or quietly gets abandoned in month three.
+                </p>
+                <dl class="facts">
+                  <div><dt>Education</dt><dd>Industrial engineering</dd></div>
+                  <div><dt>Experience</dt><dd>4+ years in IT</dd></div>
+                  <div><dt>Platforms</dt><dd>ServiceNow, ManageEngine, SolarWinds, Xurrent</dd></div>
+                  <div><dt>Moved into</dt><dd>AI agents and agentic workflows</dd></div>
+                </dl>
+                <ul class="points">
+                  <li>Ran post-sales implementation across 50+ enterprise customers</li>
+                  <li>Moved from support into solution design, then into product</li>
+                  <li>Learned four ITSM platforms well enough to compare them honestly</li>
+                  <li>Now applying that to where agents actually fit in the same workflows</li>
+                </ul>
+              </div></div></div>
+            </article>
+
+            <article class="item reveal" data-open="false">
+              <button class="item-btn" aria-expanded="false" aria-controls="w4">
+                <span class="item-num">04</span>
+                <span>
+                  <span class="item-kicker">Off hours</span>
+                  <span class="item-title">Away from the desk</span>
+                </span>
+                <span class="item-sign" aria-hidden="true"></span>
+              </button>
+              <div class="item-panel" id="w4" role="region"><div><div class="item-body">
+                <p>
+                  Planted aquariums, a guitar, a bike around Çanakkale, and games I lose too many evenings to.
+                  The aquariums are the most useful of the four — a planted tank is a slow system with delayed
+                  feedback and no undo button, which is roughly every automation project I've worked on.
+                </p>
+                <dl class="facts">
+                  <div><dt>Aquariums</dt><dd>Planted tanks, aquascaping</dd></div>
+                  <div><dt>Music</dt><dd>Guitar — rock and metal</dd></div>
+                  <div><dt>Cycling</dt><dd>City rides around Çanakkale</dd></div>
+                  <div><dt>Games</dt><dd>Strategy, FPS, MOBA</dd></div>
+                </dl>
+              </div></div></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="writing">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <h2>Writing</h2>
+            <p>Notes on agents, on the job, and occasionally on neither.</p>
+          </div>
+          <div class="cards-3">
+            <a href="writings.html#a1" class="note reveal">
+              <div class="note-top"><span class="mono">01</span><span class="mono">Published</span></div>
+              <h3>Why most AI chatbots in IT fail</h3>
+              <p>Everyone asks for one bot that knows everything. A narrow agent with one clear job beats it every time.</p>
+              <div class="note-meta"><span>8 min</span><span>Agents</span></div>
+            </a>
+            <a href="writings.html#a2" class="note reveal">
+              <div class="note-top"><span class="mono">02</span><span class="mono">Published</span></div>
+              <h3>Istanbul at 3 AM</h3>
+              <p>The city is a different place when nobody else is using it.</p>
+              <div class="note-meta"><span>5 min</span><span>Life</span></div>
+            </a>
+            <a href="writings.html#a3" class="note reveal">
+              <div class="note-top"><span class="mono">03</span><span class="mono">Published</span></div>
+              <h3>The art of saying "out of scope"</h3>
+              <p>The hardest part of this job isn't technical. It's drawing a line without burning the relationship.</p>
+              <div class="note-meta"><span>6 min</span><span>Work</span></div>
+            </a>
+          </div>
+          <div class="more reveal">
+            <a href="writings.html">
+              All writing
+              <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="wrap">
+          <div class="sec-head reveal">
+            <h2>Building</h2>
+            <p>One thing at work, one thing that's mine.</p>
+          </div>
+          <div class="cards-2">
+            <a href="https://stackmuffin.com" target="_blank" rel="noopener" class="proj reveal">
+              <div class="proj-visual"><span class="plate"><img src="muffin.png" alt="StackMuffin logo" width="68" height="68" loading="lazy" /></span></div>
+              <div class="proj-body">
+                <span class="mono">Side project</span>
+                <h3>StackMuffin</h3>
+                <p>
+                  Where I put my own tools. First one out the door is CompareMuffin — hand it two options and it
+                  comes back with a structured comparison, scores, and the reasoning behind them rather than a shrug.
+                </p>
+                <span class="proj-go">
+                  stackmuffin.com
+                  <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+                </span>
               </div>
-            </div>
-            <div class="hero-card">
-              <div class="floating-element floating-code">&lt;agent/&gt;</div>
-              <div class="floating-element floating-emoji">&#129302;</div>
-              <div class="hero-card-inner">
-                <div class="hero-card-header">
-                  <div class="hero-card-avatar">&#128104;&#8205;&#128187;</div>
-                  <div class="hero-card-info"><h3>Erdem</h3><p>@autommate</p></div>
-                </div>
-                <div class="hero-card-stats">
-                  <div class="stat"><div class="stat-value">4+</div><div class="stat-label">Years in IT</div></div>
-                  <div class="stat"><div class="stat-value">20+</div><div class="stat-label">AI Agents</div></div>
-                  <div class="stat"><div class="stat-value">&infin;</div><div class="stat-label">Curiosity</div></div>
-                </div>
-                <div class="hero-card-tags">
-                  <span class="tag">AI Agents</span><span class="tag">Orchestration</span><span class="tag">ITSM</span><span class="tag">Automation</span><span class="tag">Product</span>
-                </div>
+            </a>
+
+            <a href="projects.html#p2" class="proj reveal">
+              <div class="proj-visual"><span class="plate"><img src="au2.png" alt="Autom Mate logo" width="68" height="68" loading="lazy" /></span></div>
+              <div class="proj-body">
+                <span class="mono">At work</span>
+                <h3>Autom Mate AI Agents</h3>
+                <p>
+                  Ready-to-run agents customers can drop into their own environment — ticket triage, knowledge
+                  search, approvals — instead of building each one from scratch.
+                </p>
+                <span class="proj-go">
+                  View details
+                  <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
               </div>
-            </div>
-          </div></div>
-        </section>
+            </a>
+          </div>
+          <div class="more reveal">
+            <a href="projects.html">
+              All projects
+              <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
 
-        <section id="work">
-          <div class="container">
-            <div class="section-header">
-              <div class="section-label"><span>&#9670;</span> What I Do</div>
-              <h2 class="section-title">Bridging AI &amp; Business Reality</h2>
-              <p class="section-subtitle">I specialize in turning vague &ldquo;we should use AI&rdquo; requests into focused, measurable automation that saves real time for real teams.</p>
+      <section class="contact" id="contact">
+        <div class="wrap">
+          <div class="contact-grid">
+            <div class="reveal">
+              <h2>If you're stuck on the <span class="serif">same</span> problems, say hello.</h2>
+              <p>
+                Agents, workflow automation, an ITSM migration you're dreading, or a second opinion on something
+                half-built — those are the conversations I enjoy most. LinkedIn is the fastest way to reach me.
+              </p>
             </div>
-            <div class="work-grid">
-              <article class="work-card animate-on-scroll stagger-1">
-                <div class="work-card-header" onclick="toggleCard(this)">
-                  <div class="work-card-icon">&#127919;</div>
-                  <div class="work-card-header-content"><span class="work-card-label">Primary Focus</span><h3>AI Agents at Autom Mate</h3></div>
-                  <div class="work-card-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
-                </div>
-                <div class="work-card-body"><div class="work-card-content">
-                  <p class="work-card-description">At Autom Mate, I lead pre-sales and solution design&mdash;transforming customer challenges into end-to-end AI workflows. My work spans ticket triage, knowledge search, approvals, and automations integrated with enterprise tools like ServiceNow, Xurrent, and beyond.</p>
-                  <div class="work-card-details">
-                    <div class="work-card-detail"><div class="work-card-detail-label">Role</div><div class="work-card-detail-value">Product Manager</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">Focus Area</div><div class="work-card-detail-value">Enterprise AI Agents, Presales</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">Integrations</div><div class="work-card-detail-value">ServiceNow, Atlassian, FreshDesk, Microsoft</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">AI Stack</div><div class="work-card-detail-value">OpenAI, Copilot, Gemini, Local LLMs/SLMs</div></div>
-                  </div>
-                  <div class="work-card-highlights"><h4>Key Responsibilities</h4><ul>
-                    <li>Designing multi-step AI agents for IT service management workflows</li>
-                    <li>Building POCs and demos for enterprise prospects</li>
-                    <li>Collaborating with engineering on agent architecture and capabilities</li>
-                    <li>Creating technical documentation and solution blueprints</li>
-                  </ul></div>
-                  <div class="work-card-meta"><span>Agentic Flows</span><span>Orchestration</span><span>IT Ops</span><span>Pre-Sales</span></div>
-                </div></div>
-              </article>
-              <article class="work-card animate-on-scroll stagger-2">
-                <div class="work-card-header" onclick="toggleCard(this)">
-                  <div class="work-card-icon">&#128161;</div>
-                  <div class="work-card-header-content"><span class="work-card-label">My Approach</span><h3>Business-First AI Thinking</h3></div>
-                  <div class="work-card-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
-                </div>
-                <div class="work-card-body"><div class="work-card-content">
-                  <p class="work-card-description">I believe the best AI solutions start with understanding the business, not the technology. Before writing a single prompt or designing an agent, I ask: who owns this process? Where does the data live? What does &ldquo;better&rdquo; actually mean for this team?</p>
-                  <div class="work-card-details">
-                    <div class="work-card-detail"><div class="work-card-detail-label">Philosophy</div><div class="work-card-detail-value">Outcomes over outputs</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">Method</div><div class="work-card-detail-value">Discovery &rarr; Design &rarr; Validate</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">Stakeholders</div><div class="work-card-detail-value">IT Ops, Support Teams, Leadership</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">Success Metric</div><div class="work-card-detail-value">ROI Created, Time Saved, Errors Reduced</div></div>
-                  </div>
-                  <div class="work-card-highlights"><h4>How I Approach Projects</h4><ul>
-                    <li>Map the current workflow before proposing automation</li>
-                    <li>Identify the 20% of work causing 80% of the pain</li>
-                    <li>Start small with high-impact, low-risk use cases</li>
-                    <li>Measure baseline metrics before and after implementation</li>
-                  </ul></div>
-                  <div class="work-card-meta"><span>Outcome-Driven</span><span>Tech &harr; Business</span><span>Practical</span><span>Data-Informed</span></div>
-                </div></div>
-              </article>
-              <article class="work-card animate-on-scroll stagger-3">
-                <div class="work-card-header" onclick="toggleCard(this)">
-                  <div class="work-card-icon">&#128736;&#65039;</div>
-                  <div class="work-card-header-content"><span class="work-card-label">Background</span><h3>Post-Sales to Pre-Sales Journey</h3></div>
-                  <div class="work-card-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
-                </div>
-                <div class="work-card-body"><div class="work-card-content">
-                  <p class="work-card-description">My foundation is industrial engineering&mdash;systems thinking, process optimization, and understanding how things actually work in practice. Over four years, I led post-sales teams for major ITSM vendors.</p>
-                  <div class="work-card-details">
-                    <div class="work-card-detail"><div class="work-card-detail-label">Education</div><div class="work-card-detail-value">Industrial Engineering</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">Experience</div><div class="work-card-detail-value">4+ Years in IT Industry</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">Previous Tools</div><div class="work-card-detail-value">ServiceNow, ManageEngine, SolarWinds, Xurrent</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">Domain</div><div class="work-card-detail-value">AI, Agentic Workflow, Automation</div></div>
-                  </div>
-                  <div class="work-card-highlights"><h4>Career Milestones</h4><ul>
-                    <li>Led post-sales implementation for 50+ enterprise customers</li>
-                    <li>Transitioned from support to solution design and product</li>
-                    <li>Developed expertise across multiple ITSM platforms</li>
-                    <li>Now combining domain knowledge with AI and workflow capabilities</li>
-                  </ul></div>
-                  <div class="work-card-meta"><span>ITSM Tools</span><span>Customer Success</span><span>Implementation</span><span>Support</span></div>
-                </div></div>
-              </article>
-              <article class="work-card animate-on-scroll stagger-4">
-                <div class="work-card-header" onclick="toggleCard(this)">
-                  <div class="work-card-icon">&#127793;</div>
-                  <div class="work-card-header-content"><span class="work-card-label">Beyond Work</span><h3>Life Outside the Screen</h3></div>
-                  <div class="work-card-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></div>
-                </div>
-                <div class="work-card-body"><div class="work-card-content">
-                  <p class="work-card-description">When I'm not designing AI flows, you'll find me maintaining my planted aquariums, playing guitar, cycling around &Ccedil;anakkale, or deep in an immersive game. I believe balance fuels creativity.</p>
-                  <div class="work-card-details">
-                    <div class="work-card-detail"><div class="work-card-detail-label">&#128032; Aquariums</div><div class="work-card-detail-value">Planted tanks, aquascaping</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">&#127928; Music</div><div class="work-card-detail-value">Guitar, Rock &amp; Metal</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">&#128692; Cycling</div><div class="work-card-detail-value">City rides around &Ccedil;anakkale</div></div>
-                    <div class="work-card-detail"><div class="work-card-detail-label">&#127918; Gaming</div><div class="work-card-detail-value">Strategy, FPS, MOBA</div></div>
-                  </div>
-                  <div class="work-card-highlights"><h4>Why These Matter</h4><ul>
-                    <li>Aquariums teach patience and systems thinking</li>
-                    <li>Music provides creative expression and stress relief</li>
-                    <li>Cycling clears the mind and sparks new ideas</li>
-                    <li>Gaming inspires UX thinking and problem-solving</li>
-                  </ul></div>
-                  <div class="work-card-meta"><span>Aquariums &#128032;</span><span>Guitar &#127928;</span><span>Cycling &#128692;</span><span>Gaming &#127918;</span></div>
-                </div></div>
-              </article>
+            <div class="contact-list reveal">
+              <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer" class="contact-row">
+                <span class="contact-icon"><img src="linkedin2.png" alt="" width="20" height="20" /></span>
+                <span class="contact-text"><strong>LinkedIn</strong><span>@yusuferdemsakin</span></span>
+                <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="https://github.com/stackmuffinofficial" target="_blank" rel="noopener noreferrer" class="contact-row">
+                <span class="contact-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.2c-3.34.72-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.3 3.5 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.4 1.24-3.24-.12-.3-.54-1.53.12-3.18 0 0 1-.32 3.3 1.24a11.4 11.4 0 0 1 6 0c2.3-1.56 3.3-1.24 3.3-1.24.66 1.65.24 2.88.12 3.18.77.84 1.24 1.92 1.24 3.24 0 4.63-2.8 5.65-5.48 5.95.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57A12 12 0 0 0 12 .5Z"/></svg>
+                </span>
+                <span class="contact-text"><strong>GitHub</strong><span>@stackmuffinofficial</span></span>
+                <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+    </main>
 
-        <section id="writing">
-          <div class="container">
-            <div class="section-header">
-              <div class="section-label"><span>&#9670;</span> Writings</div>
-              <h2 class="section-title">Things I Write About</h2>
-              <p class="section-subtitle">A mix of technical deep-dives, personal reflections, and random thoughts. No filters, just honest writing.</p>
-            </div>
-            <div class="writing-preview-grid">
-              <a href="writings.html" class="writing-preview-card animate-on-scroll stagger-1">
-                <div class="writing-preview-header"><span class="writing-preview-number">01</span><span class="writing-preview-status">Published</span></div>
-                <h3>Why Most AI Chatbots in IT Fail</h3><p>Everyone wants a magical chatbot. But specialized agents beat generalist bots every time.</p>
-                <div class="writing-preview-meta"><span>8 min read</span><span>AI &amp; Agents</span></div>
-              </a>
-              <a href="writings.html" class="writing-preview-card animate-on-scroll stagger-2">
-                <div class="writing-preview-header"><span class="writing-preview-number">02</span><span class="writing-preview-status">Published</span></div>
-                <h3>Istanbul at 3 AM</h3><p>There is something about the city when everyone else is asleep.</p>
-                <div class="writing-preview-meta"><span>5 min read</span><span>Life</span></div>
-              </a>
-              <a href="writings.html" class="writing-preview-card animate-on-scroll stagger-3">
-                <div class="writing-preview-header"><span class="writing-preview-number">03</span><span class="writing-preview-status">Published</span></div>
-                <h3>The Art of Saying &ldquo;Out of Scope&rdquo;</h3><p>The hardest skill is not technical. It is drawing boundaries without burning bridges.</p>
-                <div class="writing-preview-meta"><span>6 min read</span><span>Work</span></div>
-              </a>
-            </div>
-            <div class="section-cta"><a href="writings.html" class="section-cta-btn">See All Writings <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-          </div>
-        </section>
-
-        <section id="projects">
-          <div class="container">
-            <div class="section-header">
-              <div class="section-label"><span>&#9670;</span> Projects</div>
-              <h2 class="section-title">Things I'm Building</h2>
-              <p class="section-subtitle">A mix of work projects and side experiments that keep me curious and learning.</p>
-            </div>
-            <div class="projects-preview-grid">
-              <a href="https://comparemuffin.com" target="_blank" class="project-card animate-on-scroll stagger-1">
-                <span class="project-new-badge">&#10022; NEW</span>
-                <div class="project-visual"><div class="project-visual-content">&#9878;&#65039;</div></div>
-                <div class="project-info">
-                  <span class="project-label project-label-new">&#128640; Just Launched</span>
-                  <h3>CompareMuffin</h3>
-                  <p>AI-powered comparison tool &mdash; drop two options and get structured analysis with scoring, pros &amp; cons, and real reasoning in seconds.</p>
-                  <span class="project-link">Visit comparemuffin.com <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                </div>
-              </a>
-              <a href="projects.html" class="project-card animate-on-scroll stagger-2">
-                <div class="project-visual"><img src="au2.png" alt="Autom Mate Logo" style="height:120px;width:auto;"></div>
-                <div class="project-info">
-                  <span class="project-label project-label-work">At Work</span>
-                  <h3>Autom Mate AI Agents</h3>
-                  <p>Contributing to ready-to-use AI Agents customers can plug into their environments.</p>
-                  <span class="project-link">View Details <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                </div>
-              </a>
-            </div>
-            <div class="section-cta"><a href="projects.html" class="section-cta-btn">See All Projects <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
-          </div>
-        </section>
-
-        <section class="contact-section" id="contact">
-          <div class="container"><div class="contact-content">
-            <div class="contact-text animate-on-scroll">
-              <h2>Let's build <span>something</span> together.</h2>
-              <p>I'm always open to conversations about AI Agents, workflow automation, or interesting product problems. Let's connect and explore possibilities.</p>
-            </div>
-            <div class="contact-actions animate-on-scroll stagger-1">
-              <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer" class="contact-btn">
-                <div class="contact-btn-icon contact-btn-icon-image"><img src="linkedin2.png" alt="LinkedIn Logo" class="contact-logo"></div>
-                <div class="contact-btn-text"><strong>LinkedIn</strong><span>Connect professionally</span></div>
-                <span class="contact-btn-arrow">&rarr;</span>
-              </a>
-            </div>
-          </div></div>
-        </section>
-      </main>
-      <footer>
-        <div class="container"><div class="footer-content">
-          <div class="footer-copy">&copy; <span id="year"></span> Yusuf Erdem Sak&#305;n &middot; T&uuml;rkiye &#127481;&#127479;</div>
-          <div class="footer-links">
-            <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="writings.html">Writings</a>
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <small>© <span id="year">2026</span> Yusuf Erdem Sakın — Çanakkale, Türkiye</small>
+          <nav aria-label="Footer">
+            <a href="writings.html">Writing</a>
             <a href="projects.html">Projects</a>
+            <a href="https://stackmuffin.com" target="_blank" rel="noopener noreferrer">StackMuffin</a>
             <a href="https://comparemuffin.com" target="_blank" rel="noopener noreferrer">CompareMuffin</a>
             <a href="https://autommate.com" target="_blank" rel="noopener noreferrer">Autom Mate</a>
-          </div>
-        </div></div>
-      </footer>
-    </div>
+            <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <script src="site.js"></script>
     <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-      function toggleCard(header) {
-        var card = header.closest('.work-card');
-        var isActive = card.classList.contains('active');
-        document.querySelectorAll('.work-card').forEach(function(c) { c.classList.remove('active'); });
-        if (!isActive) card.classList.add('active');
-      }
-      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          var target = document.querySelector(this.getAttribute('href'));
-          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // work accordion — one open at a time
+      (function () {
+        var items = Array.prototype.slice.call(document.querySelectorAll('.item'));
+        items.forEach(function (item) {
+          var btn = item.querySelector('.item-btn');
+          btn.addEventListener('click', function () {
+            var willOpen = item.dataset.open !== 'true';
+            items.forEach(function (other) {
+              other.dataset.open = 'false';
+              other.querySelector('.item-btn').setAttribute('aria-expanded', 'false');
+            });
+            item.dataset.open = willOpen ? 'true' : 'false';
+            btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+          });
         });
-      });
-    </script><!-- Mate Chat Widget -->
-<script>
-  (function() {
-    var script = document.createElement('script');
-    script.src = 'https://presales.autommate.app/ai/widget.js';
-    script.setAttribute('data-agent-key', 'pk_live_0ad03402c7bead97457d46bb8d9e6aea18744269a0b6eac6');
-    script.async = true;
-    document.head.appendChild(script);
-  })();
-</script>
+      })();
+    </script>
+
+    <!-- Mate Chat Widget -->
+    <script>
+      (function () {
+        var script = document.createElement('script');
+        script.src = 'https://presales.autommate.app/ai/widget.js';
+        script.setAttribute('data-agent-key', 'pk_live_0ad03402c7bead97457d46bb8d9e6aea18744269a0b6eac6');
+        script.async = true;
+        document.head.appendChild(script);
+      })();
+    </script>
   </body>
 </html>

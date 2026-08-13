@@ -1,324 +1,607 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Projects – Yusuf Erdem Sakın</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Projects and side experiments by Yusuf Erdem Sakın." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-primary: #0a0a0b; --bg-secondary: #111113; --bg-tertiary: #18181b;
-      --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
-      --text-primary: #fafafa; --text-secondary: #a1a1aa; --text-muted: #71717a;
-      --accent-cyan: #22d3ee; --accent-violet: #a78bfa; --accent-pink: #f472b6;
-      --accent-amber: #fbbf24; --accent-emerald: #34d399; --accent-orange: #fb923c;
-      --gradient-main: linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #f472b6 100%);
-      --gradient-subtle: linear-gradient(135deg, rgba(34,211,238,0.12), rgba(167,139,250,0.12), rgba(244,114,182,0.12));
-      --font-display: 'Syne', sans-serif; --font-serif: 'Instrument Serif', Georgia, serif;
-      --font-mono: 'JetBrains Mono', monospace; --font-body: 'Inter', sans-serif;
-      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
-    body{font-family:var(--font-display);background:var(--bg-primary);color:var(--text-primary);-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
-    body.modal-open{overflow:hidden}
-    .bg-gradient{position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(244,114,182,0.12),transparent),radial-gradient(ellipse 60% 40% at 90% 80%,rgba(34,211,238,0.08),transparent),radial-gradient(ellipse 50% 30% at 10% 60%,rgba(167,139,250,0.06),transparent);pointer-events:none;z-index:-1}
-    .orb{position:fixed;border-radius:50%;filter:blur(80px);opacity:0.3;pointer-events:none;z-index:-1;animation:float 20s ease-in-out infinite}
-    .orb-1{width:350px;height:350px;background:var(--accent-pink);top:5%;right:-5%}
-    .orb-2{width:280px;height:280px;background:var(--accent-cyan);bottom:15%;left:-5%;animation-delay:-7s}
-    .orb-3{width:220px;height:220px;background:var(--accent-violet);top:50%;right:20%;animation-delay:-14s}
-    @keyframes float{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(20px,-20px) scale(1.05)}50%{transform:translate(-15px,15px) scale(0.95)}75%{transform:translate(15px,10px) scale(1.02)}}
-    ::selection{background:var(--accent-cyan);color:var(--bg-primary)} a{color:inherit;text-decoration:none}
-    .container{max-width:1000px;margin:0 auto;padding:0 2rem}
-    header{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 0;background:rgba(10,10,11,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-    .nav{display:flex;align-items:center;justify-content:space-between;max-width:1000px;margin:0 auto;padding:0 2rem}
-    .nav-back{display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--text-secondary);transition:all 0.3s ease}
-    .nav-back:hover{color:var(--text-primary)} .nav-back svg{transition:transform 0.3s ease} .nav-back:hover svg{transform:translateX(-4px)}
-    .nav-title{font-weight:600;font-size:0.95rem;background:var(--gradient-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .page-header{padding:9rem 0 3rem;text-align:center}
-    .page-label{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.75rem;font-weight:600;font-family:var(--font-mono);color:var(--accent-pink);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:1.5rem;padding:0.5rem 1rem;background:rgba(244,114,182,0.1);border:1px solid rgba(244,114,182,0.2);border-radius:100px}
-    .page-title{font-size:clamp(2.5rem,6vw,4rem);font-weight:800;letter-spacing:-0.04em;margin-bottom:1.25rem;line-height:1.1}
-    .page-title span{font-family:var(--font-serif);font-weight:400;font-style:italic;background:var(--gradient-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .page-subtitle{font-size:1.1rem;font-family:var(--font-body);color:var(--text-secondary);max-width:550px;margin:0 auto;line-height:1.7}
-    .stats-bar{display:flex;justify-content:center;gap:3rem;margin:2.5rem auto;padding:1.25rem 2rem;background:var(--bg-secondary);border:1px solid var(--border);border-radius:16px;max-width:550px}
-    .stat{text-align:center} .stat-value{font-size:1.5rem;font-weight:800;font-family:var(--font-mono);background:var(--gradient-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .stat-label{font-size:0.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.2rem}
-    .filter-tabs{display:flex;justify-content:center;gap:0.5rem;margin-bottom:3rem;flex-wrap:wrap}
-    .filter-tab{padding:0.55rem 1.1rem;font-size:0.82rem;font-weight:500;font-family:var(--font-body);color:var(--text-muted);background:transparent;border:1px solid var(--border);border-radius:100px;cursor:pointer;transition:all 0.3s ease}
-    .filter-tab:hover{color:var(--text-secondary);border-color:var(--border-hover);background:rgba(255,255,255,0.02)}
-    .filter-tab.active{color:var(--bg-primary);background:var(--text-primary);border-color:var(--text-primary)}
-    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;padding-bottom:6rem}
-    .project-card{background:var(--bg-secondary);border:1px solid var(--border);border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.4s var(--ease-out-expo);position:relative}
-    .project-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:0 25px 50px rgba(0,0,0,0.25)}
-    .project-card:hover .project-visual::before{transform:translateX(100%)} .project-card:hover .project-arrow{transform:translate(3px,-3px);opacity:1}
-    .project-card.featured{grid-column:span 2} .project-card.featured .project-visual{height:200px}
-    .project-visual{height:140px;background:var(--gradient-subtle);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-    .project-visual::before{content:"";position:absolute;inset:0;background:linear-gradient(45deg,transparent 30%,rgba(255,255,255,0.08) 50%,transparent 70%);transform:translateX(-100%);transition:transform 0.6s ease}
-    .project-emoji{font-size:3rem;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.3))}
-    .project-info{padding:1.5rem} .project-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.6rem}
-    .project-type{font-size:0.65rem;font-weight:600;font-family:var(--font-mono);padding:0.3rem 0.65rem;border-radius:100px;text-transform:uppercase;letter-spacing:0.05em}
-    .project-type.side{background:rgba(244,114,182,0.12);color:var(--accent-pink)} .project-type.work{background:rgba(34,211,238,0.12);color:var(--accent-cyan)}
-    .project-type.experiment{background:rgba(167,139,250,0.12);color:var(--accent-violet)} .project-type.oss{background:rgba(52,211,153,0.12);color:var(--accent-emerald)}
-    .project-status{font-size:0.68rem;font-family:var(--font-mono);color:var(--text-muted)} .project-status.live{color:var(--accent-emerald)} .project-status.dev{color:var(--accent-amber)}
-    .project-title{font-size:1.2rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;line-height:1.3}
-    .project-excerpt{font-size:0.88rem;font-family:var(--font-body);color:var(--text-secondary);line-height:1.6;margin-bottom:1rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .project-tech{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1rem}
-    .project-tech span{font-size:0.65rem;font-family:var(--font-mono);padding:0.2rem 0.5rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:5px;color:var(--text-muted)}
-    .project-footer{display:flex;align-items:center;justify-content:space-between;padding-top:0.85rem;border-top:1px solid var(--border)}
-    .project-meta{font-size:0.7rem;font-family:var(--font-mono);color:var(--text-muted)}
-    .project-arrow{width:28px;height:28px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.04);border-radius:6px;color:var(--text-muted);opacity:0.4;transition:all 0.3s ease}
-    .project-arrow svg{width:14px;height:14px}
-    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:1000;opacity:0;visibility:hidden;transition:all 0.4s ease}
-    .modal-overlay.active{opacity:1;visibility:visible}
-    .modal-container{position:fixed;inset:0;z-index:1001;overflow-y:auto;padding:2rem;display:flex;justify-content:center;opacity:0;visibility:hidden;transition:all 0.4s ease}
-    .modal-container.active{opacity:1;visibility:visible}
-    .modal{width:100%;max-width:850px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:24px;margin:auto;position:relative;transform:translateY(30px) scale(0.97);transition:transform 0.5s var(--ease-out-expo);overflow:hidden}
-    .modal-container.active .modal{transform:translateY(0) scale(1)}
-    .modal-close{position:absolute;top:1.25rem;right:1.25rem;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);border:1px solid var(--border);border-radius:10px;color:var(--text-secondary);cursor:pointer;transition:all 0.3s ease;z-index:10}
-    .modal-close:hover{background:rgba(0,0,0,0.7);color:var(--text-primary)}
-    .modal-hero{height:180px;background:var(--gradient-subtle);display:flex;align-items:center;justify-content:center;position:relative}
-    .modal-hero-emoji{font-size:4.5rem;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.4))}
-    .modal-header{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid var(--border)}
-    .modal-label{display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem}
-    .modal-title{font-size:clamp(1.5rem,4vw,2rem);font-weight:800;letter-spacing:-0.03em;line-height:1.25;margin-bottom:0.75rem}
-    .modal-tagline{font-size:1.05rem;font-family:var(--font-body);color:var(--text-secondary);line-height:1.6}
-    .modal-meta{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;margin-top:1.25rem}
-    .modal-meta-item{display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-family:var(--font-body);color:var(--text-secondary)}
-    .modal-meta-item svg{width:14px;height:14px;opacity:0.7}
-    .modal-tech{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.25rem}
-    .modal-tech span{font-size:0.72rem;font-family:var(--font-mono);padding:0.35rem 0.7rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:6px;color:var(--text-muted)}
-    .modal-content{padding:2rem 2.5rem 2.5rem;font-family:var(--font-body);font-size:1rem;line-height:1.8;color:var(--text-secondary)}
-    .modal-content h2{font-family:var(--font-display);font-size:1.25rem;font-weight:700;color:var(--text-primary);margin:2rem 0 0.75rem;letter-spacing:-0.02em}
-    .modal-content h2:first-child{margin-top:0} .modal-content p{margin-bottom:1rem}
-    .modal-content ul,.modal-content ol{margin:1rem 0;padding-left:1.5rem} .modal-content li{margin-bottom:0.5rem}
-    .modal-content .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin:1.5rem 0}
-    .modal-content .feature-item{padding:1rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px}
-    .modal-content .feature-item h4{font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:var(--text-primary);margin-bottom:0.4rem;display:flex;align-items:center;gap:0.5rem}
-    .modal-content .feature-item p{font-size:0.85rem;margin-bottom:0;color:var(--text-muted)}
-    .modal-content .highlight{margin:1.5rem 0;padding:1.25rem;background:linear-gradient(135deg,rgba(34,211,238,0.06),rgba(167,139,250,0.06));border:1px solid var(--border);border-radius:12px}
-    .modal-content .highlight-title{font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:var(--accent-cyan);margin-bottom:0.5rem}
-    .modal-content .highlight p{margin-bottom:0;font-size:0.92rem}
-    .modal-footer{padding:1.5rem 2.5rem;border-top:1px solid var(--border);background:rgba(0,0,0,0.2);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-    .modal-btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.25rem;font-size:0.85rem;font-weight:600;font-family:var(--font-body);border-radius:100px;cursor:pointer;transition:all 0.3s ease;text-decoration:none}
-    .modal-btn.primary{background:var(--text-primary);color:var(--bg-primary);border:none} .modal-btn.primary:hover{transform:scale(1.03)}
-    .modal-btn.secondary{background:transparent;color:var(--text-secondary);border:1px solid var(--border)} .modal-btn.secondary:hover{border-color:var(--border-hover);color:var(--text-primary)}
-    .modal-btn svg{width:14px;height:14px}
-    footer{padding:2rem 0;border-top:1px solid var(--border);text-align:center}
-    .footer-text{font-size:0.85rem;color:var(--text-muted)} .footer-text a{color:var(--text-secondary);transition:color 0.3s ease} .footer-text a:hover{color:var(--accent-cyan)}
-    @media(max-width:768px){.projects-grid{grid-template-columns:1fr}.project-card.featured{grid-column:span 1}.modal-content .feature-grid{grid-template-columns:1fr}.modal-header,.modal-content,.modal-footer{padding-left:1.5rem;padding-right:1.5rem}.modal-container{padding:1rem}.modal-footer{flex-direction:column}.modal-btn{width:100%;justify-content:center}}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-    .project-card{animation:fadeIn 0.5s ease backwards}
-  </style>
-</head>
-<body>
-  <div class="bg-gradient"></div>
-  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
-  <header><nav class="nav">
-    <a href="index.html" class="nav-back"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back to Home</a>
-    <span class="nav-title">Projects</span>
-  </nav></header>
-  <main><div class="container">
-    <div class="page-header">
-      <div class="page-label">&#10022; Portfolio</div>
-      <h1 class="page-title">Things I'm <span>Building</span></h1>
-      <p class="page-subtitle">A mix of work projects, side experiments, and ideas that keep me curious. Click any project to dive deeper.</p>
-      <div class="stats-bar">
-        <div class="stat"><div class="stat-value">6</div><div class="stat-label">Projects</div></div>
-        <div class="stat"><div class="stat-value">3</div><div class="stat-label">Live</div></div>
-        <div class="stat"><div class="stat-value">2</div><div class="stat-label">In Dev</div></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projects — Yusuf Erdem Sakın</title>
+    <meta name="description" content="Projects, side tools and experiments by Yusuf Erdem Sakın — StackMuffin, CompareMuffin, Autom Mate AI agents, and a few things still in the shed." />
+    <link rel="canonical" href="https://erdemsakin.com/projects.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://erdemsakin.com/projects.html" />
+    <meta property="og:title" content="Projects — Yusuf Erdem Sakın" />
+    <meta property="og:description" content="Side tools, work projects and experiments — shipped, in progress, and still just ideas." />
+    <meta property="og:image" content="https://erdemsakin.com/logo.png" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="site.css" />
+
+    <style>
+      .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; padding-bottom: 4.5rem; }
+
+      .card {
+        position: relative; display: flex; flex-direction: column; gap: 0.9rem;
+        padding: 1.5rem; background: var(--surface); border: 1px solid var(--line);
+        border-radius: 14px; cursor: pointer;
+        transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s var(--ease);
+      }
+      .card:hover { border-color: var(--line-hard); background: var(--raised); transform: translateY(-2px); }
+      .card.featured { grid-column: span 2; flex-direction: row; align-items: flex-start; gap: 1.5rem; }
+      .card-main { display: flex; flex-direction: column; gap: 0.55rem; flex: 1; min-width: 0; }
+
+      /* title button stretches over the whole card, so the card is clickable
+         but keyboard users still get one real control with a heading around it */
+      .card-open {
+        font: inherit; color: inherit; background: none; border: 0; padding: 0;
+        text-align: left; cursor: pointer;
+      }
+      .card-open::after { content: ''; position: absolute; inset: 0; border-radius: 14px; }
+      .card-open:focus { outline: none; }
+      .card-open:focus-visible::after { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+      .mark {
+        width: 54px; height: 54px; border-radius: 14px; flex-shrink: 0;
+        display: flex; align-items: center; justify-content: center;
+        border: 1px solid var(--line); background: var(--raised);
+        font-family: var(--display); font-size: 0.95rem; font-weight: 600; color: var(--ink-2);
+        letter-spacing: 0.01em; transition: border-color 0.25s ease;
+      }
+      .mark.plate { background: #f7f7f8; border-color: transparent; }
+      .mark img { width: 36px; height: 36px; object-fit: contain; }
+      .card:hover .mark { border-color: var(--line-hard); }
+      .card.featured .mark { width: 76px; height: 76px; border-radius: 18px; }
+      .card.featured .mark img { width: 50px; height: 50px; }
+
+      .card-tags { display: flex; align-items: center; gap: 0.55rem; flex-wrap: wrap; }
+      .pill {
+        font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase;
+        padding: 0.22rem 0.5rem; border: 1px solid var(--line); border-radius: 5px; color: var(--ink-3);
+      }
+      .pill.live { color: var(--accent); border-color: rgba(60, 191, 154, 0.35); }
+      .card h2 { font-size: 1.08rem; font-weight: 600; }
+      .card:hover h2 { color: var(--accent); }
+      .card h2, .card-open { transition: color 0.22s ease; }
+      .card.featured h2 { font-size: 1.45rem; }
+      .card p { font-size: 0.9rem; color: var(--ink-2); line-height: 1.65; }
+      .card-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: auto; padding-top: 0.55rem; }
+      .stack { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+      .stack span { font-family: var(--mono); font-size: 0.65rem; color: var(--ink-3); padding: 0.2rem 0.45rem; border: 1px solid var(--line-soft); border-radius: 5px; }
+      .year { font-family: var(--mono); font-size: 0.68rem; color: var(--ink-3); white-space: nowrap; }
+
+      .empty { padding: 3rem 0; color: var(--ink-3); font-size: 0.92rem; }
+
+      /* ---------- detail dialog ---------- */
+      .scrim {
+        position: fixed; inset: 0; z-index: 100; background: rgba(5, 5, 6, 0.72);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+      }
+      .scrim.on { opacity: 1; pointer-events: auto; }
+      .sheet {
+        position: fixed; inset: 0; z-index: 101; display: flex; align-items: flex-start;
+        justify-content: center; padding: 4.5rem 1.5rem 3rem; overflow-y: auto;
+        opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+      }
+      .sheet.on { opacity: 1; pointer-events: auto; }
+      .sheet[hidden] { display: none; }
+      .sheet-inner {
+        width: 100%; max-width: 760px; background: var(--surface); border: 1px solid var(--line);
+        border-radius: 18px; overflow: hidden; transform: translateY(14px) scale(0.99);
+        transition: transform 0.35s var(--ease);
+      }
+      .sheet.on .sheet-inner { transform: none; }
+      .sheet-top { display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.75rem 1.75rem 1.5rem; border-bottom: 1px solid var(--line-soft); }
+      .sheet-top .mark { width: 62px; height: 62px; border-radius: 16px; }
+      .sheet-top .mark img { width: 42px; height: 42px; }
+      .sheet-title { flex: 1; min-width: 0; }
+      .sheet-title h2 { font-size: 1.55rem; font-weight: 600; margin: 0.4rem 0 0.5rem; }
+      .sheet-title .tagline { font-size: 0.96rem; color: var(--ink-2); line-height: 1.65; }
+      .close {
+        width: 36px; height: 36px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+        background: none; border: 1px solid var(--line); border-radius: 9px; color: var(--ink-2); cursor: pointer;
+        transition: border-color 0.2s ease, color 0.2s ease;
+      }
+      .close:hover { border-color: var(--accent); color: var(--accent); }
+
+      .sheet-meta { display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--line-soft); }
+      .sheet-body { padding: 1.75rem; }
+      .sheet-body h3 {
+        font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--ink-3); margin: 2rem 0 0.85rem; font-weight: 500;
+      }
+      .sheet-body h3:first-child { margin-top: 0; }
+      .sheet-body p { font-size: 0.97rem; color: var(--ink-2); line-height: 1.8; margin-bottom: 1rem; }
+      .sheet-body p strong, .sheet-body li strong { color: var(--ink); font-weight: 500; }
+      .sheet-body ul { list-style: none; display: grid; gap: 0.6rem; margin-bottom: 1rem; }
+      .sheet-body li { position: relative; padding-left: 1.4rem; font-size: 0.94rem; color: var(--ink-2); line-height: 1.7; }
+      .sheet-body li::before { content: ''; position: absolute; left: 0; top: 0.8em; width: 8px; height: 1px; background: var(--accent); }
+      .duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+      .duo div { padding: 1rem 1.15rem; border: 1px solid var(--line-soft); border-radius: 11px; background: var(--bg); }
+      .duo h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.3rem; }
+      .duo p { font-size: 0.86rem; margin: 0; }
+      .aside {
+        padding: 1.15rem 1.35rem; margin-bottom: 1rem; border-radius: 11px;
+        background: var(--accent-soft); border: 1px solid rgba(60, 191, 154, 0.22);
+      }
+      .aside .aside-title { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+      .aside p { margin: 0; font-size: 0.92rem; }
+
+      .sheet-foot { display: flex; flex-wrap: wrap; gap: 0.7rem; padding: 1.5rem 1.75rem; border-top: 1px solid var(--line-soft); background: rgba(255, 255, 255, 0.015); }
+
+      body.locked { overflow: hidden; }
+
+      @media (max-width: 980px) {
+        .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .card.featured { grid-column: span 2; }
+      }
+      @media (max-width: 640px) {
+        .grid { grid-template-columns: 1fr; }
+        .card.featured { grid-column: span 1; flex-direction: column; }
+        .card.featured .mark { width: 54px; height: 54px; border-radius: 14px; }
+        .card.featured .mark img { width: 36px; height: 36px; }
+        .card.featured h2 { font-size: 1.2rem; }
+        .duo { grid-template-columns: 1fr; }
+        .sheet { padding: 3.25rem 0.85rem 2rem; }
+        .sheet-top, .sheet-meta, .sheet-body, .sheet-foot { padding-left: 1.25rem; padding-right: 1.25rem; }
+        .sheet-foot .btn { flex: 1 1 100%; justify-content: center; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <script>
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js');
+      }
+    </script>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap">
+        <nav class="nav" aria-label="Primary">
+          <a href="index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true">YE</span>
+            <span>
+              <span class="brand-name">Yusuf Erdem Sakın</span>
+              <span class="brand-role">Product Manager</span>
+            </span>
+          </a>
+          <div class="nav-links">
+            <a href="index.html#work" class="nav-link">Work</a>
+            <a href="writings.html" class="nav-link">Writing</a>
+            <a href="projects.html" class="nav-link" aria-current="page">Projects</a>
+            <a href="https://stackmuffin.com" target="_blank" rel="noopener" class="nav-link">StackMuffin<span class="ext" aria-hidden="true">↗</span></a>
+            <a href="index.html#contact" class="nav-cta">Get in touch</a>
+          </div>
+          <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+            <span aria-hidden="true"></span>
+          </button>
+        </nav>
+        <div class="mobile-nav" id="mobile-nav">
+          <a href="index.html#work">Work</a>
+          <a href="writings.html">Writing</a>
+          <a href="projects.html">Projects</a>
+          <a href="https://stackmuffin.com" target="_blank" rel="noopener">StackMuffin ↗</a>
+          <a href="index.html#contact">Get in touch</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <div class="masthead">
+        <div class="wrap">
+          <a href="index.html" class="crumb">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to home
+          </a>
+          <h1>Things I've built, and things I keep meaning to finish.</h1>
+          <p class="lede">
+            Shipped tools, work I contribute to, and experiments that may never leave the shed. Open any card
+            for the longer version — what the problem was, what I did about it, and what I'd do differently.
+          </p>
+          <dl class="tally" id="tally"></dl>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="filters" id="filters" role="group" aria-label="Filter projects">
+          <button class="filter" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" data-filter="side" aria-pressed="false">Side projects</button>
+          <button class="filter" data-filter="work" aria-pressed="false">At work</button>
+          <button class="filter" data-filter="experiment" aria-pressed="false">Experiments</button>
+        </div>
+        <div class="grid" id="grid"></div>
+        <p class="empty" id="empty" hidden>Nothing in this category yet.</p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <small>© <span id="year">2026</span> Yusuf Erdem Sakın — Çanakkale, Türkiye</small>
+          <nav aria-label="Footer">
+            <a href="index.html">Home</a>
+            <a href="writings.html">Writing</a>
+            <a href="https://stackmuffin.com" target="_blank" rel="noopener noreferrer">StackMuffin</a>
+            <a href="https://comparemuffin.com" target="_blank" rel="noopener noreferrer">CompareMuffin</a>
+            <a href="https://autommate.com" target="_blank" rel="noopener noreferrer">Autom Mate</a>
+            <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <div class="scrim" id="scrim"></div>
+    <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-h" hidden>
+      <div class="sheet-inner">
+        <div class="sheet-top">
+          <span class="mark" id="sheet-mark"></span>
+          <div class="sheet-title">
+            <div class="card-tags" id="sheet-tags"></div>
+            <h2 id="sheet-h"></h2>
+            <p class="tagline" id="sheet-tagline"></p>
+          </div>
+          <button class="close" id="sheet-close" aria-label="Close">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="sheet-meta" id="sheet-meta"></div>
+        <div class="sheet-body" id="sheet-body"></div>
+        <div class="sheet-foot" id="sheet-foot"></div>
       </div>
     </div>
-    <div class="filter-tabs">
-      <button class="filter-tab active" data-filter="all">All</button>
-      <button class="filter-tab" data-filter="side">Side Projects</button>
-      <button class="filter-tab" data-filter="work">Work</button>
-      <button class="filter-tab" data-filter="experiment">Experiments</button>
-    </div>
-    <div class="projects-grid" id="projects-grid"></div>
-  </div></main>
-  <div class="modal-overlay" id="modal-overlay"></div>
-  <div class="modal-container" id="modal-container">
-    <div class="modal" id="modal">
-      <button class="modal-close" id="modal-close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-      <div class="modal-hero" id="modal-hero"></div>
-      <div class="modal-header" id="modal-header"></div>
-      <div class="modal-content" id="modal-content"></div>
-      <div class="modal-footer" id="modal-footer"></div>
-    </div>
-  </div>
-  <footer><div class="container"><p class="footer-text">&copy; <span id="year"></span> Yusuf Erdem Sakin &middot; <a href="index.html">Back to Home</a> &middot; <a href="https://comparemuffin.com" target="_blank">CompareMuffin</a></p></div></footer>
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
 
-    var projects = [
-      {
-        id: 1,
-        featured: true,
-        type: "side",
-        typeLabel: "Side Project",
-        status: "live",
-        statusLabel: "Live",
-        emoji: "&#9878;&#65039;",
-        title: "CompareMuffin",
-        tagline: "AI-powered comparison tool that lets you compare anything — products, tools, ideas, career paths — and get structured analysis with scoring and real reasoning.",
-        excerpt: "Compare anything you need to and generate extensive AI-powered reports about your options in seconds.",
-        tech: ["AI", "Next.js", "React", "API", "Anthropic", "Tailwind"],
-        year: "2025-Present",
-        links: {
-          live: "https://comparemuffin.com",
-          github: null
-        },
-        content: "<h2>The Problem</h2><p>Every day we face decisions: which tool to use, which career path to take, which product to buy. We spend hours reading reviews, comparing specs, and still feel uncertain. Most comparison sites are either biased, incomplete, or only cover specific product categories.</p><h2>The Solution</h2><p>CompareMuffin lets you drop in any two options and get a structured AI analysis instantly:</p><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#9878;&#65039; Compare Anything</h4><p>Products, tools, ideas, career paths, decisions &mdash; no category limits</p></div><div class=\"feature-item\"><h4>&#127919; Smart Verdicts</h4><p>AI-powered winner selection with confidence scoring and reasoning</p></div><div class=\"feature-item\"><h4>&#128200; Scoring Matrix</h4><p>Detailed breakdown across multiple dimensions with HIGH/MED/LOW ratings</p></div><div class=\"feature-item\"><h4>&#128274; Full Reports</h4><p>Comprehensive pros/cons, key differences, and actionable insights</p></div></div><h2>How It Works</h2><ul><li><strong>Drop two options:</strong> Type in anything you want to compare</li><li><strong>AI analyzes:</strong> Structured reasoning across multiple dimensions</li><li><strong>Get your verdict:</strong> Clear winner with confidence level and category tags</li><li><strong>Dive deeper:</strong> Unlock full scoring matrix and detailed reasoning</li></ul><div class=\"highlight\"><div class=\"highlight-title\">Current Status</div><p>CompareMuffin is live and free to use! No signup required to try it. Google sign-in available to save your comparisons.</p></div><h2>Why I Built This</h2><p>I found myself constantly asking AI chatbots to compare things for me, but the responses were always unstructured walls of text. CompareMuffin takes that same AI power and wraps it in a clean, structured format that actually helps you decide.</p>"
-      },
-      {
-        id: 2,
-        featured: false,
-        type: "work",
-        typeLabel: "At Work",
-        status: "live",
-        statusLabel: "Active",
-        emoji: "&#129302;",
-        title: "Autom Mate AI Agents",
-        tagline: "Ready-to-use AI Agents that customers can plug into their IT environments.",
-        excerpt: "Contributing to AI Agents for support flows, approvals, ticket analysis, and more.",
-        tech: ["AI Agents", "OpenAI", "LangChain", "ServiceNow", "Xurrent", "Python"],
-        year: "2023-Present",
-        links: {
-          live: "https://autommate.com",
-          github: null
-        },
-        content: "<h2>What We Build</h2><p>At Autom Mate, I work on the AI Agent capabilities that help IT teams automate their workflows. These are not chatbots that answer questions. They are agents that actually do things.</p><h2>Agent Types</h2><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#127919; Ticket Triage Agent</h4><p>Automatically classifies, prioritizes, and routes incoming tickets</p></div><div class=\"feature-item\"><h4>&#128218; Knowledge Agent</h4><p>Searches internal docs and past tickets to suggest solutions</p></div><div class=\"feature-item\"><h4>&#9989; Approval Agent</h4><p>Handles change management workflows and collects approvals</p></div><div class=\"feature-item\"><h4>&#128202; Analytics Agent</h4><p>Generates insights from ticket patterns and team performance</p></div></div><h2>My Contributions</h2><p>I focus on the integration layer, specifically how these agents connect to existing ITSM platforms without requiring customers to change their workflows:</p><ul><li>Designing the ServiceNow and Xurrent connectors</li><li>Building the orchestration logic that coordinates multiple agents</li><li>Creating the confidence scoring system that knows when to escalate to humans</li><li>Working with customers to understand real-world edge cases</li></ul><div class=\"highlight\"><div class=\"highlight-title\">Philosophy</div><p>The best AI agents are invisible. Users should not have to think about using AI. They should just notice that tickets get resolved faster and less manual work is required.</p></div><h2>What I Have Learned</h2><p>Enterprise AI is 20% model work and 80% integration work. The LLM is the easy part. Getting data in and out of legacy systems, handling authentication, managing rate limits, dealing with inconsistent data, that is where the real challenges live.</p>"
-      },
-      {
-        id: 3,
-        featured: false,
-        type: "side",
-        typeLabel: "Side Project",
-        status: "live",
-        statusLabel: "Live",
-        emoji: "&#127760;",
-        title: "Personal Website",
-        tagline: "This very site you are looking at! A personal portfolio and blog.",
-        excerpt: "Built with vanilla HTML/CSS/JS because sometimes you do not need a framework.",
-        tech: ["HTML", "CSS", "JavaScript", "No Framework"],
-        year: "2024",
-        links: {
-          live: null,
-          github: null
-        },
-        content: "<h2>Why Build From Scratch?</h2><p>I could have used Next.js, Astro, or any of the dozen static site generators out there. Instead, I wrote vanilla HTML, CSS, and JavaScript.</p><p>Why? A few reasons:</p><ul><li><strong>Performance:</strong> Zero JavaScript framework overhead. The page loads instantly.</li><li><strong>Simplicity:</strong> No build step. Edit a file, refresh the browser. Done.</li><li><strong>Learning:</strong> It is easy to forget the fundamentals when you always reach for frameworks.</li><li><strong>Control:</strong> Every line of code is mine. No fighting with framework opinions.</li></ul><div class=\"highlight\"><div class=\"highlight-title\">No Dependencies</div><p>The entire site has zero npm packages, zero build tools, and zero JavaScript frameworks. Just files served by a static host.</p></div>"
-      },
-      {
-        id: 4,
-        featured: false,
-        type: "experiment",
-        typeLabel: "Experiment",
-        status: "dev",
-        statusLabel: "Exploring",
-        emoji: "&#129514;",
-        title: "AI Prompt Library",
-        tagline: "A personal collection of effective prompts and patterns for building AI agents.",
-        excerpt: "Documenting what actually works when building LLM-powered applications.",
-        tech: ["Prompt Engineering", "LangChain", "GPT-4", "Claude", "Documentation"],
-        year: "2024",
-        links: {
-          live: null,
-          github: null
-        },
-        content: "<h2>The Motivation</h2><p>After building dozens of AI features, I noticed I was solving the same problems over and over. This library is my attempt to document what actually works.</p><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#127919; Classification</h4><p>Patterns for categorizing text, intent detection, sentiment analysis</p></div><div class=\"feature-item\"><h4>&#128221; Extraction</h4><p>Pulling structured data from unstructured text reliably</p></div><div class=\"feature-item\"><h4>&#129504; Reasoning</h4><p>Chain-of-thought, self-critique, and multi-step problem solving</p></div><div class=\"feature-item\"><h4>&#128172; Conversation</h4><p>Context management, persona consistency, graceful topic switching</p></div></div><h2>Status</h2><p>Currently a private Notion database. Considering turning it into a public resource once I have enough patterns documented and tested.</p>"
-      },
-      {
-        id: 5,
-        featured: false,
-        type: "experiment",
-        typeLabel: "Experiment",
-        status: "idea",
-        statusLabel: "Planning",
-        emoji: "&#128202;",
-        title: "ITSM Analytics Dashboard",
-        tagline: "A unified dashboard that aggregates metrics from multiple ITSM tools.",
-        excerpt: "Concept for showing the real health of IT operations across platforms.",
-        tech: ["Data Viz", "API Integration", "React", "D3.js", "Multi-tenant"],
-        year: "Idea",
-        links: {
-          live: null,
-          github: null
-        },
-        content: "<h2>The Problem</h2><p>Enterprise IT teams often use multiple ITSM tools. Getting a unified view of IT health requires logging into three different dashboards and mentally combining the data.</p><h2>The Vision</h2><p>A single dashboard that pulls from all your ITSM tools and shows incident velocity, resolution times, team workload, SLA compliance, and patterns.</p><div class=\"highlight\"><div class=\"highlight-title\">Looking for Feedback</div><p>If you work in IT operations and this sounds useful (or useless), I would love to hear your thoughts.</p></div>"
-      },
-      {
-        id: 6,
-        featured: false,
-        type: "experiment",
-        typeLabel: "Experiment",
-        status: "dev",
-        statusLabel: "Building",
-        emoji: "&#127968;",
-        title: "Home Automation Hub",
-        tagline: "My over-engineered smart home setup documented as a learning project.",
-        excerpt: "Home Assistant, Zigbee sensors, and way too many automations.",
-        tech: ["Home Assistant", "Node-RED", "Zigbee", "MQTT", "Raspberry Pi"],
-        year: "Ongoing",
-        links: {
-          live: null,
-          github: null
-        },
-        content: "<h2>The Setup</h2><p>What started as \"I just want to control one light\" has evolved into a full home automation obsession.</p><div class=\"feature-grid\"><div class=\"feature-item\"><h4>&#127769; Sleep Mode</h4><p>Lights gradually dim starting at 9 PM</p></div><div class=\"feature-item\"><h4>&#9749; Morning Coffee</h4><p>Coffee maker starts when my alarm is dismissed</p></div><div class=\"feature-item\"><h4>&#128682; Away Mode</h4><p>Leaving home checks all doors and turns everything off</p></div><div class=\"feature-item\"><h4>&#127908; Meeting Mode</h4><p>Mutes notifications and adjusts lighting during meetings</p></div></div><div class=\"highlight\"><div class=\"highlight-title\">Why Document This?</div><p>Smart home stuff is a great playground for learning about event-driven architecture and state machines.</p></div>"
-      }
-    ];
+    <script src="site.js"></script>
+    <script>
+      (function () {
+        'use strict';
 
-    var projectsGrid = document.getElementById("projects-grid");
-    function renderProjects(filter) {
-      filter = filter || "all";
-      projectsGrid.innerHTML = "";
-      var filtered = filter === "all" ? projects : projects.filter(function(p) { return p.type === filter; });
-      filtered.forEach(function(project, index) {
-        var card = document.createElement("article");
-        card.className = "project-card" + (project.featured ? " featured" : "");
-        card.dataset.type = project.type; card.dataset.id = project.id;
-        card.style.animationDelay = (0.05 + index * 0.05) + "s";
-        var statusClass = project.status === "live" ? " live" : (project.status === "dev" ? " dev" : "");
-        card.innerHTML =
-          "<div class=\"project-visual\"><div class=\"project-emoji\">" + project.emoji + "</div></div>" +
-          "<div class=\"project-info\">" +
-            "<div class=\"project-header\"><span class=\"project-type " + project.type + "\">" + project.typeLabel + "</span><span class=\"project-status" + statusClass + "\">" + project.statusLabel + "</span></div>" +
-            "<h3 class=\"project-title\">" + project.title + "</h3>" +
-            "<p class=\"project-excerpt\">" + project.excerpt + "</p>" +
-            "<div class=\"project-tech\">" + project.tech.slice(0,4).map(function(t){return "<span>"+t+"</span>"}).join("") + "</div>" +
-            "<div class=\"project-footer\"><span class=\"project-meta\">" + project.year + "</span>" +
-              "<div class=\"project-arrow\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></div>" +
-            "</div></div>";
-        card.addEventListener("click", function() { openModal(project); });
-        projectsGrid.appendChild(card);
-      });
-    }
-    renderProjects();
-    var filterTabs = document.querySelectorAll(".filter-tab");
-    filterTabs.forEach(function(tab) {
-      tab.addEventListener("click", function() {
-        filterTabs.forEach(function(t){t.classList.remove("active")}); tab.classList.add("active");
-        renderProjects(tab.dataset.filter);
-      });
-    });
-    var modalOverlay=document.getElementById("modal-overlay"),modalContainer=document.getElementById("modal-container"),modalHero=document.getElementById("modal-hero"),modalHeader=document.getElementById("modal-header"),modalContent=document.getElementById("modal-content"),modalFooter=document.getElementById("modal-footer"),modalClose=document.getElementById("modal-close");
-    function openModal(project) {
-      var statusClass = project.status==="live"?" live":(project.status==="dev"?" dev":"");
-      modalHero.innerHTML="<div class=\"modal-hero-emoji\">"+project.emoji+"</div>";
-      modalHeader.innerHTML="<div class=\"modal-label\"><span class=\"project-type "+project.type+"\">"+project.typeLabel+"</span><span class=\"project-status"+statusClass+"\">"+project.statusLabel+"</span></div><h1 class=\"modal-title\">"+project.title+"</h1><p class=\"modal-tagline\">"+project.tagline+"</p><div class=\"modal-meta\"><div class=\"modal-meta-item\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"></rect><line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"></line><line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"></line><line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"></line></svg>"+project.year+"</div></div><div class=\"modal-tech\">"+project.tech.map(function(t){return"<span>"+t+"</span>"}).join("")+"</div>";
-      modalContent.innerHTML=project.content;
-      var footerHtml="";
-      if(project.links.live){footerHtml+="<a href=\""+project.links.live+"\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"modal-btn primary\">Visit Live Site <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 17L17 7M17 7H7M17 7v10\"/></svg></a>";}
-      if(project.links.github){footerHtml+="<a href=\""+project.links.github+"\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"modal-btn secondary\">View on GitHub</a>";}
-      if(!project.links.live&&!project.links.github){footerHtml="<span class=\"modal-btn secondary\" style=\"cursor:default;opacity:0.6\">Links coming soon</span>";}
-      modalFooter.innerHTML=footerHtml;
-      document.body.classList.add("modal-open"); modalOverlay.classList.add("active"); modalContainer.classList.add("active");
-    }
-    function closeModal(){document.body.classList.remove("modal-open");modalOverlay.classList.remove("active");modalContainer.classList.remove("active")}
-    modalOverlay.addEventListener("click",closeModal); modalClose.addEventListener("click",closeModal);
-    modalContainer.addEventListener("click",function(e){if(e.target===modalContainer)closeModal()});
-    document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});
-  </script>
-</body>
+        var projects = [
+          {
+            id: 'p1',
+            featured: true,
+            type: 'side',
+            typeLabel: 'Side project',
+            status: 'live',
+            statusLabel: 'Live',
+            logo: 'muffin.png',
+            title: 'StackMuffin',
+            tagline: 'The place I put my own tools, so they stop living in a folder called "new folder (3)".',
+            excerpt: 'My own small software shop. First thing out the door is CompareMuffin.',
+            stack: ['Next.js', 'React', 'Anthropic API', 'Tailwind', 'Vercel'],
+            year: '2025 — present',
+            links: { live: 'https://stackmuffin.com', label: 'stackmuffin.com' },
+            body:
+              '<h3>Why it exists</h3>' +
+              '<p>I kept building small things to scratch my own itch and then abandoning them on a hard drive. ' +
+              'StackMuffin is the shelf I put them on — a single place with a name, so finishing something has a point.</p>' +
+              '<h3>What is on it</h3>' +
+              '<div class="duo">' +
+                '<div><h4>CompareMuffin</h4><p>Structured AI comparisons between any two options. Live and free to try.</p></div>' +
+                '<div><h4>Next up</h4><p>Small utilities from the same instinct: take a thing I do manually, make it one click.</p></div>' +
+              '</div>' +
+              '<h3>The rule I set myself</h3>' +
+              '<p>Anything that ships has to be useful to me first. If I would not open it twice in a week, it does not go up.</p>'
+          },
+          {
+            id: 'p2',
+            featured: false,
+            type: 'work',
+            typeLabel: 'At work',
+            status: 'live',
+            statusLabel: 'Active',
+            logo: 'au2.png',
+            title: 'Autom Mate AI Agents',
+            tagline: 'Ready-to-run agents that IT teams can drop into the stack they already have.',
+            excerpt: 'Agents for triage, knowledge search, approvals and analysis — built to fit existing ITSM tools.',
+            stack: ['AI agents', 'OpenAI', 'ServiceNow', 'Xurrent', 'Python'],
+            year: '2023 — present',
+            links: { live: 'https://autommate.com', label: 'autommate.com' },
+            body:
+              '<h3>What we build</h3>' +
+              '<p>These are not chatbots that answer questions. They are agents that do things — read a ticket, ' +
+              'decide what it is, find the fix, route it, and know when to stop and ask a human.</p>' +
+              '<h3>The agents</h3>' +
+              '<div class="duo">' +
+                '<div><h4>Triage</h4><p>Classifies, prioritises and routes incoming tickets</p></div>' +
+                '<div><h4>Knowledge</h4><p>Searches internal docs and past tickets for a working answer</p></div>' +
+                '<div><h4>Approval</h4><p>Runs change-management workflows and chases sign-off</p></div>' +
+                '<div><h4>Analytics</h4><p>Turns ticket patterns into something a team lead can act on</p></div>' +
+              '</div>' +
+              '<h3>Where I sit</h3>' +
+              '<p>Mostly the integration layer — how agents connect to what the customer already runs, without asking ' +
+              'them to change how they work:</p>' +
+              '<ul>' +
+                '<li>Designing the ServiceNow and Xurrent connectors</li>' +
+                '<li>Orchestration logic that coordinates several agents on one ticket</li>' +
+                '<li>Confidence scoring, so the agent escalates instead of guessing</li>' +
+                '<li>Sitting with customers to find the edge cases nobody documented</li>' +
+              '</ul>' +
+              '<div class="aside"><div class="aside-title">What I have learned</div>' +
+              '<p>Enterprise AI is about 20% model work and 80% plumbing. The LLM is the easy part. Getting data in ' +
+              'and out of systems built in 2011 is where the project actually lives or dies.</p></div>'
+          },
+          {
+            id: 'p3',
+            featured: false,
+            type: 'side',
+            typeLabel: 'Side project',
+            status: 'live',
+            statusLabel: 'Live',
+            monogram: 'CM',
+            title: 'CompareMuffin',
+            tagline: 'Hand it two options and get a structured comparison instead of a wall of text.',
+            excerpt: 'AI comparisons with scoring, a verdict, and the reasoning behind it. No signup to try.',
+            stack: ['Next.js', 'React', 'Anthropic API', 'Tailwind'],
+            year: '2025 — present',
+            links: { live: 'https://comparemuffin.com', label: 'comparemuffin.com' },
+            body:
+              '<h3>The problem</h3>' +
+              '<p>Every day is a small pile of decisions: which tool, which plan, which path. Most comparison sites ' +
+              'are either selling something, only cover one category, or stop at a spec table.</p>' +
+              '<h3>What it does</h3>' +
+              '<div class="duo">' +
+                '<div><h4>Compare anything</h4><p>Products, tools, ideas, career paths — no category limits</p></div>' +
+                '<div><h4>A verdict</h4><p>A winner with a confidence level, not a diplomatic non-answer</p></div>' +
+                '<div><h4>Scoring matrix</h4><p>Broken down by dimension so you can disagree with a specific line</p></div>' +
+                '<div><h4>Full report</h4><p>Pros, cons, key differences, and what would change the answer</p></div>' +
+              '</div>' +
+              '<h3>Why I built it</h3>' +
+              '<p>I was already asking chatbots to compare things for me, and getting back unstructured paragraphs I ' +
+              'had to re-read twice. Same model, better container.</p>' +
+              '<div class="aside"><div class="aside-title">Status</div>' +
+              '<p>Live and free to try, no signup. Google sign-in if you want to keep your comparisons.</p></div>'
+          },
+          {
+            id: 'p4',
+            featured: false,
+            type: 'side',
+            typeLabel: 'Side project',
+            status: 'live',
+            statusLabel: 'Live',
+            monogram: 'YE',
+            title: 'This website',
+            tagline: 'Hand-written HTML, CSS and JavaScript. No framework, no build step, no node_modules.',
+            excerpt: 'Vanilla everything, because a personal site does not need a toolchain.',
+            stack: ['HTML', 'CSS', 'JavaScript', 'GitHub Pages'],
+            year: '2024 — present',
+            links: { live: null, label: null },
+            body:
+              '<h3>Why from scratch</h3>' +
+              '<p>I could have reached for Next.js or Astro. I wrote it by hand instead, for reasons that still hold up:</p>' +
+              '<ul>' +
+                '<li><strong>Speed:</strong> no framework payload, so the page is there before you notice it loading</li>' +
+                '<li><strong>Simplicity:</strong> edit a file, refresh the browser, done</li>' +
+                '<li><strong>Practice:</strong> it is easy to forget the fundamentals when you always reach for a framework</li>' +
+                '<li><strong>Control:</strong> every line is mine, and nothing has an opinion I have to argue with</li>' +
+              '</ul>' +
+              '<div class="aside"><div class="aside-title">Dependency count</div>' +
+              '<p>Zero npm packages, zero build tools, zero frameworks. Four static files and a stylesheet.</p></div>'
+          },
+          {
+            id: 'p5',
+            featured: false,
+            type: 'experiment',
+            typeLabel: 'Experiment',
+            status: 'dev',
+            statusLabel: 'In progress',
+            monogram: 'PL',
+            title: 'Prompt library',
+            tagline: 'A private collection of prompts and patterns that actually survived contact with production.',
+            excerpt: 'Documenting what works when you build with LLMs, so I stop solving it twice.',
+            stack: ['Prompt engineering', 'Evals', 'Documentation'],
+            year: '2024 — present',
+            links: { live: null, label: null },
+            body:
+              '<h3>The motivation</h3>' +
+              '<p>After enough AI features you notice you are solving the same four problems with slightly different ' +
+              'words each time. This is my attempt to write them down once.</p>' +
+              '<div class="duo">' +
+                '<div><h4>Classification</h4><p>Categorising text, detecting intent, reading sentiment</p></div>' +
+                '<div><h4>Extraction</h4><p>Pulling structured data out of unstructured text, reliably</p></div>' +
+                '<div><h4>Reasoning</h4><p>Chain-of-thought, self-critique, multi-step problems</p></div>' +
+                '<div><h4>Conversation</h4><p>Context management, consistent persona, graceful topic changes</p></div>' +
+              '</div>' +
+              '<h3>Status</h3>' +
+              '<p>Still a private database. It goes public when enough of it has been tested rather than just written down.</p>'
+          },
+          {
+            id: 'p6',
+            featured: false,
+            type: 'experiment',
+            typeLabel: 'Experiment',
+            status: 'idea',
+            statusLabel: 'Just an idea',
+            monogram: 'AD',
+            title: 'ITSM analytics dashboard',
+            tagline: 'One view of IT health across the three tools a team is somehow running at once.',
+            excerpt: 'A concept, not a product. Aggregate metrics from multiple ITSM platforms into one picture.',
+            stack: ['Data viz', 'API integration', 'React'],
+            year: 'Idea',
+            links: { live: null, label: null },
+            body:
+              '<h3>The problem</h3>' +
+              '<p>Enterprise IT teams rarely run one tool. Getting a straight answer to "how are we doing" means ' +
+              'logging into three dashboards and doing the arithmetic in your head.</p>' +
+              '<h3>The idea</h3>' +
+              '<p>One surface pulling from all of them: incident velocity, resolution times, workload spread, SLA ' +
+              'compliance, and the patterns that only show up when the data sits side by side.</p>' +
+              '<div class="aside"><div class="aside-title">Looking for feedback</div>' +
+              '<p>If you run IT operations and this sounds useful — or obviously useless — I would like to hear it ' +
+              'before I build anything.</p></div>'
+          },
+          {
+            id: 'p7',
+            featured: false,
+            type: 'experiment',
+            typeLabel: 'Experiment',
+            status: 'dev',
+            statusLabel: 'Ongoing',
+            monogram: 'HA',
+            title: 'Home automation hub',
+            tagline: 'What started as "I want to control one lamp" and did not stop there.',
+            excerpt: 'Home Assistant, Zigbee sensors, and considerably more automations than one flat needs.',
+            stack: ['Home Assistant', 'Node-RED', 'Zigbee', 'MQTT', 'Raspberry Pi'],
+            year: 'Ongoing',
+            links: { live: null, label: null },
+            body:
+              '<h3>The setup</h3>' +
+              '<p>Home Assistant on a Raspberry Pi, Zigbee via a Sonoff dongle, motion and door sensors in every room, ' +
+              'and a handful of WiFi devices I regret buying.</p>' +
+              '<h3>Automations that earn their keep</h3>' +
+              '<ul>' +
+                '<li>Lights dim gradually from 9 PM, so bedtime arrives without a decision</li>' +
+                '<li>Night lights at 5% brightness after midnight, motion-triggered</li>' +
+                '<li>Coffee starts when the morning alarm is dismissed, not when it goes off</li>' +
+                '<li>Leaving home checks the doors and turns everything off</li>' +
+              '</ul>' +
+              '<div class="aside"><div class="aside-title">The lesson</div>' +
+              '<p>Automate the thing you do every day, not the thing that demos well. Half my early automations were ' +
+              'impressive once and never used again.</p></div>' +
+              '<h3>Why bother</h3>' +
+              '<p>It is a cheap playground for event-driven design and state machines, with the useful property that ' +
+              'when you get it wrong the lights turn on at 3 AM and tell you.</p>'
+          }
+        ];
+
+        var grid = document.getElementById('grid');
+        var empty = document.getElementById('empty');
+        var esc = function (s) {
+          return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        };
+        var markHtml = function (p, cls) {
+          return p.logo
+            ? '<span class="mark plate ' + (cls || '') + '"><img src="' + p.logo + '" alt="" loading="lazy" /></span>'
+            : '<span class="mark ' + (cls || '') + '" aria-hidden="true">' + esc(p.monogram) + '</span>';
+        };
+
+        function render(filter) {
+          grid.innerHTML = '';
+          var list = filter === 'all' ? projects : projects.filter(function (p) { return p.type === filter; });
+          empty.hidden = list.length > 0;
+
+          list.forEach(function (p) {
+            var card = document.createElement('article');
+            card.className = 'card reveal' + (p.featured && filter === 'all' ? ' featured' : '');
+            card.innerHTML =
+              markHtml(p) +
+              '<div class="card-main">' +
+                '<div class="card-tags">' +
+                  '<span class="pill">' + esc(p.typeLabel) + '</span>' +
+                  '<span class="pill' + (p.status === 'live' ? ' live' : '') + '">' + esc(p.statusLabel) + '</span>' +
+                '</div>' +
+                '<h2><button type="button" class="card-open" aria-haspopup="dialog">' + esc(p.title) + '</button></h2>' +
+                '<p>' + esc(p.excerpt) + '</p>' +
+                '<div class="card-foot">' +
+                  '<span class="stack">' + p.stack.slice(0, 3).map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</span>' +
+                  '<span class="year">' + esc(p.year) + '</span>' +
+                '</div>' +
+              '</div>';
+            var trigger = card.querySelector('.card-open');
+            card.addEventListener('click', function () { open(p, trigger); });
+            grid.appendChild(card);
+          });
+
+          if (window.revealAll) window.revealAll(grid);
+        }
+
+        // tally, computed from the data rather than typed by hand
+        var tally = document.getElementById('tally');
+        var counts = [
+          ['Projects', projects.length],
+          ['Live', projects.filter(function (p) { return p.status === 'live'; }).length],
+          ['In progress', projects.filter(function (p) { return p.status === 'dev'; }).length],
+          ['Still an idea', projects.filter(function (p) { return p.status === 'idea'; }).length]
+        ];
+        tally.innerHTML = counts.map(function (c) {
+          return '<div><dt>' + c[0] + '</dt><dd>' + c[1] + '</dd></div>';
+        }).join('');
+
+        // filters
+        var filters = document.querySelectorAll('.filter');
+        filters.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            filters.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+            btn.setAttribute('aria-pressed', 'true');
+            render(btn.dataset.filter);
+          });
+        });
+
+        // detail sheet
+        var scrim = document.getElementById('scrim');
+        var sheet = document.getElementById('sheet');
+        var lastFocus = null;
+
+        function open(p, trigger) {
+          lastFocus = trigger || document.activeElement;
+          document.getElementById('sheet-mark').outerHTML = markHtml(p).replace('class="mark', 'id="sheet-mark" class="mark');
+          document.getElementById('sheet-tags').innerHTML =
+            '<span class="pill">' + esc(p.typeLabel) + '</span>' +
+            '<span class="pill' + (p.status === 'live' ? ' live' : '') + '">' + esc(p.statusLabel) + '</span>' +
+            '<span class="pill">' + esc(p.year) + '</span>';
+          document.getElementById('sheet-h').textContent = p.title;
+          document.getElementById('sheet-tagline').textContent = p.tagline;
+          document.getElementById('sheet-meta').innerHTML =
+            '<span class="stack">' + p.stack.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</span>';
+          document.getElementById('sheet-body').innerHTML = p.body;
+          document.getElementById('sheet-foot').innerHTML = p.links.live
+            ? '<a href="' + p.links.live + '" target="_blank" rel="noopener noreferrer" class="btn btn-solid">Visit ' + esc(p.links.label) +
+              ' <svg class="arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>'
+            : '<span class="year">No public link — happy to talk about it though.</span>';
+
+          sheet.hidden = false;
+          // next frame, so the transition runs
+          requestAnimationFrame(function () {
+            scrim.classList.add('on');
+            sheet.classList.add('on');
+          });
+          document.body.classList.add('locked');
+          document.getElementById('sheet-close').focus();
+          if (history.replaceState) history.replaceState(null, '', '#' + p.id);
+        }
+
+        function close() {
+          scrim.classList.remove('on');
+          sheet.classList.remove('on');
+          document.body.classList.remove('locked');
+          setTimeout(function () { sheet.hidden = true; }, 300);
+          if (history.replaceState) history.replaceState(null, '', location.pathname);
+          if (lastFocus && lastFocus.focus) lastFocus.focus();
+        }
+
+        document.getElementById('sheet-close').addEventListener('click', close);
+        scrim.addEventListener('click', close);
+        sheet.addEventListener('click', function (e) { if (e.target === sheet) close(); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && !sheet.hidden) close();
+          // keep tab focus inside the dialog
+          if (e.key === 'Tab' && !sheet.hidden) {
+            var f = sheet.querySelectorAll('button, a[href]');
+            if (!f.length) return;
+            var first = f[0], last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+          }
+        });
+
+        render('all');
+
+        // deep links: projects.html#p2 opens that project, on load and on hash change
+        function fromHash() {
+          var hash = location.hash.replace('#', '');
+          if (!hash) { if (!sheet.hidden) close(); return; }
+          var match = projects.filter(function (p) { return p.id === hash; })[0];
+          if (match) open(match, null);
+        }
+        fromHash();
+        window.addEventListener('hashchange', fromHash);
+      })();
+    </script>
+  </body>
 </html>

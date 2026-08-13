@@ -1,887 +1,660 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Writings – Yusuf Erdem Sakın</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Personal writings on AI, automation, work-life balance, and daily reflections from Yusuf Erdem Sakın." />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Writing — Yusuf Erdem Sakın</title>
+    <meta name="description" content="Essays and notes by Yusuf Erdem Sakın on AI agents, IT service management, working with customers, and the occasional 3 AM thought." />
+    <link rel="canonical" href="https://erdemsakin.com/writings.html" />
 
-  <style>
-    :root {
-      --bg-primary: #0a0a0b;
-      --bg-secondary: #111113;
-      --bg-tertiary: #18181b;
-      --bg-elevated: #1a1a1d;
-      --border: rgba(255, 255, 255, 0.08);
-      --border-hover: rgba(255, 255, 255, 0.15);
-      --text-primary: #fafafa;
-      --text-secondary: #a1a1aa;
-      --text-muted: #71717a;
-      --accent-cyan: #22d3ee;
-      --accent-violet: #a78bfa;
-      --accent-pink: #f472b6;
-      --accent-amber: #fbbf24;
-      --accent-emerald: #34d399;
-      --accent-orange: #fb923c;
-      --gradient-main: linear-gradient(135deg, #22d3ee 0%, #a78bfa 50%, #f472b6 100%);
-      --font-display: 'Syne', sans-serif;
-      --font-serif: 'Instrument Serif', Georgia, serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --font-body: 'Inter', sans-serif;
-      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    }
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://erdemsakin.com/writings.html" />
+    <meta property="og:title" content="Writing — Yusuf Erdem Sakın" />
+    <meta property="og:description" content="Notes on agents, on the job, and occasionally on neither." />
+    <meta property="og:image" content="https://erdemsakin.com/logo.png" />
+    <meta name="twitter:card" content="summary" />
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png" />
 
-    body {
-      font-family: var(--font-display);
-      background: var(--bg-primary);
-      color: var(--text-primary);
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&amp;family=Inter:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="site.css" />
 
-    body.modal-open { overflow: hidden; }
+    <style>
+      .list { border-top: 1px solid var(--line-soft); padding-bottom: 4.5rem; }
 
-    .bg-gradient {
-      position: fixed;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(167, 139, 250, 0.15), transparent),
-        radial-gradient(ellipse 60% 40% at 90% 80%, rgba(244, 114, 182, 0.1), transparent),
-        radial-gradient(ellipse 50% 30% at 10% 60%, rgba(34, 211, 238, 0.08), transparent);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.35;
-      pointer-events: none;
-      z-index: -1;
-      animation: float 20s ease-in-out infinite;
-    }
-    .orb-1 { width: 400px; height: 400px; background: var(--accent-violet); top: 10%; left: -10%; }
-    .orb-2 { width: 300px; height: 300px; background: var(--accent-cyan); bottom: 20%; right: -5%; animation-delay: -7s; }
-    .orb-3 { width: 250px; height: 250px; background: var(--accent-pink); top: 60%; left: 30%; animation-delay: -14s; }
-
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      25% { transform: translate(30px, -30px) scale(1.1); }
-      50% { transform: translate(-20px, 20px) scale(0.95); }
-      75% { transform: translate(20px, 10px) scale(1.05); }
-    }
-
-    ::selection { background: var(--accent-cyan); color: var(--bg-primary); }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
-
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.25rem 0;
-      background: rgba(10, 10, 11, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    .nav-back {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      transition: all 0.3s ease;
-    }
-    .nav-back:hover { color: var(--text-primary); }
-    .nav-back svg { transition: transform 0.3s ease; }
-    .nav-back:hover svg { transform: translateX(-4px); }
-
-    .nav-title {
-      font-weight: 600;
-      font-size: 0.95rem;
-      background: var(--gradient-main);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .page-header { padding: 9rem 0 3rem; text-align: center; }
-
-    .page-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      color: var(--accent-violet);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 1.5rem;
-      padding: 0.5rem 1rem;
-      background: rgba(167, 139, 250, 0.1);
-      border: 1px solid rgba(167, 139, 250, 0.2);
-      border-radius: 100px;
-    }
-
-    .page-title {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      margin-bottom: 1.25rem;
-      line-height: 1.1;
-    }
-    .page-title span {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      font-style: italic;
-      background: var(--gradient-main);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .page-subtitle {
-      font-size: 1.1rem;
-      font-family: var(--font-body);
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    .stats-bar {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      margin: 2.5rem auto;
-      padding: 1.25rem 2rem;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      max-width: 500px;
-    }
-    .stat { text-align: center; }
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      font-family: var(--font-mono);
-      background: var(--gradient-main);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .stat-label {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 0.2rem;
-    }
-
-    .filter-tabs {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-    .filter-tab {
-      padding: 0.55rem 1.1rem;
-      font-size: 0.82rem;
-      font-weight: 500;
-      font-family: var(--font-body);
-      color: var(--text-muted);
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .filter-tab:hover {
-      color: var(--text-secondary);
-      border-color: var(--border-hover);
-      background: rgba(255, 255, 255, 0.02);
-    }
-    .filter-tab.active {
-      color: var(--bg-primary);
-      background: var(--text-primary);
-      border-color: var(--text-primary);
-    }
-
-    .articles {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.25rem;
-      padding-bottom: 6rem;
-    }
-
-    .article-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 1.5rem;
-      cursor: pointer;
-      transition: all 0.4s var(--ease-out-expo);
-      position: relative;
-      overflow: hidden;
-    }
-    .article-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(34, 211, 238, 0.03) 0%, rgba(167, 139, 250, 0.03) 100%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .article-card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-4px);
-    }
-    .article-card:hover::before { opacity: 1; }
-    .article-card:hover .article-arrow {
-      transform: translate(3px, -3px);
-      opacity: 1;
-    }
-
-    .article-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 0.75rem;
-    }
-
-    .article-category {
-      font-size: 0.65rem;
-      font-weight: 600;
-      font-family: var(--font-mono);
-      padding: 0.3rem 0.65rem;
-      border-radius: 100px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .article-category.ai { background: rgba(34, 211, 238, 0.12); color: var(--accent-cyan); }
-    .article-category.life { background: rgba(244, 114, 182, 0.12); color: var(--accent-pink); }
-    .article-category.work { background: rgba(167, 139, 250, 0.12); color: var(--accent-violet); }
-    .article-category.thoughts { background: rgba(251, 191, 36, 0.12); color: var(--accent-amber); }
-    .article-category.tech { background: rgba(52, 211, 153, 0.12); color: var(--accent-emerald); }
-
-    .article-date {
-      font-size: 0.7rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-    }
-
-    .article-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.6rem;
-      line-height: 1.35;
-    }
-
-    .article-excerpt {
-      font-size: 0.88rem;
-      font-family: var(--font-body);
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 1rem;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .article-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 0.85rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .article-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .article-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.7rem;
-      font-family: var(--font-mono);
-      color: var(--text-muted);
-    }
-    .article-meta-item svg { width: 12px; height: 12px; opacity: 0.7; }
-
-    .article-arrow {
-      width: 28px; height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 6px;
-      color: var(--text-muted);
-      opacity: 0.4;
-      transition: all 0.3s ease;
-    }
-    .article-arrow svg { width: 14px; height: 14px; }
-
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-    }
-    .modal-overlay.active { opacity: 1; visibility: visible; }
-
-    .modal-container {
-      position: fixed;
-      inset: 0;
-      z-index: 1001;
-      overflow-y: auto;
-      padding: 2rem;
-      display: flex;
-      justify-content: center;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s ease;
-    }
-    .modal-container.active { opacity: 1; visibility: visible; }
-
-    .modal {
-      width: 100%;
-      max-width: 800px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      margin: auto;
-      position: relative;
-      transform: translateY(30px) scale(0.97);
-      transition: transform 0.5s var(--ease-out-expo);
-    }
-    .modal-container.active .modal { transform: translateY(0) scale(1); }
-
-    .modal-close {
-      position: absolute;
-      top: 1.25rem; right: 1.25rem;
-      width: 36px; height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 10;
-    }
-    .modal-close:hover { background: rgba(255, 255, 255, 0.1); color: var(--text-primary); }
-
-    .modal-header {
-      padding: 2.5rem 2.5rem 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .modal-label {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1rem;
-    }
-
-    .modal-title {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.25;
-      margin-bottom: 1rem;
-    }
-
-    .modal-meta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1.25rem;
-    }
-    .modal-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.8rem;
-      font-family: var(--font-body);
-      color: var(--text-secondary);
-    }
-    .modal-meta-item svg { width: 14px; height: 14px; opacity: 0.7; }
-
-    .modal-content {
-      padding: 2rem 2.5rem 2.5rem;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.8;
-      color: var(--text-secondary);
-    }
-    .modal-content h2 {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin: 2rem 0 0.75rem;
-      letter-spacing: -0.02em;
-    }
-    .modal-content h2:first-child { margin-top: 0; }
-    .modal-content p { margin-bottom: 1.1rem; }
-    .modal-content ul, .modal-content ol { margin: 1rem 0; padding-left: 1.5rem; }
-    .modal-content li { margin-bottom: 0.5rem; }
-
-    .modal-content blockquote {
-      margin: 1.5rem 0;
-      padding: 1.25rem 1.5rem;
-      background: rgba(167, 139, 250, 0.06);
-      border-left: 3px solid var(--accent-violet);
-      border-radius: 0 10px 10px 0;
-      font-style: italic;
-      color: var(--text-primary);
-    }
-
-    .modal-content .highlight {
-      margin: 1.5rem 0;
-      padding: 1.25rem;
-      background: linear-gradient(135deg, rgba(34, 211, 238, 0.06) 0%, rgba(167, 139, 250, 0.06) 100%);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-    }
-    .modal-content .highlight-title {
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--accent-cyan);
-      margin-bottom: 0.5rem;
-    }
-    .modal-content .highlight p { margin-bottom: 0; font-size: 0.92rem; }
-
-    .modal-content hr {
-      border: none;
-      height: 1px;
-      background: var(--border);
-      margin: 2rem 0;
-    }
-
-    .modal-footer {
-      padding: 1.5rem 2.5rem;
-      border-top: 1px solid var(--border);
-      background: rgba(0, 0, 0, 0.2);
-      border-radius: 0 0 24px 24px;
-    }
-
-    .reactions {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .reaction-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.5rem 0.85rem;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      color: var(--text-secondary);
-      font-size: 0.8rem;
-      font-family: var(--font-body);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .reaction-btn:hover { background: rgba(255, 255, 255, 0.06); border-color: var(--border-hover); }
-    .reaction-btn.active {
-      background: rgba(244, 114, 182, 0.1);
-      border-color: rgba(244, 114, 182, 0.3);
-      color: var(--accent-pink);
-    }
-    .reaction-emoji { font-size: 1rem; }
-
-    .share-btn {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.5rem 1rem;
-      background: var(--text-primary);
-      border: none;
-      border-radius: 100px;
-      color: var(--bg-primary);
-      font-size: 0.8rem;
-      font-weight: 600;
-      font-family: var(--font-body);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .share-btn:hover { transform: scale(1.03); }
-
-    footer {
-      padding: 2rem 0;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-    .footer-text { font-size: 0.85rem; color: var(--text-muted); }
-    .footer-text a { color: var(--text-secondary); transition: color 0.3s ease; }
-    .footer-text a:hover { color: var(--accent-cyan); }
-
-    @media (max-width: 700px) {
-      .articles { grid-template-columns: 1fr; }
-      .stats-bar { gap: 1.5rem; padding: 1rem 1.25rem; }
-      .modal-header, .modal-content, .modal-footer { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .modal-container { padding: 1rem; }
-      .reactions { width: 100%; }
-      .share-btn { margin-left: 0; margin-top: 0.75rem; width: 100%; justify-content: center; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .article-card { animation: fadeIn 0.5s ease backwards; }
-  </style>
-</head>
-<body>
-  <div class="bg-gradient"></div>
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-
-  <header>
-    <nav class="nav">
-      <a href="index.html" class="nav-back">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19 12H5M12 19l-7-7 7-7"/>
-        </svg>
-        Back to Home
-      </a>
-      <span class="nav-title">Writings</span>
-    </nav>
-  </header>
-
-  <main>
-    <div class="container">
-      <div class="page-header">
-        <div class="page-label">&#10022; Personal Blog</div>
-        <h1 class="page-title">Things I <span>Write About</span></h1>
-        <p class="page-subtitle">
-          A mix of technical deep-dives, personal reflections, and random thoughts that keep me up at night. No filters, just honest writing.
-        </p>
-
-        <div class="stats-bar">
-          <div class="stat">
-            <div class="stat-value">8</div>
-            <div class="stat-label">Articles</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">~52</div>
-            <div class="stat-label">Min Read</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">5</div>
-            <div class="stat-label">Topics</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="filter-tabs">
-        <button class="filter-tab active" data-filter="all">All</button>
-        <button class="filter-tab" data-filter="ai">AI &amp; Agents</button>
-        <button class="filter-tab" data-filter="work">Work</button>
-        <button class="filter-tab" data-filter="life">Life</button>
-        <button class="filter-tab" data-filter="thoughts">Thoughts</button>
-        <button class="filter-tab" data-filter="tech">Tech</button>
-      </div>
-
-      <div class="articles" id="articles-grid"></div>
-    </div>
-  </main>
-
-  <div class="modal-overlay" id="modal-overlay"></div>
-  
-  <div class="modal-container" id="modal-container">
-    <div class="modal" id="modal">
-      <button class="modal-close" id="modal-close">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 6L6 18M6 6l12 12"/>
-        </svg>
-      </button>
-      <div class="modal-header" id="modal-header"></div>
-      <div class="modal-content" id="modal-content"></div>
-      <div class="modal-footer">
-        <div class="reactions">
-          <button class="reaction-btn" data-reaction="fire">
-            <span class="reaction-emoji">&#128293;</span>
-            <span class="reaction-count">12</span>
-          </button>
-          <button class="reaction-btn" data-reaction="lightbulb">
-            <span class="reaction-emoji">&#128161;</span>
-            <span class="reaction-count">8</span>
-          </button>
-          <button class="reaction-btn" data-reaction="heart">
-            <span class="reaction-emoji">&#10084;&#65039;</span>
-            <span class="reaction-count">24</span>
-          </button>
-          <button class="share-btn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="18" cy="5" r="3"></circle>
-              <circle cx="6" cy="12" r="3"></circle>
-              <circle cx="18" cy="19" r="3"></circle>
-              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-            </svg>
-            Share
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="container">
-      <p class="footer-text">
-        &copy; <span id="year"></span> Yusuf Erdem Sakin &middot; <a href="index.html">Back to Home</a>
-      </p>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    var articles = [
-      {
-        id: 1,
-        category: "ai",
-        categoryLabel: "AI & Agents",
-        title: "Why Most AI Chatbots in IT Fail (And What to Build Instead)",
-        excerpt: "Everyone wants a magical chatbot. But after working on dozens of implementations, I have learned that specialized agents beat generalist bots every single time.",
-        readTime: "8 min",
-        date: "Nov 2025",
-        content: "<h2>The Chatbot Fantasy</h2><p>When executives hear \"AI in IT operations,\" they immediately picture a magical chatbot sitting in Slack, ready to answer every question, resolve every ticket, and automate every workflow.</p><p>It is an appealing vision. One interface to rule them all.</p><p>But here is what I have learned after working on dozens of AI implementations: <strong>the all-knowing chatbot is almost always the wrong approach.</strong></p><div class=\"highlight\"><div class=\"highlight-title\">Key Insight</div><p>The most successful AI deployments are not generalist chatbots. They are narrow, specialized agents that deeply understand one workflow and execute it exceptionally well.</p></div><h2>Why Specialized Agents Win</h2><p>Think about how your IT team actually works. A ticket comes in. Someone reads it, categorizes it, checks if there is a known solution, routes it to the right team, maybe triggers an approval workflow.</p><p>Each of these steps has its own context, its own rules, its own edge cases.</p><p>A generalist chatbot tries to handle all of this with one model, one prompt, one set of instructions. It is like hiring one person and expecting them to be excellent at triage, networking, security, and application support simultaneously.</p><h2>The Agent Architecture</h2><p>Instead, consider building a team of agents:</p><ul><li><strong>Triage Agent:</strong> Reads incoming tickets, extracts intent and entities, classifies priority</li><li><strong>Knowledge Agent:</strong> Searches your KB and past tickets to surface relevant solutions</li><li><strong>Routing Agent:</strong> Understands team capabilities and makes intelligent assignment decisions</li><li><strong>Approval Agent:</strong> Handles change management workflows and tracks SLAs</li></ul><p>Each agent does one thing well. Together, they are more powerful than any single chatbot.</p><hr><p>In my next post, I will dive deep into building the Triage Agent specifically, including intent recognition, entity extraction, and confidence scoring.</p>"
-      },
-      {
-        id: 2,
-        category: "life",
-        categoryLabel: "Life",
-        title: "Istanbul at 3 AM: Why I Do My Best Thinking After Midnight",
-        excerpt: "There is something about the city when everyone else is asleep. The Bosphorus lights, the quiet streets, and a mind that finally has room to breathe.",
-        readTime: "5 min",
-        date: "Nov 2025",
-        content: "<h2>The Quiet Hours</h2><p>Istanbul never truly sleeps, but at 3 AM it gets close. The ferries stop running. The seagulls quiet down. Even the cats seem to pause their endless territorial disputes.</p><p>This is when I do my best work.</p><blockquote>There is a different quality to thoughts that come at 3 AM. They are rawer, less filtered by the noise of the day.</blockquote><h2>Why Night Works</h2><p>During the day, my brain is in reactive mode. Slack messages. Meetings. The constant pull of \"urgent\" things that rarely matter.</p><p>But at night, there is nothing to react to. No one expects a response. No calendar invites are coming. It is just me, my thoughts, and occasionally the distant sound of a ship horn on the Bosphorus.</p><h2>The Ritual</h2><p>My late-night routine is simple:</p><ul><li>Make Turkish tea (always in a proper bardak)</li><li>Open the window, even if it is cold</li><li>Put on something ambient (lately it has been Tycho or Boards of Canada)</li><li>Write without editing</li></ul><p>The writing part is key. I do not let myself backspace. Whatever comes out, comes out. I can edit tomorrow. Tonight is for capturing.</p><h2>The Downside</h2><p>I am not going to pretend this is healthy. My sleep schedule is chaos. Morning meetings are torture. My coffee consumption would concern a doctor.</p><p>But I have accepted this about myself. Some people are morning people. I am a 3 AM person. And I have stopped fighting it.</p><hr><p>What time do you do your best thinking? I am genuinely curious if other people have found their weird optimal hours.</p>"
-      },
-      {
-        id: 3,
-        category: "work",
-        categoryLabel: "Work",
-        title: "The Art of Saying \"That Is Out of Scope\"",
-        excerpt: "After years in client-facing roles, I have learned that the hardest skill is not technical. It is drawing boundaries without burning bridges.",
-        readTime: "6 min",
-        date: "Oct 2025",
-        content: "<h2>The Scope Creep Monster</h2><p>Every project starts with clear boundaries. Here is what we will build. Here is what we will not build. Everyone agrees. Handshakes all around.</p><p>Then week two happens.</p><p>\"While you are in there, could you also...\" is how it always starts. And if you say yes to everything, your 3-month project becomes a 12-month death march.</p><h2>Why We Say Yes</h2><p>Saying yes feels good. It feels helpful. It feels like being a team player.</p><p>But there is a cost that is not immediately visible:</p><ul><li>Your original timeline becomes fiction</li><li>Quality drops because you are stretched thin</li><li>The team burns out</li><li>The client ends up unhappy anyway because expectations were never aligned</li></ul><div class=\"highlight\"><div class=\"highlight-title\">The Paradox</div><p>Saying no to scope creep is actually more helpful than saying yes. A completed focused project beats an incomplete ambitious one.</p></div><h2>How to Say No Without Saying No</h2><p>The trick is to never actually say \"no.\" Instead:</p><ul><li><strong>\"Absolutely, let us add that to phase 2\"</strong> - acknowledges the value while protecting the timeline</li><li><strong>\"Great idea. What should we deprioritize to fit this in?\"</strong> - forces trade-off thinking</li><li><strong>\"Let me scope that out and get back to you with timeline impact\"</strong> - buys time and adds data</li></ul><h2>The Relationship Lens</h2><p>The goal is not to win arguments. It is to build trust over time. When clients learn that your estimates are reliable and your scope is sacred, they actually respect you more.</p><p>The pushovers who say yes to everything? They are the ones who end up with angry clients and failed projects.</p><hr><p>What is your go-to phrase for scope management? I am always collecting new ones.</p>"
-      },
-      {
-        id: 4,
-        category: "thoughts",
-        categoryLabel: "Thoughts",
-        title: "We Are All Just Rearranging Tokens",
-        excerpt: "A late-night existential spiral about LLMs, creativity, and whether anything we make is truly original. Spoiler: I did not find an answer.",
-        readTime: "7 min",
-        date: "Oct 2025",
-        content: "<h2>The 3 AM Question</h2><p>Last night I fell down a philosophical rabbit hole that I still have not climbed out of.</p><p>Here is the thought that started it: Large language models work by predicting the next token based on patterns in training data. They are, essentially, sophisticated pattern matchers. They remix and recombine existing ideas.</p><p>But... is that not exactly what humans do?</p><blockquote>Every idea I have ever had is built on ideas I absorbed from somewhere else. Every word I write was a word I read first. Every creative connection is a recombination of existing nodes.</blockquote><h2>The Originality Myth</h2><p>We like to believe in genius. The lone inventor who pulls revolutionary ideas from thin air. The artist who creates something truly new.</p><p>But look closer at any \"original\" work and you find influences everywhere. The Beatles were remixing Chuck Berry. Einstein was building on Maxwell. Your favorite author is echoing authors they read at 16.</p><h2>Where Does That Leave Us?</h2><p>I do not think this makes human creativity less valuable. If anything, it makes it more interesting.</p><p>We are all remix machines. The question is not whether our ideas are original. The question is whether our particular remix adds something new to the conversation.</p><div class=\"highlight\"><div class=\"highlight-title\">A Comforting Thought</div><p>LLMs have access to more training data than any human ever will. But they do not have lived experience, embodied knowledge, or the specific combination of influences that make you uniquely you.</p></div><h2>No Conclusion</h2><p>I do not have a neat ending for this post. The thought is still bouncing around my head. Maybe that is okay. Not everything needs to be resolved.</p><p>Some questions are better left open.</p>"
-      },
-      {
-        id: 5,
-        category: "ai",
-        categoryLabel: "AI & Agents",
-        title: "Orchestration Over Replacement: The Smarter AI Strategy",
-        excerpt: "Stop trying to replace your existing tools with AI. Instead, build an orchestration layer that makes everything work together.",
-        readTime: "10 min",
-        date: "Sep 2025",
-        content: "<h2>The Replacement Trap</h2><p>I have sat in too many meetings where excited executives propose ripping out ServiceNow, Jira, or whatever ITSM platform the company has spent years configuring.</p><p>\"Let us replace it with AI-native tooling!\"</p><p>This is almost always a mistake.</p><h2>The Hidden Value of Existing Systems</h2><p>Your existing tools are not just software. They are repositories of institutional knowledge:</p><ul><li>Every custom field represents a decision someone made</li><li>Every workflow rule encodes business logic</li><li>Every integration took months to build and test</li><li>Every user has muscle memory for the current system</li></ul><div class=\"highlight\"><div class=\"highlight-title\">The Real Cost</div><p>Replacing a mature ITSM platform is not a 6-month project. It is typically 2-3 years when you account for data migration, workflow recreation, retraining, and the inevitable productivity dip.</p></div><h2>The Orchestration Alternative</h2><p>Instead of replacement, think of AI as an orchestration layer:</p><ul><li>Your ITSM platform remains the system of record</li><li>Your knowledge base stays where it is</li><li>Your communication tools are unchanged</li><li>AI agents sit in the middle, watching events, enriching data, automating actions</li></ul><h2>Event-Driven Architecture</h2><p>The key is event-driven design. Instead of AI that waits to be asked questions, build agents that respond to events:</p><ul><li>Ticket created? Triage agent classifies and enriches</li><li>Ticket assigned? Knowledge agent searches for solutions</li><li>SLA approaching? Escalation agent alerts the right people</li><li>Ticket resolved? Learning agent captures patterns</li></ul><hr><p>The goal is not to replace what works. It is to make what works even better.</p>"
-      },
-      {
-        id: 6,
-        category: "life",
-        categoryLabel: "Life",
-        title: "Learning to Rest Without Guilt",
-        excerpt: "Hustle culture broke something in my brain. Here is how I am slowly repairing my relationship with downtime.",
-        readTime: "5 min",
-        date: "Sep 2025",
-        content: "<h2>The Productivity Virus</h2><p>Somewhere along the way, I caught a virus. Not a physical one. A mental one.</p><p>The symptom: I cannot rest without feeling guilty.</p><p>If I am watching a movie, part of my brain whispers \"you could be learning something.\" If I take a weekend off, Sunday night fills with anxiety about \"wasted time.\"</p><blockquote>Hustle culture did not make me successful. It made me unable to enjoy the life success was supposed to buy.</blockquote><h2>The Realization</h2><p>It hit me during a vacation last year. I was in a beautiful place, doing nothing, and I felt... anxious. Not relaxed. Anxious.</p><p>That was the wake-up call. What is the point of working hard if you cannot enjoy the fruits?</p><h2>The Recovery</h2><p>I am still working on this, but here is what helps:</p><ul><li><strong>Scheduled rest:</strong> I put \"do nothing\" blocks on my calendar. They are non-negotiable.</li><li><strong>Reframing:</strong> Rest is not unproductive. It is necessary maintenance for sustainable performance.</li><li><strong>Phone-free time:</strong> The productivity guilt often comes from seeing what others are doing. No phone, no comparison.</li><li><strong>Physical reminders:</strong> A note on my desk that says \"you are allowed to rest.\"</li></ul><h2>Still Learning</h2><p>I am not cured. The guilt still creeps in. But I am getting better at noticing it and choosing not to listen.</p><p>Progress, not perfection.</p>"
-      },
-      {
-        id: 7,
-        category: "tech",
-        categoryLabel: "Tech",
-        title: "My Over-Engineered Home Automation Setup",
-        excerpt: "What started as \"let me automate one light\" turned into a full home assistant obsession. Here is the damage report.",
-        readTime: "8 min",
-        date: "Aug 2025",
-        content: "<h2>It Started With One Light</h2><p>Famous last words: \"I just want to control this one lamp with my phone.\"</p><p>Six months later, I have motion sensors in every room, automated blinds, a local Home Assistant server, custom Node-RED flows, and strong opinions about Zigbee vs Z-Wave.</p><h2>The Current Setup</h2><p>Here is what my over-engineered apartment looks like:</p><ul><li><strong>Hub:</strong> Home Assistant on a Raspberry Pi 4 (considering moving to a NUC)</li><li><strong>Protocol:</strong> Zigbee via Sonoff dongle, some WiFi devices I regret buying</li><li><strong>Lights:</strong> Mix of IKEA Tradfri and Philips Hue (the Hue bridge is redundant now)</li><li><strong>Sensors:</strong> Aqara motion, door, and temperature sensors everywhere</li><li><strong>Voice:</strong> Local voice processing because I do not trust cloud</li></ul><div class=\"highlight\"><div class=\"highlight-title\">Pro Tip</div><p>Start with Zigbee from day one. WiFi smart home devices are convenient but they clog your network and usually require cloud connectivity.</p></div><h2>Favorite Automations</h2><p>Some automations that actually improve daily life:</p><ul><li>Lights gradually dim starting at 9 PM to signal bedtime</li><li>Motion-activated night lights at 5% brightness after midnight</li><li>Coffee maker starts when my morning alarm is dismissed</li><li>\"Leaving home\" routine that checks all doors and turns everything off</li><li>Automatic \"meeting mode\" that mutes notifications and adjusts lighting</li></ul><h2>Lessons Learned</h2><p>The biggest lesson: automate things you do repeatedly, not things that sound cool. Half my initial automations were impressive demos that I never actually used.</p><hr><p>What is in your home automation setup? Always looking for new ideas to copy.</p>"
-      },
-      {
-        id: 8,
-        category: "work",
-        categoryLabel: "Work",
-        title: "From Support to Product: What Transfers and What Does Not",
-        excerpt: "Career reflections on moving from post-sales support into AI product work. The transition was harder and easier than expected.",
-        readTime: "7 min",
-        date: "Aug 2025",
-        content: "<h2>The Career Pivot</h2><p>For years, I worked in post-sales support and implementation. Then I moved into AI product work. People ask how the transition went.</p><p>Short answer: harder and easier than expected.</p><h2>What Transfers</h2><p>Support experience is actually a superpower for product work:</p><ul><li><strong>User empathy:</strong> I have seen thousands of users struggle. I know what confuses people.</li><li><strong>Edge case awareness:</strong> I know all the weird ways things break because I have debugged them.</li><li><strong>Communication skills:</strong> Explaining complex tech to non-technical people is my bread and butter.</li><li><strong>Patience:</strong> Support teaches you that users are not stupid, interfaces are unclear.</li></ul><div class=\"highlight\"><div class=\"highlight-title\">The Secret Weapon</div><p>Product managers from support backgrounds often build more usable products because they have felt the pain of bad UX directly.</p></div><h2>What Does Not Transfer</h2><p>Some things I had to learn from scratch:</p><ul><li><strong>Prioritization:</strong> In support, you fix what is broken. In product, you have to choose what matters most.</li><li><strong>Saying no:</strong> Support is about solving problems. Product is about choosing which problems to solve.</li><li><strong>Metrics thinking:</strong> I had to learn to think in data, A/B tests, and success metrics.</li><li><strong>Ambiguity tolerance:</strong> Support has clear right answers. Product often does not.</li></ul><h2>Advice for Others</h2><p>If you are in support and considering product:</p><ul><li>Start documenting patterns you see. \"Users always struggle with X\" is product insight.</li><li>Learn basic data analysis. SQL is your friend.</li><li>Build something small. Ship it. Learn what that feels like.</li><li>Your support experience is not a weakness. Frame it as a strength.</li></ul><hr><p>The path is not linear, but it is absolutely possible. And you will bring perspectives that career PMs often lack.</p>"
+      .entry {
+        position: relative; display: grid; grid-template-columns: 8.5rem 1fr 5rem; gap: 1.5rem;
+        align-items: baseline; padding: 1.85rem 0.25rem;
+        border-bottom: 1px solid var(--line-soft); cursor: pointer;
       }
-    ];
+      .entry:hover h2 { color: var(--accent); }
+      .entry-open {
+        font: inherit; color: inherit; background: none; border: 0; padding: 0;
+        text-align: left; cursor: pointer;
+      }
+      .entry-open::after { content: ''; position: absolute; inset: 0; border-radius: 10px; }
+      .entry-open:focus { outline: none; }
+      .entry-open:focus-visible::after { outline: 2px solid var(--accent); outline-offset: -2px; }
+      .entry-side { display: flex; flex-direction: column; gap: 0.3rem; }
+      .entry-date { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--ink-3); }
+      .entry-cat {
+        font-family: var(--mono); font-size: 0.63rem; letter-spacing: 0.09em; text-transform: uppercase;
+        color: var(--ink-3); border: 1px solid var(--line); border-radius: 5px;
+        padding: 0.18rem 0.45rem; align-self: flex-start;
+      }
+      .entry h2 { font-size: 1.22rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.5rem; transition: color 0.22s ease; }
+      .entry p { font-size: 0.93rem; color: var(--ink-2); line-height: 1.7; max-width: 62ch; }
+      .entry-time { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-3); text-align: right; white-space: nowrap; }
 
-    var articlesGrid = document.getElementById("articles-grid");
-    
-    function renderArticles(filter) {
-      filter = filter || "all";
-      articlesGrid.innerHTML = "";
-      
-      var filtered = filter === "all" 
-        ? articles 
-        : articles.filter(function(a) { return a.category === filter; });
-      
-      filtered.forEach(function(article, index) {
-        var card = document.createElement("article");
-        card.className = "article-card";
-        card.dataset.category = article.category;
-        card.dataset.id = article.id;
-        card.style.animationDelay = (0.05 + index * 0.05) + "s";
-        
-        card.innerHTML = 
-          "<div class=\"article-header\">" +
-            "<span class=\"article-category " + article.category + "\">" + article.categoryLabel + "</span>" +
-            "<span class=\"article-date\">" + article.date + "</span>" +
-          "</div>" +
-          "<h2 class=\"article-title\">" + article.title + "</h2>" +
-          "<p class=\"article-excerpt\">" + article.excerpt + "</p>" +
-          "<div class=\"article-footer\">" +
-            "<div class=\"article-meta\">" +
-              "<div class=\"article-meta-item\">" +
-                "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">" +
-                  "<circle cx=\"12\" cy=\"12\" r=\"10\"></circle>" +
-                  "<polyline points=\"12 6 12 12 16 14\"></polyline>" +
-                "</svg>" +
-                article.readTime +
-              "</div>" +
-            "</div>" +
-            "<div class=\"article-arrow\">" +
-              "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">" +
-                "<line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line>" +
-                "<polyline points=\"7 7 17 7 17 17\"></polyline>" +
-              "</svg>" +
-            "</div>" +
-          "</div>";
-        
-        card.addEventListener("click", function() { openModal(article); });
-        articlesGrid.appendChild(card);
-      });
-    }
+      .empty { padding: 3rem 0; color: var(--ink-3); font-size: 0.92rem; }
 
-    renderArticles();
+      /* ---------- reader ---------- */
+      .scrim {
+        position: fixed; inset: 0; z-index: 100; background: rgba(5, 5, 6, 0.72);
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+      }
+      .scrim.on { opacity: 1; pointer-events: auto; }
+      .sheet {
+        position: fixed; inset: 0; z-index: 101; display: flex; align-items: flex-start; justify-content: center;
+        padding: 4.5rem 1.5rem 3rem; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+      }
+      .sheet.on { opacity: 1; pointer-events: auto; }
+      .sheet[hidden] { display: none; }
+      .sheet-inner {
+        width: 100%; max-width: 720px; background: var(--surface); border: 1px solid var(--line);
+        border-radius: 18px; overflow: hidden; transform: translateY(14px) scale(0.99);
+        transition: transform 0.35s var(--ease);
+      }
+      .sheet.on .sheet-inner { transform: none; }
+      .sheet-top { display: flex; align-items: flex-start; gap: 1.25rem; padding: 1.85rem 2rem 1.5rem; border-bottom: 1px solid var(--line-soft); }
+      .sheet-title { flex: 1; min-width: 0; }
+      .sheet-title .kicker { display: flex; flex-wrap: wrap; gap: 0.55rem; align-items: center; margin-bottom: 0.7rem; }
+      .sheet-title h2 { font-size: clamp(1.5rem, 3.2vw, 1.95rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.18; }
+      .close {
+        width: 36px; height: 36px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+        background: none; border: 1px solid var(--line); border-radius: 9px; color: var(--ink-2); cursor: pointer;
+        transition: border-color 0.2s ease, color 0.2s ease;
+      }
+      .close:hover { border-color: var(--accent); color: var(--accent); }
 
-    var filterTabs = document.querySelectorAll(".filter-tab");
-    
-    filterTabs.forEach(function(tab) {
-      tab.addEventListener("click", function() {
-        filterTabs.forEach(function(t) { t.classList.remove("active"); });
-        tab.classList.add("active");
-        renderArticles(tab.dataset.filter);
-      });
-    });
+      .read { padding: 1.9rem 2rem 2.25rem; }
+      .read p { font-size: 1.005rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 1.15rem; }
+      .read p strong, .read li strong { color: var(--ink); font-weight: 500; }
+      .read h3 {
+        font-family: var(--display); font-size: 1.16rem; font-weight: 600; color: var(--ink);
+        letter-spacing: -0.018em; margin: 2.25rem 0 0.9rem;
+      }
+      .read h3:first-child { margin-top: 0; }
+      .read ul { list-style: none; display: grid; gap: 0.65rem; margin: 0 0 1.25rem; }
+      .read li { position: relative; padding-left: 1.4rem; font-size: 0.97rem; color: var(--ink-2); line-height: 1.75; }
+      .read li::before { content: ''; position: absolute; left: 0; top: 0.82em; width: 8px; height: 1px; background: var(--accent); }
+      .read blockquote {
+        margin: 1.5rem 0; padding: 0.35rem 0 0.35rem 1.35rem; border-left: 2px solid var(--accent);
+        font-family: var(--serif); font-style: italic; font-size: 1.16rem; line-height: 1.6; color: var(--ink);
+      }
+      .read hr { border: 0; border-top: 1px solid var(--line-soft); margin: 2.25rem 0 1.5rem; }
+      .read .aside {
+        padding: 1.15rem 1.35rem; margin: 1.5rem 0; border-radius: 11px;
+        background: var(--accent-soft); border: 1px solid rgba(60, 191, 154, 0.22);
+      }
+      .read .aside-title { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+      .read .aside p { margin: 0; font-size: 0.95rem; }
 
-    var modalOverlay = document.getElementById("modal-overlay");
-    var modalContainer = document.getElementById("modal-container");
-    var modalHeader = document.getElementById("modal-header");
-    var modalContent = document.getElementById("modal-content");
-    var modalClose = document.getElementById("modal-close");
+      .sheet-foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1.35rem 2rem; border-top: 1px solid var(--line-soft); background: rgba(255, 255, 255, 0.015); }
+      .sheet-foot .year { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-3); }
+      .nav-pair { display: flex; gap: 0.5rem; }
+      .nav-pair button {
+        display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.9rem;
+        font-family: var(--sans); font-size: 0.83rem; color: var(--ink-2); background: none;
+        border: 1px solid var(--line); border-radius: 8px; cursor: pointer;
+        transition: color 0.2s ease, border-color 0.2s ease;
+      }
+      .nav-pair button:hover:not(:disabled) { color: var(--ink); border-color: var(--line-hard); }
+      .nav-pair button:disabled { opacity: 0.35; cursor: default; }
 
-    function openModal(article) {
-      modalHeader.innerHTML = 
-        "<div class=\"modal-label\">" +
-          "<span class=\"article-category " + article.category + "\">" + article.categoryLabel + "</span>" +
-        "</div>" +
-        "<h1 class=\"modal-title\">" + article.title + "</h1>" +
-        "<div class=\"modal-meta\">" +
-          "<div class=\"modal-meta-item\">" +
-            "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">" +
-              "<circle cx=\"12\" cy=\"12\" r=\"10\"></circle>" +
-              "<polyline points=\"12 6 12 12 16 14\"></polyline>" +
-            "</svg>" +
-            article.readTime + " read" +
-          "</div>" +
-          "<div class=\"modal-meta-item\">" +
-            "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\">" +
-              "<rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\" ry=\"2\"></rect>" +
-              "<line x1=\"16\" y1=\"2\" x2=\"16\" y2=\"6\"></line>" +
-              "<line x1=\"8\" y1=\"2\" x2=\"8\" y2=\"6\"></line>" +
-              "<line x1=\"3\" y1=\"10\" x2=\"21\" y2=\"10\"></line>" +
-            "</svg>" +
-            article.date +
-          "</div>" +
-        "</div>";
-      
-      modalContent.innerHTML = article.content;
-      
-      document.body.classList.add("modal-open");
-      modalOverlay.classList.add("active");
-      modalContainer.classList.add("active");
-    }
+      body.locked { overflow: hidden; }
 
-    function closeModal() {
-      document.body.classList.remove("modal-open");
-      modalOverlay.classList.remove("active");
-      modalContainer.classList.remove("active");
-    }
+      @media (max-width: 780px) {
+        .entry { grid-template-columns: 1fr; gap: 0.75rem; padding: 1.5rem 0.15rem; }
+        .entry-side { flex-direction: row; align-items: center; gap: 0.65rem; }
+        .entry-time { text-align: left; }
+      }
+      @media (max-width: 640px) {
+        .sheet { padding: 3.25rem 0.85rem 2rem; }
+        .sheet-top, .read, .sheet-foot { padding-left: 1.25rem; padding-right: 1.25rem; }
+      }
+    </style>
+  </head>
 
-    modalOverlay.addEventListener("click", closeModal);
-    modalClose.addEventListener("click", closeModal);
-    modalContainer.addEventListener("click", function(e) {
-      if (e.target === modalContainer) closeModal();
-    });
+  <body>
+    <script>
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js');
+      }
+    </script>
+    <a class="skip" href="#main">Skip to content</a>
 
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape") closeModal();
-    });
+    <header>
+      <div class="wrap">
+        <nav class="nav" aria-label="Primary">
+          <a href="index.html" class="brand">
+            <span class="brand-mark" aria-hidden="true">YE</span>
+            <span>
+              <span class="brand-name">Yusuf Erdem Sakın</span>
+              <span class="brand-role">Product Manager</span>
+            </span>
+          </a>
+          <div class="nav-links">
+            <a href="index.html#work" class="nav-link">Work</a>
+            <a href="writings.html" class="nav-link" aria-current="page">Writing</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="https://stackmuffin.com" target="_blank" rel="noopener" class="nav-link">StackMuffin<span class="ext" aria-hidden="true">↗</span></a>
+            <a href="index.html#contact" class="nav-cta">Get in touch</a>
+          </div>
+          <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+            <span aria-hidden="true"></span>
+          </button>
+        </nav>
+        <div class="mobile-nav" id="mobile-nav">
+          <a href="index.html#work">Work</a>
+          <a href="writings.html">Writing</a>
+          <a href="projects.html">Projects</a>
+          <a href="https://stackmuffin.com" target="_blank" rel="noopener">StackMuffin ↗</a>
+          <a href="index.html#contact">Get in touch</a>
+        </div>
+      </div>
+    </header>
 
-    document.querySelectorAll(".reaction-btn").forEach(function(btn) {
-      btn.addEventListener("click", function(e) {
-        e.stopPropagation();
-        btn.classList.toggle("active");
-        var countEl = btn.querySelector(".reaction-count");
-        var count = parseInt(countEl.textContent);
-        countEl.textContent = btn.classList.contains("active") ? count + 1 : count - 1;
-      });
-    });
-  </script>
-</body>
+    <main id="main">
+      <div class="masthead">
+        <div class="wrap">
+          <a href="index.html" class="crumb">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back to home
+          </a>
+          <h1>Notes on agents, on the job, and occasionally on neither.</h1>
+          <p class="lede">
+            Things I worked out by writing them down — what I've learned building AI into IT workflows, what the
+            client-facing years taught me, and the odd 3 AM thought that refused to leave.
+          </p>
+          <dl class="tally" id="tally"></dl>
+        </div>
+      </div>
+
+      <div class="wrap">
+        <div class="filters" id="filters" role="group" aria-label="Filter writing">
+          <button class="filter" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter" data-filter="ai" aria-pressed="false">Agents</button>
+          <button class="filter" data-filter="work" aria-pressed="false">Work</button>
+          <button class="filter" data-filter="life" aria-pressed="false">Life</button>
+          <button class="filter" data-filter="thoughts" aria-pressed="false">Thoughts</button>
+          <button class="filter" data-filter="tech" aria-pressed="false">Tech</button>
+        </div>
+        <div class="list" id="list"></div>
+        <p class="empty" id="empty" hidden>Nothing filed under this yet.</p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="foot">
+          <small>© <span id="year">2026</span> Yusuf Erdem Sakın — Çanakkale, Türkiye</small>
+          <nav aria-label="Footer">
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="https://stackmuffin.com" target="_blank" rel="noopener noreferrer">StackMuffin</a>
+            <a href="https://comparemuffin.com" target="_blank" rel="noopener noreferrer">CompareMuffin</a>
+            <a href="https://autommate.com" target="_blank" rel="noopener noreferrer">Autom Mate</a>
+            <a href="https://www.linkedin.com/in/yusuferdemsakin/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+
+    <div class="scrim" id="scrim"></div>
+    <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-h" hidden>
+      <div class="sheet-inner">
+        <div class="sheet-top">
+          <div class="sheet-title">
+            <div class="kicker" id="sheet-kicker"></div>
+            <h2 id="sheet-h"></h2>
+          </div>
+          <button class="close" id="sheet-close" aria-label="Close">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <article class="read" id="sheet-body"></article>
+        <div class="sheet-foot">
+          <span class="year" id="sheet-foot-meta"></span>
+          <div class="nav-pair">
+            <button type="button" id="prev">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+              Previous
+            </button>
+            <button type="button" id="next">
+              Next
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="site.js"></script>
+    <script>
+      (function () {
+        'use strict';
+
+        var articles = [
+          {
+            id: 'a1',
+            category: 'ai',
+            categoryLabel: 'Agents',
+            title: 'Why most AI chatbots in IT fail (and what to build instead)',
+            excerpt: 'Everyone asks for one bot that knows everything. After enough implementations, I am convinced a narrow agent with one clear job beats it every time.',
+            readTime: 8,
+            date: 'Nov 2025',
+            body:
+              '<h3>The chatbot fantasy</h3>' +
+              '<p>When executives hear "AI in IT operations" they picture a single bot sitting in Slack, answering ' +
+              'every question, resolving every ticket, automating every workflow. One interface to rule them all.</p>' +
+              '<p>It is an appealing picture. It is also, in my experience, almost always the wrong shape.</p>' +
+              '<div class="aside"><div class="aside-title">The short version</div>' +
+              '<p>The deployments that work are not generalist chatbots. They are narrow agents that understand one ' +
+              'workflow deeply and execute it well.</p></div>' +
+              '<h3>Why narrow wins</h3>' +
+              '<p>Think about how the team actually works. A ticket arrives. Someone reads it, categorises it, checks ' +
+              'whether there is a known fix, routes it, maybe kicks off an approval.</p>' +
+              '<p>Each of those steps has its own context, its own rules, its own edge cases. A generalist bot handles ' +
+              'all of them with one prompt and one set of instructions — the equivalent of hiring one person and ' +
+              'expecting them to be excellent at triage, networking, security and application support simultaneously.</p>' +
+              '<h3>The architecture instead</h3>' +
+              '<ul>' +
+                '<li><strong>Triage agent:</strong> reads the ticket, pulls out intent and entities, sets priority</li>' +
+                '<li><strong>Knowledge agent:</strong> searches the KB and past tickets for something that already worked</li>' +
+                '<li><strong>Routing agent:</strong> knows who is good at what, and who is drowning this week</li>' +
+                '<li><strong>Approval agent:</strong> runs change management and watches the SLA clock</li>' +
+              '</ul>' +
+              '<p>Each does one thing well. Together they beat any single bot, and when one of them is wrong you can ' +
+              'tell which one.</p>' +
+              '<hr>' +
+              '<p>Next time I want to go deeper on the triage agent specifically — intent recognition, entity ' +
+              'extraction, and where confidence scoring earns its keep.</p>'
+          },
+          {
+            id: 'a2',
+            category: 'life',
+            categoryLabel: 'Life',
+            title: 'Istanbul at 3 AM',
+            excerpt: 'The city is a different place when nobody else is using it. The Bosphorus lights, the empty streets, and a head that finally has room in it.',
+            readTime: 5,
+            date: 'Nov 2025',
+            body:
+              '<h3>The quiet hours</h3>' +
+              '<p>Istanbul never entirely sleeps, but at 3 AM it comes close. The ferries stop. The gulls quiet down. ' +
+              'Even the cats pause their territorial disputes.</p>' +
+              '<p>This is when I do my best work.</p>' +
+              '<blockquote>Thoughts that arrive at 3 AM have a different quality. Rawer. Less filtered by the noise of the day.</blockquote>' +
+              '<h3>Why night works</h3>' +
+              '<p>During the day my brain is reactive. Slack. Meetings. The constant pull of things marked urgent that ' +
+              'rarely are.</p>' +
+              '<p>At night there is nothing to react to. Nobody expects a reply. No invite is coming. Just me, the ' +
+              'thought I am chasing, and occasionally a ship horn somewhere on the water.</p>' +
+              '<h3>The ritual</h3>' +
+              '<ul>' +
+                '<li>Turkish tea, always in a proper bardak</li>' +
+                '<li>Window open, even when it is cold</li>' +
+                '<li>Something ambient on — lately Tycho or Boards of Canada</li>' +
+                '<li>Write without editing</li>' +
+              '</ul>' +
+              '<p>The last one matters most. No backspace. Whatever comes out, comes out. Tomorrow is for editing; ' +
+              'tonight is for catching the thing before it leaves.</p>' +
+              '<h3>The cost</h3>' +
+              '<p>I am not going to pretend this is healthy. My sleep is chaos, morning meetings are punishment, and my ' +
+              'coffee intake would worry a doctor. But some people are morning people. I am a 3 AM person, and I have ' +
+              'stopped arguing with it.</p>' +
+              '<hr>' +
+              '<p>When do you think best? I am curious whether other people have found their own odd optimal hour.</p>'
+          },
+          {
+            id: 'a3',
+            category: 'work',
+            categoryLabel: 'Work',
+            title: 'The art of saying "that is out of scope"',
+            excerpt: 'After years in client-facing roles, the hardest skill turned out not to be technical. It is drawing a line without burning the relationship.',
+            readTime: 6,
+            date: 'Oct 2025',
+            body:
+              '<h3>How it starts</h3>' +
+              '<p>Every project begins with clean boundaries. Here is what we will build. Here is what we will not. ' +
+              'Everyone agrees. Handshakes all round.</p>' +
+              '<p>Then week two arrives, and with it the sentence: "while you are in there, could you also..."</p>' +
+              '<h3>Why we say yes</h3>' +
+              '<p>Saying yes feels helpful. It feels like being on the team. The cost is real but invisible for a while:</p>' +
+              '<ul>' +
+                '<li>The timeline quietly becomes fiction</li>' +
+                '<li>Quality drops, because attention is finite</li>' +
+                '<li>The team burns out</li>' +
+                '<li>The client is unhappy anyway, because nobody ever re-aligned expectations</li>' +
+              '</ul>' +
+              '<div class="aside"><div class="aside-title">The paradox</div>' +
+              '<p>Saying no to scope creep is more helpful than saying yes. A finished narrow project beats an ' +
+              'unfinished ambitious one, every time.</p></div>' +
+              '<h3>How to say no without saying no</h3>' +
+              '<p>The trick is that you almost never have to use the word:</p>' +
+              '<ul>' +
+                '<li><strong>"Yes — let us put that in phase two."</strong> Acknowledges the value, protects the date.</li>' +
+                '<li><strong>"Good idea. What should we drop to fit it?"</strong> Forces the trade-off into the open.</li>' +
+                '<li><strong>"Let me scope it and come back with the timeline impact."</strong> Buys time, adds data.</li>' +
+              '</ul>' +
+              '<h3>The relationship view</h3>' +
+              '<p>The goal is not winning the argument. It is that when you say three weeks, people believe you. Once a ' +
+              'client learns your estimates hold and your scope is real, they trust you more, not less.</p>' +
+              '<hr>' +
+              '<p>What is your phrase for this? I collect them.</p>'
+          },
+          {
+            id: 'a4',
+            category: 'thoughts',
+            categoryLabel: 'Thoughts',
+            title: 'We are all just rearranging tokens',
+            excerpt: 'A late-night spiral about language models, creativity, and whether anything anyone makes is original. I did not reach a conclusion.',
+            readTime: 7,
+            date: 'Oct 2025',
+            body:
+              '<h3>The 3 AM question</h3>' +
+              '<p>Language models predict the next token from patterns in training data. They are, at bottom, very good ' +
+              'pattern matchers — remixing and recombining what already exists.</p>' +
+              '<p>Which raises an uncomfortable question: is that not roughly what we do?</p>' +
+              '<blockquote>Every idea I have had was built from ideas I absorbed elsewhere. Every word I write was one I read first.</blockquote>' +
+              '<h3>The originality myth</h3>' +
+              '<p>We like the story of genius — the lone inventor pulling something from nothing. But look closely at ' +
+              'any original work and the influences are everywhere. The Beatles were remixing Chuck Berry. Einstein was ' +
+              'building on Maxwell. Your favourite author is echoing whoever they read at sixteen.</p>' +
+              '<h3>Where that leaves us</h3>' +
+              '<p>I do not think this makes human creativity smaller. If anything it makes it more interesting. We are ' +
+              'all remix machines. The question was never whether the ingredients are new — it is whether this ' +
+              'particular combination adds something to the conversation.</p>' +
+              '<div class="aside"><div class="aside-title">The comforting part</div>' +
+              '<p>A model has more training data than any person will ever read. It does not have lived experience, or ' +
+              'the specific accidental set of influences that make your remix yours.</p></div>' +
+              '<h3>No conclusion</h3>' +
+              '<p>I do not have a tidy ending. The thought is still rattling around. Some questions are better left open.</p>'
+          },
+          {
+            id: 'a5',
+            category: 'ai',
+            categoryLabel: 'Agents',
+            title: 'Orchestration beats replacement',
+            excerpt: 'Stop trying to replace the tools your company spent years configuring. Build the layer that makes them work together instead.',
+            readTime: 10,
+            date: 'Sep 2025',
+            body:
+              '<h3>The replacement trap</h3>' +
+              '<p>I have sat in too many meetings where someone proposes ripping out ServiceNow, or Jira, or whichever ' +
+              'platform the company has spent four years bending into shape. "Let us replace it with something ' +
+              'AI-native." This is almost always a mistake.</p>' +
+              '<h3>What is actually in there</h3>' +
+              '<p>The existing tool is not just software. It is a record of decisions:</p>' +
+              '<ul>' +
+                '<li>Every custom field is a decision someone made and defended</li>' +
+                '<li>Every workflow rule encodes business logic nobody wrote down elsewhere</li>' +
+                '<li>Every integration took months and a security review</li>' +
+                '<li>Every user has muscle memory you are about to delete</li>' +
+              '</ul>' +
+              '<div class="aside"><div class="aside-title">The real cost</div>' +
+              '<p>Replacing a mature ITSM platform is not a six-month project. Counting migration, workflow ' +
+              'recreation, retraining and the productivity dip, it is closer to two or three years.</p></div>' +
+              '<h3>The alternative</h3>' +
+              '<p>Treat AI as an orchestration layer instead. The ITSM platform stays the system of record. The ' +
+              'knowledge base stays put. Agents sit in the middle, watching events, enriching data, taking action.</p>' +
+              '<h3>Event-driven, not question-driven</h3>' +
+              '<p>The key shift is not waiting to be asked:</p>' +
+              '<ul>' +
+                '<li>Ticket created — triage agent classifies and enriches it</li>' +
+                '<li>Ticket assigned — knowledge agent goes looking for the fix</li>' +
+                '<li>SLA approaching — escalation agent tells the right person, early</li>' +
+                '<li>Ticket resolved — the pattern gets captured for next time</li>' +
+              '</ul>' +
+              '<hr>' +
+              '<p>The goal was never to replace what works. It is to make what works quieter.</p>'
+          },
+          {
+            id: 'a6',
+            category: 'life',
+            categoryLabel: 'Life',
+            title: 'Learning to rest without guilt',
+            excerpt: 'Hustle culture broke something small in my head. This is the repair work, still in progress.',
+            readTime: 5,
+            date: 'Sep 2025',
+            body:
+              '<h3>The symptom</h3>' +
+              '<p>Somewhere along the way I picked up a habit I did not ask for: I cannot rest without feeling guilty ' +
+              'about it. Watching a film, some part of my brain suggests I could be learning something. Take a weekend ' +
+              'off and Sunday evening fills with a low anxiety about time spent badly.</p>' +
+              '<blockquote>Hustle culture did not make me successful. It made me bad at enjoying what the work was for.</blockquote>' +
+              '<h3>The moment it landed</h3>' +
+              '<p>On holiday last year, in a beautiful place, doing nothing, I noticed I felt anxious rather than ' +
+              'relaxed. That was the alarm going off.</p>' +
+              '<h3>What helps</h3>' +
+              '<ul>' +
+                '<li><strong>Scheduled rest:</strong> "do nothing" blocks on the calendar, treated like meetings</li>' +
+                '<li><strong>Reframing:</strong> rest is not the absence of work, it is the maintenance that makes work possible</li>' +
+                '<li><strong>Phone away:</strong> most of the guilt arrives through a screen showing what others did today</li>' +
+                '<li><strong>A note on the desk:</strong> literally, "you are allowed to rest"</li>' +
+              '</ul>' +
+              '<h3>Still working on it</h3>' +
+              '<p>Not fixed. The guilt still turns up. But I am getting better at noticing it and declining the invitation.</p>'
+          },
+          {
+            id: 'a7',
+            category: 'tech',
+            categoryLabel: 'Tech',
+            title: 'My over-engineered home automation setup',
+            excerpt: 'It began with one lamp. It did not end with one lamp. Here is the damage report.',
+            readTime: 8,
+            date: 'Aug 2025',
+            body:
+              '<h3>Famous last words</h3>' +
+              '<p>"I just want to control this one lamp from my phone."</p>' +
+              '<p>Six months later: motion sensors in every room, a local Home Assistant server, custom Node-RED flows, ' +
+              'and strong opinions about Zigbee versus Z-Wave.</p>' +
+              '<h3>The setup</h3>' +
+              '<ul>' +
+                '<li><strong>Hub:</strong> Home Assistant on a Raspberry Pi 4, eyeing a NUC</li>' +
+                '<li><strong>Protocol:</strong> Zigbee via a Sonoff dongle, plus some WiFi devices I regret</li>' +
+                '<li><strong>Lights:</strong> IKEA Tradfri and Philips Hue, the Hue bridge now redundant</li>' +
+                '<li><strong>Sensors:</strong> Aqara motion, door and temperature, everywhere</li>' +
+                '<li><strong>Voice:</strong> processed locally, because I would rather not send my living room to a server</li>' +
+              '</ul>' +
+              '<div class="aside"><div class="aside-title">If you are starting</div>' +
+              '<p>Go Zigbee from day one. WiFi smart devices are easy to buy, clog your network, and usually want the ' +
+              'cloud to be up before your light turns on.</p></div>' +
+              '<h3>The ones that stuck</h3>' +
+              '<ul>' +
+                '<li>Lights dim gradually from 9 PM, so bedtime stops being a decision</li>' +
+                '<li>Night lights at 5% after midnight, motion-triggered</li>' +
+                '<li>Coffee starts when the alarm is dismissed, not when it fires</li>' +
+                '<li>Leaving home checks the doors and switches everything off</li>' +
+              '</ul>' +
+              '<h3>The lesson</h3>' +
+              '<p>Automate what you do every day, not what demos well. Half my early automations were impressive once ' +
+              'and never used again.</p>' +
+              '<hr>' +
+              '<p>What is in your setup? Always looking for something to copy.</p>'
+          },
+          {
+            id: 'a8',
+            category: 'work',
+            categoryLabel: 'Work',
+            title: 'From support to product: what transfers and what does not',
+            excerpt: 'Moving from post-sales implementation into AI product work was both harder and easier than I expected. Notes from the other side.',
+            readTime: 7,
+            date: 'Aug 2025',
+            body:
+              '<h3>The pivot</h3>' +
+              '<p>For years I worked in post-sales support and implementation. Then I moved into product. People ask ' +
+              'how it went. Short answer: harder and easier than expected, in different places than I predicted.</p>' +
+              '<h3>What transfers</h3>' +
+              '<ul>' +
+                '<li><strong>User empathy:</strong> I have watched thousands of people get stuck. I know what confuses them.</li>' +
+                '<li><strong>Edge cases:</strong> I know the weird ways things break, because I debugged them at 11 PM.</li>' +
+                '<li><strong>Translation:</strong> explaining complex systems to non-technical people was the whole job.</li>' +
+                '<li><strong>Patience:</strong> support teaches you that users are not stupid; interfaces are unclear.</li>' +
+              '</ul>' +
+              '<div class="aside"><div class="aside-title">The quiet advantage</div>' +
+              '<p>People who come to product from support tend to build more usable things, because they have felt bad ' +
+              'UX land on them personally.</p></div>' +
+              '<h3>What does not</h3>' +
+              '<ul>' +
+                '<li><strong>Prioritisation:</strong> in support you fix what is broken. In product you choose what matters.</li>' +
+                '<li><strong>Saying no:</strong> support solves problems. Product decides which problems deserve solving.</li>' +
+                '<li><strong>Thinking in data:</strong> I had to learn metrics, tests, and what a real success signal looks like.</li>' +
+                '<li><strong>Ambiguity:</strong> support has right answers. Product frequently does not.</li>' +
+              '</ul>' +
+              '<h3>If you are considering it</h3>' +
+              '<ul>' +
+                '<li>Start writing down patterns. "Users always struggle with X" is a product insight.</li>' +
+                '<li>Learn enough SQL to answer your own questions.</li>' +
+                '<li>Build something small and ship it, so you know what shipping feels like.</li>' +
+                '<li>Frame the support years as a strength, because they are one.</li>' +
+              '</ul>' +
+              '<hr>' +
+              '<p>The path is not linear, but it is walkable — and you arrive with a view that career PMs often lack.</p>'
+          }
+        ];
+
+        var list = document.getElementById('list');
+        var empty = document.getElementById('empty');
+        var current = [];
+        var esc = function (s) {
+          return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        };
+
+        function render(filter) {
+          list.innerHTML = '';
+          current = filter === 'all' ? articles.slice() : articles.filter(function (a) { return a.category === filter; });
+          empty.hidden = current.length > 0;
+
+          current.forEach(function (a) {
+            var row = document.createElement('article');
+            row.className = 'entry reveal';
+            row.innerHTML =
+              '<div class="entry-side">' +
+                '<span class="entry-date">' + esc(a.date) + '</span>' +
+                '<span class="entry-cat">' + esc(a.categoryLabel) + '</span>' +
+              '</div>' +
+              '<div><h2><button type="button" class="entry-open" aria-haspopup="dialog">' + esc(a.title) + '</button></h2>' +
+              '<p>' + esc(a.excerpt) + '</p></div>' +
+              '<span class="entry-time">' + a.readTime + ' min</span>';
+            var trigger = row.querySelector('.entry-open');
+            row.addEventListener('click', function () { open(a, trigger); });
+            list.appendChild(row);
+          });
+
+          if (window.revealAll) window.revealAll(list);
+        }
+
+        // tally, computed from the data
+        var totalMin = articles.reduce(function (n, a) { return n + a.readTime; }, 0);
+        var topics = articles.reduce(function (set, a) {
+          if (set.indexOf(a.category) === -1) set.push(a.category);
+          return set;
+        }, []).length;
+        document.getElementById('tally').innerHTML =
+          '<div><dt>Pieces</dt><dd>' + articles.length + '</dd></div>' +
+          '<div><dt>Total read</dt><dd>' + totalMin + ' min</dd></div>' +
+          '<div><dt>Topics</dt><dd>' + topics + '</dd></div>' +
+          '<div><dt>Latest</dt><dd>' + articles[0].date + '</dd></div>';
+
+        // filters
+        var filters = document.querySelectorAll('.filter');
+        filters.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            filters.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+            btn.setAttribute('aria-pressed', 'true');
+            render(btn.dataset.filter);
+          });
+        });
+
+        // reader
+        var scrim = document.getElementById('scrim');
+        var sheet = document.getElementById('sheet');
+        var prevBtn = document.getElementById('prev');
+        var nextBtn = document.getElementById('next');
+        var lastFocus = null;
+        var openIndex = -1;
+
+        function open(a, trigger) {
+          if (trigger) lastFocus = trigger;
+          openIndex = current.indexOf(a);
+          if (openIndex === -1) { current = articles.slice(); openIndex = current.indexOf(a); }
+
+          document.getElementById('sheet-kicker').innerHTML =
+            '<span class="entry-cat">' + esc(a.categoryLabel) + '</span>' +
+            '<span class="entry-date">' + esc(a.date) + '</span>' +
+            '<span class="entry-date">' + a.readTime + ' min read</span>';
+          document.getElementById('sheet-h').textContent = a.title;
+          document.getElementById('sheet-body').innerHTML = a.body;
+          document.getElementById('sheet-foot-meta').textContent = a.date + ' · ' + a.readTime + ' min';
+          prevBtn.disabled = openIndex <= 0;
+          nextBtn.disabled = openIndex >= current.length - 1;
+
+          sheet.hidden = false;
+          requestAnimationFrame(function () {
+            scrim.classList.add('on');
+            sheet.classList.add('on');
+          });
+          document.body.classList.add('locked');
+          sheet.scrollTop = 0;
+          document.getElementById('sheet-close').focus();
+          if (history.replaceState) history.replaceState(null, '', '#' + a.id);
+        }
+
+        function close() {
+          scrim.classList.remove('on');
+          sheet.classList.remove('on');
+          document.body.classList.remove('locked');
+          setTimeout(function () { sheet.hidden = true; }, 300);
+          if (history.replaceState) history.replaceState(null, '', location.pathname);
+          if (lastFocus && lastFocus.focus) lastFocus.focus();
+        }
+
+        prevBtn.addEventListener('click', function () { if (openIndex > 0) open(current[openIndex - 1], null); });
+        nextBtn.addEventListener('click', function () { if (openIndex < current.length - 1) open(current[openIndex + 1], null); });
+        document.getElementById('sheet-close').addEventListener('click', close);
+        scrim.addEventListener('click', close);
+        sheet.addEventListener('click', function (e) { if (e.target === sheet) close(); });
+        document.addEventListener('keydown', function (e) {
+          if (sheet.hidden) return;
+          if (e.key === 'Escape') close();
+          if (e.key === 'ArrowLeft' && !prevBtn.disabled) prevBtn.click();
+          if (e.key === 'ArrowRight' && !nextBtn.disabled) nextBtn.click();
+          if (e.key === 'Tab') {
+            var f = sheet.querySelectorAll('button:not(:disabled), a[href]');
+            if (!f.length) return;
+            var first = f[0], last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+          }
+        });
+
+        render('all');
+
+        // deep links: writings.html#a2 opens that piece, on load and on hash change
+        function fromHash() {
+          var hash = location.hash.replace('#', '');
+          if (!hash) { if (!sheet.hidden) close(); return; }
+          var match = articles.filter(function (a) { return a.id === hash; })[0];
+          if (match) open(match, null);
+        }
+        fromHash();
+        window.addEventListener('hashchange', fromHash);
+      })();
+    </script>
+  </body>
 </html>
